@@ -200,6 +200,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c852a6d79019123459ecb31db12cf5aa, type: 3}
       insertIndex: -1
       addedObject: {fileID: 331293400}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c852a6d79019123459ecb31db12cf5aa, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 331293403}
   m_SourcePrefab: {fileID: 100100000, guid: c852a6d79019123459ecb31db12cf5aa, type: 3}
 --- !u!1 &331293398 stripped
 GameObject:
@@ -242,7 +245,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   moveSpeed: 5
-  isPc: 1
+  rotationLerpSpeed: 12
+  isPc: 0
 --- !u!114 &331293401
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -368,22 +372,6 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 9caa3d8a-6b2f-4e8e-8bad-6ede561bd9be
     m_ActionName: UI/TrackedDeviceOrientation
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 331293400}
-        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: OnMouseLook
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 8715f9fe-c403-4750-920a-683c0a3f4fdc
-    m_ActionName: 'Player/MouseLook[/Mouse/position]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Joystick
   m_DefaultActionMap: Player
@@ -394,6 +382,33 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c852a6d79019123459ecb31db12cf5aa, type: 3}
   m_PrefabInstance: {fileID: 331293397}
   m_PrefabAsset: {fileID: 0}
+--- !u!54 &331293403
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 331293398}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 80
+  m_CollisionDetection: 1
 --- !u!1 &889210554
 GameObject:
   m_ObjectHideFlags: 0
@@ -686,13 +701,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1475370998}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.11805739, y: 0, z: 0, w: 0.9930068}
-  m_LocalPosition: {x: 0, y: 4.91, z: -11.72}
+  m_LocalRotation: {x: 0.24902739, y: -0, z: -0, w: 0.96849644}
+  m_LocalPosition: {x: 0, y: 10.45, z: -15.96}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1789096952}
-  m_LocalEulerAnglesHint: {x: 13.56, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 28.84, y: 0, z: 0}
 --- !u!114 &1475371002
 MonoBehaviour:
   m_ObjectHideFlags: 0

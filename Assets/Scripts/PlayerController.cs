@@ -7,8 +7,10 @@ public class PlayerController : MonoBehaviour
 {
     [Header("Movement")]
     [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private float rotationLerpSpeed = 12f;
     private Vector2 move, mouseLook, joystickLook;
     private Vector3 rotationTarget;
+    private Rigidbody rb;
     public bool isPc;
     public void OnMove(InputAction.CallbackContext context)
     {
@@ -27,7 +29,12 @@ public class PlayerController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        rb = GetComponent<Rigidbody>();
+
+        if (rb != null)
+        {
+            rb.interpolation = RigidbodyInterpolation.Interpolate;
+        }
     }
 
     // Update is called once per frame
@@ -35,14 +42,28 @@ public class PlayerController : MonoBehaviour
     {
         if (isPc)
         {
-            RaycastHit hit;
-            Ray ray = Camera.main.ScreenPointToRay(mouseLook);
-
-            if (Physics.Raycast(ray, out hit))
+            if (Camera.main != null)
             {
-                rotationTarget = hit.point;
-            }
+                RaycastHit hit;
+                Ray ray = Camera.main.ScreenPointToRay(mouseLook);
 
+                if (Physics.Raycast(ray, out hit))
+                {
+                    rotationTarget = hit.point;
+                }
+            }
+        }
+    }
+
+    void FixedUpdate()
+    {
+        if (rb == null)
+        {
+            return;
+        }
+
+        if (isPc)
+        {
             MovePlayerWithAim();
         }
         else
@@ -64,10 +85,12 @@ public class PlayerController : MonoBehaviour
 
         if (moveDirection != Vector3.zero)
         {
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(moveDirection), 0.15f);
+            Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
+            Quaternion smoothedRotation = Quaternion.Slerp(rb.rotation, targetRotation, rotationLerpSpeed * Time.fixedDeltaTime);
+            rb.MoveRotation(smoothedRotation);
         }
 
-        transform.Translate(moveDirection * moveSpeed * Time.deltaTime, Space.World);
+        rb.MovePosition(rb.position + moveDirection * moveSpeed * Time.fixedDeltaTime);
     }
 
     public void MovePlayerWithAim()
@@ -76,12 +99,17 @@ public class PlayerController : MonoBehaviour
         {
             var lookPos = rotationTarget - transform.position;
             lookPos.y = 0;
-            var rotation = Quaternion.LookRotation(lookPos);
+            if (lookPos != Vector3.zero)
+            {
+                var rotation = Quaternion.LookRotation(lookPos);
+                Quaternion smoothedRotation = Quaternion.Slerp(rb.rotation, rotation, rotationLerpSpeed * Time.fixedDeltaTime);
+                rb.MoveRotation(smoothedRotation);
+            }
 
             Vector3 aimDirection = new Vector3(rotationTarget.x, 0, rotationTarget.z);
             if (aimDirection != Vector3.zero)
             {
-                transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 0.15f);
+                // Rotation is handled above via Rigidbody for smooth physics updates.
             }
         }
         else
@@ -89,13 +117,15 @@ public class PlayerController : MonoBehaviour
             Vector3 aimDirection = new Vector3(joystickLook.x, 0, joystickLook.y);
             if (aimDirection != Vector3.zero)
             {
-                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(aimDirection), 0.15f);
+                Quaternion targetRotation = Quaternion.LookRotation(aimDirection);
+                Quaternion smoothedRotation = Quaternion.Slerp(rb.rotation, targetRotation, rotationLerpSpeed * Time.fixedDeltaTime);
+                rb.MoveRotation(smoothedRotation);
             }
         }
 
         Vector3 moveDirection = new Vector3(move.x, 0, move.y);
 
-        transform.Translate(moveDirection * moveSpeed * Time.deltaTime, Space.World);
+        rb.MovePosition(rb.position + moveDirection * moveSpeed * Time.fixedDeltaTime);
 
     }
 }
