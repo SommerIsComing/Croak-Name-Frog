@@ -276,7 +276,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   moveSpeed: 5
   rotationLerpSpeed: 12
-  airMultiplier: 0.7
+  airMultiplier: 1.5
   isPc: 0
 --- !u!54 &1777913996654755128
 Rigidbody:
@@ -317,9 +317,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8ef4cdd521b1ed479951227abb80fe4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerJump
-  jumpForce: 10
+  jumpForce: 8.5
   jumpCooldown: 0.25
-  baseGravity: 2
+  baseGravity: 1.5
   maxFallSpeed: 20
   fallSpeedMultiplier: 2
   maxLaunchSpeed: 15
@@ -328,4 +328,4 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   grounded: 0
-  groundDrag: 6
+  groundDrag: 10
