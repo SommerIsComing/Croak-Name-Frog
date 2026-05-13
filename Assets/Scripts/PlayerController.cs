@@ -11,10 +11,23 @@ public class PlayerController : MonoBehaviour
     private Vector2 move, mouseLook, joystickLook;
     private Vector3 rotationTarget;
     private Rigidbody rb;
+
+
+    private PlayerJump playerJump;
+    [SerializeField] private float airMultiplier = 0.5f;
+    private bool jumpRequested;
     public bool isPc;
     public void OnMove(InputAction.CallbackContext context)
     {
         move = context.ReadValue<Vector2>();
+    }
+
+    public void OnJump(InputAction.CallbackContext context)
+    {
+         if (context.performed)
+        {
+           TryJump();
+        }
     }
 
     public void OnMouseLook(InputAction.CallbackContext context)
@@ -30,11 +43,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-
-        if (rb != null)
-        {
-            rb.interpolation = RigidbodyInterpolation.Interpolate;
-        }
+        playerJump = GetComponent<PlayerJump>();
     }
 
     // Update is called once per frame
@@ -77,10 +86,17 @@ public class PlayerController : MonoBehaviour
                 MovePlayerWithAim();
             }
         }
+
+        if (jumpRequested)
+        {
+            TryJump();
+            jumpRequested = false;
+        }
     }
 
     public void MovePlayer()
     {
+        float controlMultiplier = GetAirControlMultiplier();
         Vector3 moveDirection = new Vector3(move.x, 0, move.y);
 
         if (moveDirection != Vector3.zero)
@@ -90,7 +106,7 @@ public class PlayerController : MonoBehaviour
             rb.MoveRotation(smoothedRotation);
         }
 
-        rb.MovePosition(rb.position + moveDirection * moveSpeed * Time.fixedDeltaTime);
+        rb.MovePosition(rb.position + moveDirection * moveSpeed * controlMultiplier * Time.fixedDeltaTime);
     }
 
     public void MovePlayerWithAim()
@@ -124,8 +140,26 @@ public class PlayerController : MonoBehaviour
         }
 
         Vector3 moveDirection = new Vector3(move.x, 0, move.y);
+        float controlMultiplier = GetAirControlMultiplier();
 
-        rb.MovePosition(rb.position + moveDirection * moveSpeed * Time.fixedDeltaTime);
+        rb.MovePosition(rb.position + moveDirection * moveSpeed * controlMultiplier * Time.fixedDeltaTime);
 
+    }
+
+    public void TryJump()
+    {
+        if (playerJump != null)
+        {
+            playerJump.Jump();
+        }
+    }
+
+    public float GetAirControlMultiplier()
+    {
+        if (playerJump != null && !playerJump.IsGrounded)
+        {
+            return airMultiplier;
+        }
+        return 1f;
     }
 }

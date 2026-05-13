@@ -8,7 +8,6 @@ public class CameraFollow : MonoBehaviour
 
     public void OnPlayerJoined(PlayerInput playerInput)
     {
-        vcam.Follow = playerInput.transform;
         vcam.LookAt = playerInput.transform;
     }
 }

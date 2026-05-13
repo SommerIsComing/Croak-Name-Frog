@@ -88,6 +88,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c852a6d79019123459ecb31db12cf5aa, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1777913996654755128}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c852a6d79019123459ecb31db12cf5aa, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1686443053507132542}
   m_SourcePrefab: {fileID: 100100000, guid: c852a6d79019123459ecb31db12cf5aa, type: 3}
 --- !u!1 &8608341951091993306 stripped
 GameObject:
@@ -187,7 +190,19 @@ MonoBehaviour:
     m_ActionId: 27c5f898-bc57-4ee1-8800-db469aca5fe3
     m_ActionName: 'Player/Crouch[/DualSenseGamepadHID/buttonEast,/Keyboard/c]'
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2309786482031514957}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnJump
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: f1ba0d36-48eb-4cd5-b651-1c94a6531f70
     m_ActionName: 'Player/Jump[/Keyboard/space,/DualSenseGamepadHID/buttonSouth]'
   - m_PersistentCalls:
@@ -261,6 +276,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   moveSpeed: 5
   rotationLerpSpeed: 12
+  airMultiplier: 0.7
   isPc: 0
 --- !u!54 &1777913996654755128
 Rigidbody:
@@ -289,3 +305,27 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 80
   m_CollisionDetection: 1
+--- !u!114 &1686443053507132542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8608341951091993306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8ef4cdd521b1ed479951227abb80fe4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerJump
+  jumpForce: 10
+  jumpCooldown: 0.25
+  baseGravity: 2
+  maxFallSpeed: 20
+  fallSpeedMultiplier: 2
+  maxLaunchSpeed: 15
+  playerHeight: 0.3
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  grounded: 0
+  groundDrag: 6

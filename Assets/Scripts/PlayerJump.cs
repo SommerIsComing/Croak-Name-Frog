@@ -1,0 +1,80 @@
+using UnityEngine;
+
+public class PlayerJump : MonoBehaviour
+{
+    private Rigidbody rb;
+    
+    [Header("Jumping")]
+    [SerializeField] private float jumpForce = 5f;
+    [SerializeField] private float jumpCooldown = 0.25f;
+
+    bool readyToJump;
+    
+
+    [Header("Gravity Settings")]
+    public float baseGravity = 2f;
+    public float maxFallSpeed = 20f;
+    public float fallSpeedMultiplier = 2f; 
+    public float maxLaunchSpeed = 15f;
+
+    [Header("GroundCheck")]
+    [SerializeField] private float playerHeight;
+    [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private bool grounded;
+    public float groundDrag = 6f;
+    public bool IsGrounded => grounded;
+    
+
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+        readyToJump = true;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.1f, groundLayer);
+    }
+
+    public void Jump()
+    {
+        if (readyToJump && grounded)
+        {
+            readyToJump = false;
+
+            // Calculate jump direction
+            Vector3 jumpDirection = Vector3.up;
+
+            // Apply jump force
+            rb.AddForce(jumpDirection * jumpForce, ForceMode.Impulse);
+
+            // Start cooldown
+            Invoke(nameof(ResetJump), jumpCooldown);
+        }
+    }
+
+    private void ResetJump()
+    {
+        readyToJump = true;
+    }
+
+    private void Gravity()
+    {
+        float gravityMultiplier = baseGravity;
+        if (rb.linearVelocity.y < 0)
+        {
+            gravityMultiplier = baseGravity * fallSpeedMultiplier; // Increase gravity when falling
+            rb.linearVelocity = new Vector3(rb.linearVelocity.x, Mathf.Max(rb.linearVelocity.y, -maxFallSpeed), rb.linearVelocity.z);
+        }
+        else if (rb.linearVelocity.y > maxLaunchSpeed)
+        {
+            rb.linearVelocity = new Vector3(rb.linearVelocity.x, maxLaunchSpeed, rb.linearVelocity.z);
+        }
+        if (gravityMultiplier != 1f)
+        {
+            rb.AddForce(Physics.gravity * (gravityMultiplier - 1f), ForceMode.Acceleration);
+        }
+    }
+}
