@@ -38,6 +38,11 @@ public class PlayerJump : MonoBehaviour
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.1f, groundLayer);
     }
 
+    private void FixedUpdate()
+    {
+        Gravity();
+    }
+
     public void Jump()
     {
         if (readyToJump && grounded)
@@ -63,15 +68,21 @@ public class PlayerJump : MonoBehaviour
     private void Gravity()
     {
         float gravityMultiplier = baseGravity;
-        if (rb.linearVelocity.y < 0)
+
+        if (Mathf.Abs(rb.linearVelocity.y) < 0.1f) // Near the peak of the jump
+        {
+            gravityMultiplier = baseGravity * fallSpeedMultiplier; // Stronger gravity at the peak
+        }
+        else if (rb.linearVelocity.y < 0) // Falling
         {
             gravityMultiplier = baseGravity * fallSpeedMultiplier; // Increase gravity when falling
             rb.linearVelocity = new Vector3(rb.linearVelocity.x, Mathf.Max(rb.linearVelocity.y, -maxFallSpeed), rb.linearVelocity.z);
         }
-        else if (rb.linearVelocity.y > maxLaunchSpeed)
+        else if (rb.linearVelocity.y > maxLaunchSpeed) // Clamp upward velocity
         {
             rb.linearVelocity = new Vector3(rb.linearVelocity.x, maxLaunchSpeed, rb.linearVelocity.z);
         }
+
         if (gravityMultiplier != 1f)
         {
             rb.AddForce(Physics.gravity * (gravityMultiplier - 1f), ForceMode.Acceleration);
