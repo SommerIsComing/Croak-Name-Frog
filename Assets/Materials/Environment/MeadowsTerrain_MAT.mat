@@ -107,18 +107,27 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _Ambient_Strength: 0.71
     - _Blend_Cutoff: 0.75
     - _Blend_Falloff: 0.767
+    - _Cutoff: 0.1
+    - _Cutoff_: 0
     - _EnableInstancedPerPixelNormal: 1
+    - _Falloff: 0.05
+    - _Float: 0.1
     - _Height_Cutoff: -0.9
     - _Metallic0: 0
     - _Metallic1: 0
     - _Metallic2: 0
     - _Metallic3: 0
+    - _ShadowFalloff: 0
+    - _Shadow_Cutoff: 0.7
     - _Smoothness0: 1
     - _Smoothness1: 1
     - _Smoothness2: 1
     - _Smoothness3: 1
+    - _Threshhold: 0
+    - _Threshold: 0.1
     m_Colors:
     - _Dirt_Color: {r: 0.36862746, g: 0.30747703, b: 0.13712941, a: 1}
     - _Grass_Color: {r: 0.7207989, g: 0.7529412, b: 0.25098044, a: 1}
