@@ -13,7 +13,11 @@ public class PlayerController : MonoBehaviour
     private Rigidbody rb;
 
 
+    [SerializeField] private float superJumpHoldTime = 0.4f;
+    private bool jumpHeld;
+    private float jumpHoldTimer;
     private PlayerJump playerJump;
+    private AbilityHolder abilityHolder;
     [SerializeField] private float airMultiplier = 0.5f;
     private bool jumpRequested;
     public bool isPc;
@@ -24,9 +28,25 @@ public class PlayerController : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
-         if (context.performed)
+        if (context.started)
         {
-           TryJump();
+            jumpHeld = true;
+            jumpHoldTimer = 0f;
+        }
+
+        if (context.canceled)
+        {
+            jumpHeld = false;
+            if (jumpHoldTimer >= superJumpHoldTime)
+            {
+                TriggerSuperJump();
+            }
+            else
+            {
+                TryJump();
+            }
+
+            jumpHoldTimer = 0f;
         }
     }
 
@@ -39,11 +59,28 @@ public class PlayerController : MonoBehaviour
     {
         joystickLook = context.ReadValue<Vector2>();
     }
+
+    public void OnSuperJump(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            TriggerSuperJump();
+        }
+    }
+
+    public void OnToungeSwing(InputAction.CallbackContext context)
+    {
+        if (context.performed && abilityHolder != null)
+        {
+            abilityHolder.TriggerAbility();
+        }
+    }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         playerJump = GetComponent<PlayerJump>();
+        abilityHolder = GetComponent<AbilityHolder>();
     }
 
     // Update is called once per frame
@@ -61,6 +98,10 @@ public class PlayerController : MonoBehaviour
                     rotationTarget = hit.point;
                 }
             }
+        }
+        if (jumpHeld)
+        {
+            jumpHoldTimer += Time.deltaTime;
         }
     }
 
@@ -143,7 +184,6 @@ public class PlayerController : MonoBehaviour
         float controlMultiplier = GetAirControlMultiplier();
 
         rb.MovePosition(rb.position + moveDirection * moveSpeed * controlMultiplier * Time.fixedDeltaTime);
-
     }
 
     public void TryJump()
@@ -161,5 +201,13 @@ public class PlayerController : MonoBehaviour
             return airMultiplier;
         }
         return 1f;
+    }
+
+    private void TriggerSuperJump()
+    {
+        if (abilityHolder != null && abilityHolder.ability != null)
+        {
+            abilityHolder.ability.Activate(gameObject);
+        }
     }
 }
