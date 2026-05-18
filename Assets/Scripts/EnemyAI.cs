@@ -10,11 +10,11 @@ public class EnemyAI : MonoBehaviour
     private PlayerHeath playerHealth;
 
     //values
-    private float attackRange = 2f;
-    private float attackDamage = 1f;
+    [SerializeField] private float attackRange = 2f;
+    [SerializeField] private int attackDamage = 1;
     private float attackTimer;
-    private float attackCooldown = 1f;
-    private float chaseRange = 20f;
+    [SerializeField] private float attackCooldown = 1f;
+    [SerializeField] private float chaseRange = 20f;
 
     //patrolling
     [SerializeField] private Transform[] patrolPoints;
@@ -154,4 +154,5 @@ public class EnemyAI : MonoBehaviour
             attackTimer = attackCooldown; // reset attackTimer til cooldown
         }
     }
+
 }

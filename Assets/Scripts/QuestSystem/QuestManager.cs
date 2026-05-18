@@ -75,6 +75,10 @@ public class QuestManager : MonoBehaviour
                         objective.currentObjectiveProgress = Mathf.Min(objective.currentObjectiveProgress + 1, objective.objectiveData.requiredProgress);
                         if (objective.IsObjectiveComplete())
                         {
+                            if (quest.currentObjectiveIndex < quest.runtimeObjectives.Count)
+                            {
+                                quest.currentObjectiveIndex += 1;
+                            }
                             CheckQuestCompletion(quest);
                         }
                     }
@@ -98,6 +102,10 @@ public class QuestManager : MonoBehaviour
                         objective.currentObjectiveProgress = Mathf.Min(objective.currentObjectiveProgress + 1, objective.objectiveData.requiredProgress);
                         if (objective.IsObjectiveComplete())
                         {
+                            if (quest.currentObjectiveIndex < quest.runtimeObjectives.Count)
+                            {
+                                quest.currentObjectiveIndex += 1;
+                            }
                             CheckQuestCompletion(quest);
                         }
                     }
@@ -121,6 +129,10 @@ public class QuestManager : MonoBehaviour
                         objective.currentObjectiveProgress = Mathf.Min(objective.currentObjectiveProgress + 1, objective.objectiveData.requiredProgress);
                         if (objective.IsObjectiveComplete())
                         {
+                            if (quest.currentObjectiveIndex < quest.runtimeObjectives.Count)
+                            {
+                                quest.currentObjectiveIndex += 1;
+                            }
                             CheckQuestCompletion(quest);
                         }
                     }
@@ -144,6 +156,10 @@ public class QuestManager : MonoBehaviour
                         objective.currentObjectiveProgress = Mathf.Min(objective.currentObjectiveProgress + 1, objective.objectiveData.requiredProgress);
                         if (objective.IsObjectiveComplete())
                         {
+                            if (quest.currentObjectiveIndex < quest.runtimeObjectives.Count)
+                            {
+                                quest.currentObjectiveIndex += 1;
+                            }
                             CheckQuestCompletion(quest);
                         }
                     }
