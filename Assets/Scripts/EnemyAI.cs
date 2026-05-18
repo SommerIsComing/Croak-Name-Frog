@@ -7,12 +7,14 @@ public class EnemyAI : MonoBehaviour
     //references
     private Transform playerTransform;
     private NavMeshAgent agent;
+    private PlayerHeath playerHealth;
 
     //values
-    private float attackRange = 0.8f;
+    private float attackRange = 2f;
+    private float attackDamage = 1f;
     private float attackTimer;
     private float attackCooldown = 1f;
-    private float chaseRange = 5f;
+    private float chaseRange = 20f;
 
     //patrolling
     [SerializeField] private Transform[] patrolPoints;
@@ -33,6 +35,8 @@ public class EnemyAI : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        currentPatrolIndex = Random.Range(0, patrolPoints.Length); // start ved et tilfældigt patrol point
+        playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHeath>();
     }
 
     void Update()
@@ -58,7 +62,7 @@ public class EnemyAI : MonoBehaviour
         // *UDREGNING* //
         float attackScore = 0f;
         float chaseScore = 0f;
-        float patrolScore = 0.1f;
+        float patrolScore = 1f;
 
         if(distanceToPlayer <= attackRange) // hvis spilleren er inden for attack-range, tilføres attackScore en høj værdi baseret på afstanden og vinklen til spilleren
         {
@@ -76,16 +80,17 @@ public class EnemyAI : MonoBehaviour
         }
 
         //bedste score findes ved at sammeligne og finde den højeste værdi;
-        float bestScore = Mathf.Max(attackScore, chaseScore, patrolScore);
+        int bestScore = (int)(Mathf.Max(attackScore, chaseScore, patrolScore));
 
+        //Debug.Log("Attack Score: "+ attackScore + " | Chase Score: " + chaseScore + " | Patrol Score: " + patrolScore + " | Best Score: " + bestScore);
 
         // *BESLUTNING* //
-        if (bestScore == attackScore || attackScore > chaseScore && attackScore > patrolScore) // ATTACK
+        if (bestScore == (int)attackScore) // ATTACK
         {
             AttackPlayer();
             currentState = aiStates.Attack;
         }
-        else if(bestScore == chaseScore || chaseScore > attackScore && chaseScore > patrolScore) // CHASE
+        else if(bestScore == (int)chaseScore) // CHASE
         {
             ChasePlayer();
             currentState = aiStates.Chase;
@@ -103,7 +108,7 @@ public class EnemyAI : MonoBehaviour
 
         // sæt destination til det nuværende patrol point
         agent.SetDestination(patrolPoints[currentPatrolIndex].position);
-        Debug.Log(gameObject.name + ": patrolling to point " + currentPatrolIndex);
+        //Debug.Log(gameObject.name + ": patrolling to point " + currentPatrolIndex);
 
         // afstand til det nuværende patrol point
         float distanceToPatrolPoint = Vector3.Distance(transform.position, patrolPoints[currentPatrolIndex].position);
@@ -129,18 +134,13 @@ public class EnemyAI : MonoBehaviour
         lookPosition.y = transform.position.y;
         transform.LookAt(lookPosition);
 
-        if (Vector3.Distance(transform.position, playerTransform.position) <= 0.5f)
-        {
-            agent.SetDestination(transform.position); // stop fjenden hvis den er tæt nok på spilleren
-        }
-
-        Debug.Log(gameObject.name + ": chasing player");
+        //Debug.Log(gameObject.name + ": chasing player");
     }
 
     private void AttackPlayer()
     {
         //fjenden angriber spilleren statisk og retter sig imod dem
-        agent.SetDestination(transform.position);
+        agent.SetDestination(playerTransform.position + new Vector3(1.5f,1.5f,1.5f));
         Vector3 lookPosition = playerTransform.position;
         lookPosition.y = transform.position.y;
         transform.LookAt(lookPosition);
@@ -149,6 +149,7 @@ public class EnemyAI : MonoBehaviour
         {
             //ATTACK LOGIC HER (reducere spillerens health)
             Debug.Log(gameObject.name + ": attacking player!");
+            playerHealth.TakeDamage(attackDamage); // eksempel på at reducere spillerens health med 10
 
             attackTimer = attackCooldown; // reset attackTimer til cooldown
         }
