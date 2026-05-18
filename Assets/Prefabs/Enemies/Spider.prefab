@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: -2155109339283605606}
   m_Layer: 0
   m_Name: Spider
-  m_TagString: spider
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -199,3 +199,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e92a04bdb4922e24cb5900ff8885b09f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  currentHealth: 0
+  maxHealth: 2
