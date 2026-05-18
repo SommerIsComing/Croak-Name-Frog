@@ -10,7 +10,7 @@ public static class QuestEvents
     public static Action<string> OnAreaEntered;
 
     // Event for at give en quest til spilleren ved hjælp af quest ID
-    public static Action<string> GiveQuestByID;
+    public static Action<string> OnQuestGivenByID;
 
     // Event for at opdatere quest UI, når der sker ændringer
     public static Action OnUIQuestRefresh;

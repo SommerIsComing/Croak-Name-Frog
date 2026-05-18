@@ -6,32 +6,33 @@ using UnityEngine;
 [Serializable]
 public class QuestInstance
 {
+    //datafelt for at holde reference til det originale QuestData scriptable object
     public QuestData questData;
 
+    //holder styr på om questen er completed eller ej
     public bool isQuestCompleted;
 
+    //holder styr på den aktuelle index for det aktive objective i questen, som spilleren arbejder på
     public int currentObjectiveIndex;
 
-    public List<int> objectives = new List<int>();
+    //liste over ObjectiveInstance objekter, der repræsenterer de aktive objectives i questen
+    public List<ObjectiveInstance> runtimeObjectives = new List<ObjectiveInstance>();
 
-    public int currentObjectiveProgress;
 
+    //metode til at forberede questen ved at oprette ObjectiveInstance objekter for hver objective i questen og tilføje dem til runtimeObjectives listen
     public void PrepQuest()
     {
-        objectives.Clear();
+        runtimeObjectives.Clear();
 
-        // Initialiser objectives listen med 0 for hver questObjective i questData
         foreach (ObjectiveData objective in questData.questObjectives)
         {
-            objectives.Add(0);
+            ObjectiveInstance objectiveInstance = new ObjectiveInstance();
+
+            objectiveInstance.objectiveData = objective;
+            objectiveInstance.currentObjectiveProgress = 0;
+
+            runtimeObjectives.Add(objectiveInstance);
         }
     }
-
-    public void NewObjectiveProgress()
-    {
-        currentObjectiveProgress = 0;
-        currentObjectiveIndex++;
-    }
-
-    public void AddObjectiveProgress() { currentObjectiveProgress += 1; }
+    
 }

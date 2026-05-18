@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
+// QuestManager klassen er ansvarlig for at håndtere alle aktive quests/objectives, opdatere quest/objective progress, tjekke completion samt handlinger relateret til Quest events
 public class QuestManager : MonoBehaviour
 {
+    // Singleton instans af QuestManager, der kan tilgås globalt i spillet samt database reference til at hente quest data
     public static QuestManager questManager;
     [SerializeField] private QuestDataBASE questDataBase;
 
@@ -28,12 +30,12 @@ public class QuestManager : MonoBehaviour
 
     private void OnEnable()
     {
-        // Questmanageren lytter på events for at opdatere quest status, når spilleren samler genstande eller dræber fjender
+        // Questmanageren lytter på events for at opdatere quest status
         QuestEvents.OnItemCollected += HandleItemCollected;
         QuestEvents.OnEnemyKilled += HandleEnemyKilled;
         QuestEvents.OnNPCTalkedTo += HandleNPCTalkedTo;
         QuestEvents.OnAreaEntered += HandleAreaEntered;
-        QuestEvents.GiveQuestByID += HandleGiveQuestByID;
+        QuestEvents.OnQuestGivenByID += HandleQuestGivenByID;
     }
 
     private void OnDisable()
@@ -43,12 +45,13 @@ public class QuestManager : MonoBehaviour
         QuestEvents.OnEnemyKilled -= HandleEnemyKilled;
         QuestEvents.OnNPCTalkedTo -= HandleNPCTalkedTo;
         QuestEvents.OnAreaEntered -= HandleAreaEntered;
-        QuestEvents.GiveQuestByID -= HandleGiveQuestByID;
+        QuestEvents.OnQuestGivenByID -= HandleQuestGivenByID;
     }
 
+    // Testkode til at simulere quest progression ved at udløse forskellige events -- SLETTES
     private void Start()
     {
-        QuestEvents.GiveQuestByID?.Invoke("wings");
+        QuestEvents.OnQuestGivenByID?.Invoke("wings");
 
         QuestEvents.OnEnemyKilled?.Invoke("spider");
         QuestEvents.OnEnemyKilled?.Invoke("spider");
@@ -59,18 +62,21 @@ public class QuestManager : MonoBehaviour
 
     private void HandleItemCollected(string item)
     {
-        // Gennemgår alle aktive quests og tjekker om det opsamlede item er relevant for nogen af questens objectives
+        // Gennemgår alle aktive quests og tjekker om det opsamlede item er relevant for nogen af questens aktive objectives
         foreach (QuestInstance quest in activeQuests)
         {
-            for (int i = 0; i < quest.questData.questObjectives.Count; i++)
+            foreach (ObjectiveInstance objective in quest.runtimeObjectives)
             {
-                ObjectiveData objective = quest.questData.questObjectives[i];
-                if (objective is CollectObjective collectObjective)
+                if(objective.objectiveData is CollectObjective collectObjective)
                 {
                     if (collectObjective.itemName == item)
                     {
-                        quest.objectives[i]++;
-                        CheckQuestCompletion(quest);
+                        //er det et relevant item, opdateres objective progress. hvis det pågældende objective er completed, tjekkes det om questen er fuldført
+                        objective.currentObjectiveProgress = Mathf.Min(objective.currentObjectiveProgress + 1, objective.objectiveData.requiredProgress);
+                        if (objective.IsObjectiveComplete())
+                        {
+                            CheckQuestCompletion(quest);
+                        }
                     }
                 }
             }
@@ -79,23 +85,19 @@ public class QuestManager : MonoBehaviour
 
     private void HandleEnemyKilled(string enemy)
     {
-        if(activeQuests.Count == 0) return;
-
-        // Gennemgår alle aktive quests og tjekker om den dræbte fjende er relevant for nogen af questens objectives
+        // Gennemgår alle aktive quests og tjekker om den dræbte fjende er relevant for nogen af questens aktive objectives
         foreach (QuestInstance quest in activeQuests)
         {
-            for (int i = 0; i < quest.questData.questObjectives.Count; i++)
+            foreach (ObjectiveInstance objective in quest.runtimeObjectives)
             {
-                ObjectiveData objective = quest.questData.questObjectives[i];
-                if (objective is KillObjective killObjective)
+                if (objective.objectiveData is KillObjective killObjective)
                 {
-                    if(killObjective.enemyName == enemy)
+                    if (killObjective.enemyName == enemy)
                     {
-                        quest.AddObjectiveProgress();
-                        if (quest.currentObjectiveProgress >= killObjective.requiredProgress)
+                        //er det et relevant enemy, opdateres objective progress. hvis det pågældende objective er completed, tjekkes det om questen er fuldført
+                        objective.currentObjectiveProgress = Mathf.Min(objective.currentObjectiveProgress + 1, objective.objectiveData.requiredProgress);
+                        if (objective.IsObjectiveComplete())
                         {
-                            quest.objectives[i]++;
-                            quest.NewObjectiveProgress();
                             CheckQuestCompletion(quest);
                         }
                     }
@@ -106,17 +108,21 @@ public class QuestManager : MonoBehaviour
 
     private void HandleNPCTalkedTo(string npc)
     {
+        // Gennemgår alle aktive quests og tjekker om npc interaktionen er relevant for nogen af questens aktive objectives
         foreach (QuestInstance quest in activeQuests)
         {
-            for (int i = 0; i < quest.questData.questObjectives.Count; i++)
+            foreach (ObjectiveInstance objective in quest.runtimeObjectives)
             {
-                ObjectiveData objective = quest.questData.questObjectives[i];
-                if (objective is TalkObjective talkObjective)
+                if (objective.objectiveData is TalkObjective talkObjective)
                 {
                     if (talkObjective.npcName == npc)
                     {
-                        quest.objectives[i]++;
-                        CheckQuestCompletion(quest);
+                        //er det en relevant npc, opdateres objective progress. hvis det pågældende objective er completed, tjekkes det om questen er fuldført
+                        objective.currentObjectiveProgress = Mathf.Min(objective.currentObjectiveProgress + 1, objective.objectiveData.requiredProgress);
+                        if (objective.IsObjectiveComplete())
+                        {
+                            CheckQuestCompletion(quest);
+                        }
                     }
                 }
             }
@@ -125,28 +131,33 @@ public class QuestManager : MonoBehaviour
 
     private void HandleAreaEntered(string area)
     {
+        // Gennemgår alle aktive quests og tjekker om området er relevant for nogen af questens aktive objectives
         foreach (QuestInstance quest in activeQuests)
         {
-            for (int i = 0; i < quest.questData.questObjectives.Count; i++)
+            foreach (ObjectiveInstance objective in quest.runtimeObjectives)
             {
-                ObjectiveData objective = quest.questData.questObjectives[i];
-                if (objective is EnterAreaObjective enterAreaObjective)
+                if (objective.objectiveData is EnterAreaObjective enterAreaObjective)
                 {
                     if (enterAreaObjective.areaName == area)
                     {
-                        quest.objectives[i]++;
-                        CheckQuestCompletion(quest);
+                        //er det et relevant område, opdateres objective progress. hvis det pågældende objective er completed, tjekkes det om questen er fuldført
+                        objective.currentObjectiveProgress = Mathf.Min(objective.currentObjectiveProgress + 1, objective.objectiveData.requiredProgress);
+                        if (objective.IsObjectiveComplete())
+                        {
+                            CheckQuestCompletion(quest);
+                        }
                     }
                 }
             }
         }
     }
 
-    public void HandleGiveQuestByID(string questID)
+    public void HandleQuestGivenByID(string questID)
     {
-        // giver en quest til spilleren baseret på questID
+        // giver en quest til spilleren baseret på questID ved at søge igennem quest databasen
         QuestData questData = questDataBase.GetQuestByID(questID);
 
+        // Tjekker om spilleren allerede har questen i sin aktive quest liste for at undgå at tilføje den flere gange
         bool alreadyHasQuest = activeQuests.Exists(questInstance => questInstance.questData.questID == questID);
         if (alreadyHasQuest) return;
 
@@ -160,7 +171,9 @@ public class QuestManager : MonoBehaviour
     public void AddQuest(QuestData questData)
     {
         QuestInstance newQuest = new QuestInstance();
+        // den nye quest-instance "newQuest" tildeles quest-dataen fra quest databasen (fra HandleQuestGivenByID()-metoden)
         newQuest.questData = questData;
+
         if(newQuest != null )
         {
             newQuest.PrepQuest();
@@ -168,28 +181,18 @@ public class QuestManager : MonoBehaviour
         }
     }
 
-    //tjekker om alle objectives i en quest er blevet gennemført. Er dette tilfældet angives questen som færdig
+    //tjekker om alle aktive objectives i en aktiv quest er blevet gennemført. Er dette tilfældet angives questen som færdig
     public void CheckQuestCompletion(QuestInstance quest)
     {
-        bool allObjectivesCompleted = true;
-
-        // Gennemgår alle objectives i den pågældende quest og tjekker om de er fuldførte
-        for (int i = 0; i > quest.questData.questObjectives.Count; i++)
+        // Gennemgår alle aktive objectives i den pågældende aktive quest og tjekker om de er fuldførte
+        foreach (ObjectiveInstance objective in quest.runtimeObjectives)
         {
-            ObjectiveData objective = quest.questData.questObjectives[i];
-
-            if (quest.objectives[i] < objective.requiredProgress)
-            {
-                allObjectivesCompleted = false;
-                break;
-            }
+            // Hvis et eneste objective ikke er fuldført, afsluttes metoden og questen forbliver incomplete
+            if (!objective.IsObjectiveComplete()) return;
         }
 
-        if (allObjectivesCompleted)
-        {
-            CompleteQuest(quest);
-        }
-
+        CompleteQuest(quest);
+        
         // Opdater UI'et for quests ved at udløse en event
         QuestEvents.OnUIQuestRefresh?.Invoke();
     }

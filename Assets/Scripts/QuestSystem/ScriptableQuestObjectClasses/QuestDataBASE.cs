@@ -2,7 +2,7 @@ using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine;
 
-// Scriptable object der indeholder en database af alle quests i spillet
+// Scriptable object der indeholder en database af alle quests i spillet og derved kan finde en quest baseret på deres ID
 [CreateAssetMenu(fileName = "QuestDataBASE", menuName = "Scriptable Objects/QuestDataBASE")]
 public class QuestDataBASE : ScriptableObject
 {
