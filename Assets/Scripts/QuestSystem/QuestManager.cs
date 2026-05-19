@@ -48,18 +48,6 @@ public class QuestManager : MonoBehaviour
         QuestEvents.OnQuestGivenByID -= HandleQuestGivenByID;
     }
 
-    // Testkode til at simulere quest progression ved at udløse forskellige events -- SLETTES
-    private void Start()
-    {
-        QuestEvents.OnQuestGivenByID?.Invoke("wings");
-
-        QuestEvents.OnEnemyKilled?.Invoke("spider");
-        QuestEvents.OnEnemyKilled?.Invoke("spider");
-        QuestEvents.OnEnemyKilled?.Invoke("spider");
-        QuestEvents.OnEnemyKilled?.Invoke("spider");
-        QuestEvents.OnEnemyKilled?.Invoke("spider");
-    }
-
     private void HandleItemCollected(string item)
     {
         // Gennemgår alle aktive quests og tjekker om det opsamlede item er relevant for nogen af questens aktive objectives
@@ -79,6 +67,13 @@ public class QuestManager : MonoBehaviour
                             {
                                 quest.currentObjectiveIndex += 1;
                             }
+
+                            // Udfør eventuelle handlinger, der er knyttet til objective completion, før der tjekkes for quest completion
+                            foreach (ObjectiveAction action in objective.objectiveData.actionsUponCompletion)
+                            {
+                                action.ExecuteAction();
+                            }
+
                             CheckQuestCompletion(quest);
                         }
                     }
@@ -106,6 +101,13 @@ public class QuestManager : MonoBehaviour
                             {
                                 quest.currentObjectiveIndex += 1;
                             }
+
+                            // Udfør eventuelle handlinger, der er knyttet til objective completion, før der tjekkes for quest completion
+                            foreach (ObjectiveAction action in objective.objectiveData.actionsUponCompletion)
+                            {
+                                action.ExecuteAction();
+                            }
+
                             CheckQuestCompletion(quest);
                         }
                     }
@@ -133,6 +135,13 @@ public class QuestManager : MonoBehaviour
                             {
                                 quest.currentObjectiveIndex += 1;
                             }
+
+                            // Udfør eventuelle handlinger, der er knyttet til objective completion, før der tjekkes for quest completion
+                            foreach (ObjectiveAction action in objective.objectiveData.actionsUponCompletion)
+                            {
+                                action.ExecuteAction();
+                            }
+
                             CheckQuestCompletion(quest);
                         }
                     }
@@ -160,6 +169,13 @@ public class QuestManager : MonoBehaviour
                             {
                                 quest.currentObjectiveIndex += 1;
                             }
+
+                            // Udfør eventuelle handlinger, der er knyttet til objective completion, før der tjekkes for quest completion
+                            foreach (ObjectiveAction action in objective.objectiveData.actionsUponCompletion)
+                            {
+                                action.ExecuteAction();
+                            }
+
                             CheckQuestCompletion(quest);
                         }
                     }
