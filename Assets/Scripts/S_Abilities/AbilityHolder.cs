@@ -2,7 +2,6 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System;
-using System.Diagnostics.Tracing;
 
 public class AbilityHolder : MonoBehaviour
 {
@@ -12,6 +11,7 @@ public class AbilityHolder : MonoBehaviour
     public class AbilitySlot
     {
         public AbilitySO ability;
+        public bool isUnlocked = false;
 
         public AbilityState state = AbilityState.ready;
         public float cooldownTime;
@@ -38,11 +38,28 @@ public class AbilityHolder : MonoBehaviour
             return;
         }
 
+        if (!slot.isUnlocked)
+        {
+            return;
+        }
+
         if (slot.state != AbilityState.ready)
         {
             return;
         }
         slot.activateRequested = true;
+    }
+
+    public void UnlockAbilityByName(string abilityName)
+    {
+        for (int i = 0; i < abilitySlots.Count; i++)
+        {
+            if (abilitySlots[i].ability != null && abilitySlots[i].ability.name == abilityName)
+            {
+                abilitySlots[i].isUnlocked = true;
+                return;
+            }
+        }
     }
 
     public void TriggerAbilityByName(string abilityName)
@@ -66,6 +83,23 @@ public class AbilityHolder : MonoBehaviour
         }
     }
 
+    void FixedUpdate()
+    {
+        for (int i = 0; i < abilitySlots.Count; i++)
+        {
+            AbilitySlot slot = abilitySlots[i];
+            if (slot == null || slot.ability == null)
+            {
+                continue;
+            }
+
+            if (slot.state == AbilityState.active)
+            {
+                slot.ability.FixedActiveUpdate(gameObject);
+            }
+        }
+    }
+
     private void UpdateSlot(AbilitySlot slot)
     {
         if (slot == null || slot.ability == null)
@@ -82,9 +116,9 @@ public class AbilityHolder : MonoBehaviour
 
                     slot.ability.Activate(gameObject);
 
-                    slot.activeTime = slot.ability.activeTime;
+                    slot.activeTime = 0f;
 
-                    if (slot.activeTime > 0f)
+                    if (slot.ability.activeTime > 0f)
                     {
                         slot.state = AbilityState.active;
                     }
@@ -97,12 +131,11 @@ public class AbilityHolder : MonoBehaviour
                 break;
 
             case AbilityState.active:
-                if (slot.activeTime > 0f)
+                slot.activeTime += Time.deltaTime;
+
+                if (slot.activeTime >= slot.ability.activeTime || slot.ability.IsActiveComplete(gameObject))
                 {
-                    slot.activeTime -= Time.deltaTime;
-                }
-                else
-                {
+                    slot.ability.Deactivate(gameObject);
                     slot.state = AbilityState.cooldown;
                     slot.cooldownTime = slot.ability.cooldown;
                 }

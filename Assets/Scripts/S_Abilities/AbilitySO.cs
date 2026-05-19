@@ -12,4 +12,19 @@ public class AbilitySO : ScriptableObject
     {
         // Implement the ability's effect here
     }
+
+    public virtual void FixedActiveUpdate(GameObject parent)
+    {
+        // Called every FixedUpdate while the ability is active
+    }
+
+    public virtual void Deactivate(GameObject parent)
+    {
+        // Called when active time expires
+    }
+
+    public virtual bool IsActiveComplete(GameObject parent)
+    {
+        return false; // Default: rely on activeTime timer only
+    }
 }  
