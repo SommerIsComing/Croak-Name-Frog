@@ -2,7 +2,6 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System;
-using System.Diagnostics.Tracing;
 
 public class AbilityHolder : MonoBehaviour
 {
@@ -12,6 +11,7 @@ public class AbilityHolder : MonoBehaviour
     public class AbilitySlot
     {
         public AbilitySO ability;
+        public bool isUnlocked = false;
 
         public AbilityState state = AbilityState.ready;
         public float cooldownTime;
@@ -38,11 +38,28 @@ public class AbilityHolder : MonoBehaviour
             return;
         }
 
+        if (!slot.isUnlocked)
+        {
+            return;
+        }
+
         if (slot.state != AbilityState.ready)
         {
             return;
         }
         slot.activateRequested = true;
+    }
+
+    public void UnlockAbilityByName(string abilityName)
+    {
+        for (int i = 0; i < abilitySlots.Count; i++)
+        {
+            if (abilitySlots[i].ability != null && abilitySlots[i].ability.name == abilityName)
+            {
+                abilitySlots[i].isUnlocked = true;
+                return;
+            }
+        }
     }
 
     public void TriggerAbilityByName(string abilityName)
