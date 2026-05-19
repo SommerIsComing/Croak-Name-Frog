@@ -66,6 +66,72 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acd7531833c39c344b5cbe23e01449dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+--- !u!1 &8628205883993575523
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7801489998945539905}
+  - component: {fileID: 8256057123108680271}
+  - component: {fileID: 5412453621368156313}
+  m_Layer: 0
+  m_Name: InteractionZone
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7801489998945539905
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8628205883993575523}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8952357581194408032}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8256057123108680271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8628205883993575523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79b5f954ae10f4e478bee30b6526f14a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerInteract
+--- !u!135 &5412453621368156313
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8628205883993575523}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 10
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &8914753092988393355
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -92,15 +158,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c852a6d79019123459ecb31db12cf5aa, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -142.919
+      value: -145.3558
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c852a6d79019123459ecb31db12cf5aa, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 31.545
+      value: 31.85037
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c852a6d79019123459ecb31db12cf5aa, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -22.055
+      value: 4.05613
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c852a6d79019123459ecb31db12cf5aa, type: 3}
       propertyPath: m_LocalRotation.w
@@ -148,6 +214,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: c852a6d79019123459ecb31db12cf5aa, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5711795470313761495}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: c852a6d79019123459ecb31db12cf5aa, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7801489998945539905}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c852a6d79019123459ecb31db12cf5aa, type: 3}
       insertIndex: -1
@@ -336,7 +405,19 @@ MonoBehaviour:
     m_ActionId: 9caa3d8a-6b2f-4e8e-8bad-6ede561bd9be
     m_ActionName: UI/TrackedDeviceOrientation
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8256057123108680271}
+        m_TargetAssemblyTypeName: PlayerInteract, Assembly-CSharp
+        m_MethodName: OnInteraction
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 852140f2-7766-474d-8707-702459ba45f3
     m_ActionName: 'Player/Interact[/Keyboard/e]'
   - m_PersistentCalls:
@@ -397,7 +478,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 1
-  m_Constraints: 80
+  m_Constraints: 84
   m_CollisionDetection: 1
 --- !u!114 &1686443053507132542
 MonoBehaviour:
@@ -423,6 +504,7 @@ MonoBehaviour:
     m_Bits: 64
   grounded: 0
   groundDrag: 10
+  gravityEnabled: 1
 --- !u!114 &5702508664457672770
 MonoBehaviour:
   m_ObjectHideFlags: 0
