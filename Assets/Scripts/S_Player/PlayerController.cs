@@ -55,11 +55,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void OnToungeSwing(InputAction.CallbackContext context)
+    public void OnTongue(InputAction.CallbackContext context)
     {
         if (context.performed && abilityHolder != null)
         {
-            abilityHolder.TriggerAbilityByName("TongueSwing");
+            abilityHolder.TriggerAbilityByName("Tongue");
         }
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -105,6 +105,10 @@ public class PlayerController : MonoBehaviour
             Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
             Quaternion smoothedRotation = Quaternion.Slerp(rb.rotation, targetRotation, rotationLerpSpeed * Time.fixedDeltaTime);
             rb.MoveRotation(smoothedRotation);
+        }
+        else
+        {
+            rb.angularVelocity = Vector3.zero; // Stop rotation when no input
         }
 
         rb.MovePosition(rb.position + moveDirection * moveSpeed * controlMultiplier * Time.fixedDeltaTime);

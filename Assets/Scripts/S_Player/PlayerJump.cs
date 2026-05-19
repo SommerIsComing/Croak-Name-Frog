@@ -23,6 +23,7 @@ public class PlayerJump : MonoBehaviour
     [SerializeField] private bool grounded;
     public float groundDrag = 6f;
     public bool IsGrounded => grounded;
+    public bool gravityEnabled = true;
     
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -67,6 +68,8 @@ public class PlayerJump : MonoBehaviour
 
     private void Gravity()
     {
+        if (!gravityEnabled) return;
+
         float gravityMultiplier = baseGravity;
 
         if (Mathf.Abs(rb.linearVelocity.y) < 0.1f) // Near the peak of the jump
