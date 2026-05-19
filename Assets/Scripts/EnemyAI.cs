@@ -34,9 +34,12 @@ public class EnemyAI : MonoBehaviour
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
-        currentPatrolIndex = Random.Range(0, patrolPoints.Length); // start ved et tilfældigt patrol point
-        playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHeath>();
+        if(GameObject.FindGameObjectWithTag("Player") != null)
+        {
+            playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+            currentPatrolIndex = Random.Range(0, patrolPoints.Length); // start ved et tilfældigt patrol point
+            playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHeath>();
+        }
     }
 
     void Update()
