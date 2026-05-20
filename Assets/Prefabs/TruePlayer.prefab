@@ -1462,7 +1462,7 @@ MonoBehaviour:
     m_ActionId: 47e7f099-1c60-4687-b9eb-808c81e088ef
     m_ActionName: 'Player/Tongue[/Keyboard/q,/DualSenseGamepadHID/buttonNorth]'
   m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
+  m_DefaultControlScheme: Gamepad
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
@@ -1586,6 +1586,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHeath
   currentHealth: 0
   maxHealth: 4
+  respawnDelay: 1
 --- !u!1 &4838141184175819796
 GameObject:
   m_ObjectHideFlags: 0
