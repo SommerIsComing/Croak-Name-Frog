@@ -1339,6 +1339,7 @@ Transform:
   - {fileID: 4687324649704930521}
   - {fileID: 4441649762728127039}
   - {fileID: 1475619515814467789}
+  - {fileID: 7302018471105956742}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &1999659281022036009
@@ -1422,7 +1423,19 @@ MonoBehaviour:
     m_ActionId: b456d477-ea06-4336-9a21-a673adb92cc4
     m_ActionName: 'Player/Attack[/DualSenseGamepadHID/buttonWest,/Mouse/leftButton,/Touchscreen/primaryTouch/tap,/Keyboard/enter]'
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1230370978789215997}
+        m_TargetAssemblyTypeName: PlayerInteract, Assembly-CSharp
+        m_MethodName: OnInteraction
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 20dd6f19-46d7-45bf-b67b-1df1bfb249fe
     m_ActionName: 'Player/Interact[/Keyboard/e,/DualSenseGamepadHID/buttonNorth]'
   - m_PersistentCalls:
@@ -1508,7 +1521,7 @@ MonoBehaviour:
   moveSpeed: 5
   rotationLerpSpeed: 12
   superJumpHoldTime: 0.4
-  airMultiplier: 0.5
+  airMultiplier: 2
 --- !u!114 &3871119305362847313
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1585,7 +1598,74 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHeath
   currentHealth: 0
-  maxHealth: 4
+  maxHealth: 5
+  respawnDelay: 1
+--- !u!1 &4513827310334115510
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7302018471105956742}
+  - component: {fileID: 402204470979898015}
+  - component: {fileID: 1230370978789215997}
+  m_Layer: 0
+  m_Name: InteractionZone
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7302018471105956742
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4513827310334115510}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7752118881879045760}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &402204470979898015
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4513827310334115510}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 3
+  m_Center: {x: 0, y: 0.82, z: 0}
+--- !u!114 &1230370978789215997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4513827310334115510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79b5f954ae10f4e478bee30b6526f14a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerInteract
 --- !u!1 &4838141184175819796
 GameObject:
   m_ObjectHideFlags: 0
@@ -2235,8 +2315,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 4.2089334, y: 5.192961, z: 2.9474006}
-  m_Center: {x: 0.012181601, y: 2.0964801, z: -0.7745362}
+  m_Size: {x: 4.2089334, y: 5.192961, z: 4.2391014}
+  m_Center: {x: 0.012181601, y: 2.0964801, z: -0.12868564}
 --- !u!114 &718149282319652404
 MonoBehaviour:
   m_ObjectHideFlags: 0
