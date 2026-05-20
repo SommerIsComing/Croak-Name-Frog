@@ -9,7 +9,7 @@ public class PlayerCombat : MonoBehaviour
 
     [SerializeField] private float attackDuration = 0.5f;
 
-    private void Start()
+    private void Awake()
     {
         hitBox = GameObject.FindGameObjectWithTag("AttackZone");
         hitBox.SetActive(false);
