@@ -1,9 +1,20 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
+using System.Collections;
 
 public class PlayerHeath : MonoBehaviour
 {
     [SerializeField] private int currentHealth;
     [SerializeField] private int maxHealth = 4;
+    [SerializeField] private float respawnDelay = 1f;
+
+    private bool isRespawning;
+    private PlayerInput playerInput;
+
+    private void Awake()
+    {
+        playerInput = GetComponent<PlayerInput>();
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -29,7 +40,7 @@ public class PlayerHeath : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        if(currentHealth <= 0) return; // forhindrer yderligere skade, hvis spilleren allerede er død)
+        if (currentHealth <= 0 || isRespawning) return; // forhindrer yderligere skade, hvis spilleren allerede er død)
         currentHealth -= damage;
         Debug.Log("Damaged - Current player health: " + currentHealth);
         if (currentHealth <= 0)
@@ -41,6 +52,28 @@ public class PlayerHeath : MonoBehaviour
     private void Die()
     {
         Debug.Log("Player has died.");
-        Destroy(gameObject);
+        StartCoroutine(RespawnRoutine());
+    }
+
+    private IEnumerator RespawnRoutine()
+    {
+        isRespawning = true;
+
+        if (respawnDelay > 0f)
+        {
+            yield return new WaitForSeconds(respawnDelay);
+        }
+
+        bool respawned = SpawnManager.Instance != null
+            && SpawnManager.Instance.TryRespawnPlayer(playerInput);
+
+        if (!respawned)
+        {
+            Debug.LogWarning("Respawn failed because SpawnManager or spawn point is missing.", this);
+        }
+
+        currentHealth = maxHealth;
+        Debug.Log("Player respawned - Current player health: " + currentHealth);
+        isRespawning = false;
     }
 }
