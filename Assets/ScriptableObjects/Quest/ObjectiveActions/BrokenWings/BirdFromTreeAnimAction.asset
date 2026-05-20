@@ -9,9 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68fd2c3c361ab55458d3c7c38d36dd8f, type: 3}
-  m_Name: EnterDungeon
-  m_EditorClassIdentifier: Assembly-CSharp::EnterAreaObjective
-  objectiveDescription: Enter the Dungeon
-  requiredProgress: 1
-  areaName: dungeon
+  m_Script: {fileID: 11500000, guid: 3dbaac8e1573e534ca5951930805e684, type: 3}
+  m_Name: BirdFromTreeAnimAction
+  m_EditorClassIdentifier: Assembly-CSharp::PlayAnimationAction
+  animTriggerName: spidersCleared

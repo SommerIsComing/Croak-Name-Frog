@@ -56,6 +56,9 @@
         },
         {
             "m_Id": "526eeb8093664c28b5cc29f9b6bf18bb"
+        },
+        {
+            "m_Id": "2639f16889504f1ca3d4632c7b59ae89"
         }
     ],
     "m_Keywords": [
@@ -333,6 +336,9 @@
         },
         {
             "m_Id": "c98a33f080094b3c81a4e8413176a4ad"
+        },
+        {
+            "m_Id": "ab056d2097b5420e94bb1671e6d9d165"
         }
     ],
     "m_GroupDatas": [
@@ -3079,6 +3085,9 @@
         },
         {
             "m_Id": "526eeb8093664c28b5cc29f9b6bf18bb"
+        },
+        {
+            "m_Id": "2639f16889504f1ca3d4632c7b59ae89"
         }
     ]
 }
@@ -3097,6 +3106,50 @@
     "m_DefaultValue": 0.0,
     "m_Labels": [],
     "m_LiteralMode": false
+}
+
+{
+    "m_SGVersion": 1,
+    "m_Type": "UnityEditor.ShaderGraph.Internal.Vector1ShaderProperty",
+    "m_ObjectId": "2639f16889504f1ca3d4632c7b59ae89",
+    "m_Guid": {
+        "m_GuidSerialized": "e353e6fd-1152-4870-a180-4646e6392156"
+    },
+    "promotedFromAssetID": "",
+    "promotedFromCategoryName": "",
+    "promotedOrdering": -1,
+    "m_Name": "FlowDirection",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "FlowDirection",
+    "m_DefaultReferenceName": "_FlowDirection",
+    "m_OverrideReferenceName": "",
+    "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_DismissedVersion": 0,
+    "m_Precision": 0,
+    "overrideHLSLDeclaration": false,
+    "hlslDeclarationOverride": 0,
+    "m_Hidden": false,
+    "m_PerRendererData": false,
+    "m_customAttributes": [],
+    "m_Value": 0.0,
+    "m_FloatType": 0,
+    "m_LiteralFloatMode": false,
+    "m_RangeValues": {
+        "x": 0.0,
+        "y": 1.0
+    },
+    "m_SliderType": 0,
+    "m_SliderPower": 3.0,
+    "m_EnumType": 0,
+    "m_CSharpEnumString": "",
+    "m_EnumNames": [
+        "Default"
+    ],
+    "m_EnumValues": [
+        0
+    ]
 }
 
 {
@@ -7010,8 +7063,8 @@
     "m_ObjectId": "914722a1a9b34852a898acbddceadca5",
     "m_Title": "Light Add",
     "m_Position": {
-        "x": 5723.0,
-        "y": 480.99993896484377
+        "x": 5723.00048828125,
+        "y": 481.0000305175781
     }
 }
 
@@ -7964,6 +8017,42 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.PropertyNode",
+    "m_ObjectId": "ab056d2097b5420e94bb1671e6d9d165",
+    "m_Group": {
+        "m_Id": ""
+    },
+    "m_Name": "Property",
+    "m_DrawState": {
+        "m_Expanded": true,
+        "m_Position": {
+            "serializedVersion": "2",
+            "x": -168.00003051757813,
+            "y": 1378.0001220703125,
+            "width": 147.00001525878907,
+            "height": 34.0
+        }
+    },
+    "m_Slots": [
+        {
+            "m_Id": "b1c5a52c07174b4f9e6f4d357cb06db1"
+        }
+    ],
+    "synonyms": [],
+    "m_Precision": 0,
+    "m_PreviewExpanded": true,
+    "m_DismissedVersion": 0,
+    "m_PreviewMode": 0,
+    "m_CustomColors": {
+        "m_SerializableColors": []
+    },
+    "m_Property": {
+        "m_Id": "2639f16889504f1ca3d4632c7b59ae89"
+    }
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.DynamicVectorMaterialSlot",
     "m_ObjectId": "ab318d26a7fc4f7d9f52fc3756ef62cf",
     "m_Id": 1,
@@ -8268,6 +8357,22 @@
         "e32": 0.0,
         "e33": 1.0
     }
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
+    "m_ObjectId": "b1c5a52c07174b4f9e6f4d357cb06db1",
+    "m_Id": 0,
+    "m_DisplayName": "FlowDirection",
+    "m_SlotType": 1,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "Out",
+    "m_StageCapability": 3,
+    "m_Value": 0.0,
+    "m_DefaultValue": 0.0,
+    "m_Labels": [],
+    "m_LiteralMode": false
 }
 
 {
