@@ -9,6 +9,11 @@ public class CameraGroupBinder : MonoBehaviour
     // Link this function directly to the PlayerInputManager's "Player Joined Event"
     public void OnPlayerJoined(PlayerInput playerInput)
     {
+        if (targetGroup == null || playerInput == null)
+        {
+            return;
+        }
+
         // Get the transform of the newly spawned player prefab
         Transform playerTransform = playerInput.transform;
 
@@ -18,6 +23,11 @@ public class CameraGroupBinder : MonoBehaviour
 
     public void OnPlayerLeft(PlayerInput playerInput)
     {
+        if (targetGroup == null || playerInput == null)
+        {
+            return;
+        }
+
         targetGroup.RemoveMember(playerInput.transform);
     }
 }

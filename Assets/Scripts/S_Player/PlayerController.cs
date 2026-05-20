@@ -9,7 +9,6 @@ public class PlayerController : MonoBehaviour
     private Vector2 move;
     private Rigidbody rb;
 
-
     [SerializeField] private float superJumpHoldTime = 0.4f;
     private bool jumpHeld;
     private float jumpHoldTimer;

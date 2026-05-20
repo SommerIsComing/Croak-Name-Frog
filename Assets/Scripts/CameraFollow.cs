@@ -7,22 +7,6 @@ public class CameraFollow : MonoBehaviour
 {
     [SerializeField] private CinemachineCamera vcam;
 
-    private void OnEnable()
-    {
-        if (PlayerInputManager.instance != null)
-        {
-            PlayerInputManager.instance.onPlayerJoined += OnPlayerJoined;
-        }
-    }
-
-    private void OnDisable()
-    {
-        if (PlayerInputManager.instance != null)
-        {
-            PlayerInputManager.instance.onPlayerJoined -= OnPlayerJoined;
-        }
-    }
-
     public void OnPlayerJoined(PlayerInput playerInput)
     {
         if (vcam == null)
