@@ -14,4 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::KillObjective
   objectiveDescription: Kill the spiders
   requiredProgress: 5
+  actionsUponCompletion:
+  - {fileID: 11400000, guid: 4ac27883c86c8da4b8f6313a738924d6, type: 2}
   enemyName: spider

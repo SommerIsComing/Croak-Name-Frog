@@ -50,6 +50,7 @@ public class QuestManager : MonoBehaviour
 
     private void HandleItemCollected(string item)
     {
+        if(activeQuests.Count == 0) return;
         // Gennemgår alle aktive quests og tjekker om det opsamlede item er relevant for nogen af questens aktive objectives
         foreach (QuestInstance quest in activeQuests)
         {
