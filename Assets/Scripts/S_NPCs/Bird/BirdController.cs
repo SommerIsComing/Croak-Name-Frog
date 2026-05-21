@@ -4,6 +4,8 @@ using UnityEngine;
 public class BirdController : MonoBehaviour, Interactable
 {
     public bool isInteractable = false;
+    public string npcName;
+
     private void OnEnable()
     {
         GameEvent.OnAnimNeeded += PlayAnim;
@@ -29,7 +31,7 @@ public class BirdController : MonoBehaviour, Interactable
     {
         if (isInteractable)
         {
-            QuestEvents.OnNPCTalkedTo?.Invoke("bird");
+            QuestEvents.OnNPCTalkedTo?.Invoke(npcName);
             Debug.Log("Interacted with the player");
             isInteractable = false;
         }
