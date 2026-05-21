@@ -1,0 +1,541 @@
+fileFormatVersion: 2
+guid: 570fd47a6b69d6041ba7812e1a76836a
+ModelImporter:
+  serializedVersion: 24200
+  internalIDToNameTable: []
+  externalObjects: {}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: "\nClip 'rig.001|IDLE' has import animation warnings
+      that might lower retargeting quality:\nNote: Activate translation DOF on avatar
+      to improve retargeting quality.\n\t'ORG-spine.001' has scale animation that
+      will be discarded.\n\t'ORG-spine.004' has scale animation that will be discarded.\n\t'ORG-thigh.L'
+      has translation animation that will be discarded.\n\t'ORG-thigh.R' has translation
+      animation that will be discarded.\n\nClip 'rig.001|JUMP' has import animation
+      warnings that might lower retargeting quality:\nNote: Activate translation
+      DOF on avatar to improve retargeting quality.\n\t'ORG-spine.001' has scale
+      animation that will be discarded.\n\nClip 'rig.001|JUMP ANTICIPATION' has import
+      animation warnings that might lower retargeting quality:\nNote: Activate translation
+      DOF on avatar to improve retargeting quality.\n\t'ORG-thigh.L' has translation
+      animation that will be discarded.\n\t'ORG-thigh.R' has translation animation
+      that will be discarded.\n\nClip 'rig.001|SHOVE' has import animation warnings
+      that might lower retargeting quality:\nNote: Activate translation DOF on avatar
+      to improve retargeting quality.\n\t'ORG-spine.004' has translation animation
+      that will be discarded.\n\t'ORG-shoulder.L' has translation animation that
+      will be discarded.\n\t'ORG-upper_arm.L' has translation animation that will
+      be discarded.\n\t'ORG-shoulder.R' has translation animation that will be discarded.\n\t'ORG-upper_arm.R'
+      has translation animation that will be discarded.\n\t'ORG-thigh.L' has translation
+      animation that will be discarded.\n\t'ORG-thigh.R' has translation animation
+      that will be discarded.\n\nClip 'rig.001|TONGUE' has import animation warnings
+      that might lower retargeting quality:\nNote: Activate translation DOF on avatar
+      to improve retargeting quality.\n\t'ORG-spine.004' has translation animation
+      that will be discarded.\n\t'ORG-shoulder.L' has translation animation that
+      will be discarded.\n\t'ORG-shoulder.R' has translation animation that will
+      be discarded.\n\t'ORG-thigh.L' has translation animation that will be discarded.\n\t'ORG-thigh.R'
+      has translation animation that will be discarded.\n\nClip 'rig.001|WALK' has
+      import animation warnings that might lower retargeting quality:\nNote: Activate
+      translation DOF on avatar to improve retargeting quality.\n\t'ORG-spine' has
+      scale animation that will be discarded.\n\t'ORG-spine.001' has scale animation
+      that will be discarded.\n\t'ORG-spine.002' has scale animation that will be
+      discarded.\n\t'ORG-spine.004' has scale animation that will be discarded.\n\t'ORG-thigh.L'
+      has translation animation that will be discarded.\n\t'ORG-thigh.R' has translation
+      animation that will be discarded.\n"
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: rig.001|EYESAction
+      takeName: rig.001|EYESAction
+      internalID: 2134636465375062407
+      firstFrame: 0
+      lastFrame: 24
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: rig.001|IDLE
+      takeName: rig.001|IDLE
+      internalID: -1239069471686389759
+      firstFrame: 0
+      lastFrame: 66
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: rig.001|JUMP
+      takeName: rig.001|JUMP
+      internalID: -1644619155609404835
+      firstFrame: 0
+      lastFrame: 63
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: rig.001|JUMP ANTICIPATION
+      takeName: rig.001|JUMP ANTICIPATION
+      internalID: 4686131890399726673
+      firstFrame: 0
+      lastFrame: 16
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: rig.001|SHOVE
+      takeName: rig.001|SHOVE
+      internalID: -2918889214546487095
+      firstFrame: 0
+      lastFrame: 40
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: rig.001|TONGUE
+      takeName: rig.001|TONGUE
+      internalID: -8701762027464593298
+      firstFrame: 0
+      lastFrame: 115
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: rig.001|WALK
+      takeName: rig.001|WALK
+      internalID: 4696780722345927350
+      firstFrame: 0
+      lastFrame: 63
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importPhysicalCameras: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    generateMeshLods: 0
+    meshLodGenerationFlags: 0
+    maximumMeshLod: -1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    strictVertexDataChecks: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton:
+    - name: PHROG BLUEv2(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: ARMS.001
+      parentName: PHROG BLUEv2(Clone)
+      position: {x: 0.00030609034, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: BODY.001
+      parentName: PHROG BLUEv2(Clone)
+      position: {x: 0.00030609034, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: CAPE.001
+      parentName: PHROG BLUEv2(Clone)
+      position: {x: 0.00030609034, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EYES.001
+      parentName: PHROG BLUEv2(Clone)
+      position: {x: -0.000754112, y: 1.39799, z: 0.05501975}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1.0479722, z: 1}
+    - name: FACE.001
+      parentName: PHROG BLUEv2(Clone)
+      position: {x: 0.00030609034, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: HAT.001
+      parentName: PHROG BLUEv2(Clone)
+      position: {x: 0.00030609034, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: rig.001
+      parentName: PHROG BLUEv2(Clone)
+      position: {x: -0.0010602024, y: 1.3979899, z: 0.05501975}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1.0581762}
+    - name: ORG-spine
+      parentName: rig.001
+      position: {x: -0.0010602473, y: 0.030528784, z: -0.9416578}
+      rotation: {x: 0.76093376, y: -0, z: -0, w: 0.6488296}
+      scale: {x: 1, y: 0.99999994, z: 1}
+    - name: ORG-spine.001
+      parentName: ORG-spine
+      position: {x: -1.1641532e-10, y: 0.13297923, z: 9.313226e-10}
+      rotation: {x: -0.046946257, y: -0.000000119077875, z: 0.00000000559643, w: 0.99889743}
+      scale: {x: 1, y: 0.99042183, z: 1.010213}
+    - name: ORG-spine.002
+      parentName: ORG-spine.001
+      position: {x: 5.024096e-11, y: 0.14353223, z: -0.0000000023520101}
+      rotation: {x: -0.043311793, y: -7.1054274e-15, z: 0.000000010326337, w: 0.9990616}
+      scale: {x: 1, y: 0.99631023, z: 1.003872}
+    - name: ORG-spine.003
+      parentName: ORG-spine.002
+      position: {x: 7.31194e-11, y: 0.13908358, z: 0.000000001416936}
+      rotation: {x: -0.003345773, y: 0.00000011920867, z: 3.9884768e-10, w: 0.9999944}
+      scale: {x: 1, y: 1.0000184, z: 0.9999799}
+    - name: ORG-spine.004
+      parentName: ORG-spine.003
+      position: {x: -6.3100566e-16, y: 0.13768375, z: 0.00089077884}
+      rotation: {x: 0.03022306, y: -0.00000011915482, z: -0.0000000036028702, w: 0.9995432}
+      scale: {x: 1, y: 0.999638, z: 1.000381}
+    - name: ORG-spine.005
+      parentName: ORG-spine.004
+      position: {x: 1.2610746e-10, y: 0.4232071, z: 7.1844386e-10}
+      rotation: {x: 0.07782486, y: -3.5527137e-14, z: -0.000000018554873, w: 0.9969671}
+      scale: {x: 1, y: 1.0035235, z: 0.99635625}
+    - name: ORG-spine.006
+      parentName: ORG-spine.005
+      position: {x: -5.990142e-11, y: 0.034677353, z: -0.000000009060443}
+      rotation: {x: -0.093711756, y: 0.000000118684646, z: 0.000000011171302, w: 0.9955994}
+      scale: {x: 1, y: 0.98296773, z: 1.018073}
+    - name: ORG-shoulder.L
+      parentName: ORG-spine.003
+      position: {x: -0.02918223, y: 0.08947499, z: 0.07394109}
+      rotation: {x: -0.60515463, y: 0.34586257, z: 0.3561346, w: 0.6223626}
+      scale: {x: 1.0002074, y: 1.0001711, z: 0.999642}
+    - name: ORG-upper_arm.L
+      parentName: ORG-shoulder.L
+      position: {x: -0.052705903, y: 0.22272404, z: -0.0022651297}
+      rotation: {x: 0.17434292, y: -0.73715734, z: 0.16780813, w: 0.6309074}
+      scale: {x: 0.9774768, y: 1.0324261, z: 0.9912615}
+    - name: ORG-forearm.L
+      parentName: ORG-upper_arm.L
+      position: {x: -0.000000053551048, y: 0.2077885, z: 0.000000007450581}
+      rotation: {x: 0.055252373, y: 0.045626964, z: -0.0016904844, w: 0.997428}
+      scale: {x: 1.0184933, y: 0.9771662, z: 1.0051638}
+    - name: ORG-hand.L
+      parentName: ORG-forearm.L
+      position: {x: 0.0000000018626451, y: 0.21988228, z: 0.000000007450581}
+      rotation: {x: -0.061426453, y: -0.08193223, z: -0.027564185, w: 0.9943612}
+      scale: {x: 0.99913114, y: 0.99452776, z: 1.0063919}
+    - name: ORG-forearm.L.001
+      parentName: ORG-forearm.L
+      position: {x: 0.0000000018626451, y: 0.21988228, z: 0.000000007450581}
+      rotation: {x: 0.6156256, y: -0.023109829, z: -0.16705045, w: 0.7697826}
+      scale: {x: 0.9589853, y: 1.0400052, z: 1.0033315}
+    - name: ORG-shoulder.R
+      parentName: ORG-spine.003
+      position: {x: 0.02918223, y: 0.08947499, z: 0.07394109}
+      rotation: {x: -0.60515463, y: -0.34586254, z: -0.3561345, w: 0.6223627}
+      scale: {x: 1.000207, y: 1.0001708, z: 0.9996419}
+    - name: ORG-upper_arm.R
+      parentName: ORG-shoulder.R
+      position: {x: 0.052705906, y: 0.22272404, z: -0.002265124}
+      rotation: {x: 0.17434296, y: 0.7371572, z: -0.16780798, w: 0.6309075}
+      scale: {x: 0.9774758, y: 1.032426, z: 0.99126124}
+    - name: ORG-forearm.R
+      parentName: ORG-upper_arm.R
+      position: {x: 0.00000008335337, y: 0.20778848, z: 0.000000022351742}
+      rotation: {x: 0.05525279, y: -0.04562694, z: 0.0016894713, w: 0.99742794}
+      scale: {x: 1.0184929, y: 0.9771657, z: 1.0051638}
+    - name: ORG-hand.R
+      parentName: ORG-forearm.R
+      position: {x: -0.00000009126961, y: 0.21988222, z: 0.000000014901161}
+      rotation: {x: -0.06142647, y: 0.08193212, z: 0.027564365, w: 0.9943612}
+      scale: {x: 0.9991292, y: 0.99452597, z: 1.0063922}
+    - name: ORG-forearm.R.001
+      parentName: ORG-forearm.R
+      position: {x: -0.00000009126961, y: 0.21988222, z: 0.000000014901161}
+      rotation: {x: 0.6156256, y: 0.023109823, z: 0.1670505, w: 0.76978254}
+      scale: {x: 0.95898414, y: 1.0400054, z: 1.0033298}
+    - name: ORG-breast.L
+      parentName: ORG-spine.003
+      position: {x: -0.21585806, y: -0.015906472, z: 0.095098265}
+      rotation: {x: -0.000000054142085, y: 0.69693625, z: 0.71713316, w: -0.000000052617214}
+      scale: {x: 1.0000024, y: 1.0001819, z: 0.9998296}
+    - name: ORG-breast.R
+      parentName: ORG-spine.003
+      position: {x: 0.21585806, y: -0.015906472, z: 0.095098265}
+      rotation: {x: -0.000000054142085, y: 0.69693625, z: 0.71713316, w: -0.000000052617214}
+      scale: {x: 1.0000024, y: 1.0001819, z: 0.9998296}
+    - name: ORG-pelvis.L
+      parentName: ORG-spine
+      position: {x: -1.1641532e-10, y: 0.000000011641532, z: 0.0000000037252903}
+      rotation: {x: -0.37852877, y: 0.66034174, z: 0.38355333, w: 0.52302164}
+      scale: {x: 0.82010263, y: 0.81557566, z: 0.79950905}
+    - name: ORG-pelvis.R
+      parentName: ORG-spine
+      position: {x: -1.1641532e-10, y: 0.000000011641532, z: 0.0000000037252903}
+      rotation: {x: -0.37852877, y: -0.66034174, z: -0.38355333, w: 0.52302164}
+      scale: {x: 0.82010263, y: 0.81557566, z: 0.79950905}
+    - name: ORG-thigh.L
+      parentName: ORG-spine
+      position: {x: -0.1869199, y: -0.050752036, z: 0.0012000985}
+      rotation: {x: 0.9919089, y: 0.0859145, z: -0.005417324, w: 0.093306236}
+      scale: {x: 0.9993798, y: 0.9661428, z: 1.0372382}
+    - name: ORG-shin.L
+      parentName: ORG-thigh.L
+      position: {x: -0.000000009633368, y: 0.1334402, z: 0.000000011175871}
+      rotation: {x: 0.07451863, y: 0.0021405008, z: 0.09870828, w: 0.99232006}
+      scale: {x: 1.0235401, y: 0.97011757, z: 1.0078021}
+    - name: ORG-foot.L
+      parentName: ORG-shin.L
+      position: {x: 4.947651e-10, y: 0.18026538, z: -0.0000000016298145}
+      rotation: {x: -0.6918167, y: -0.004885465, z: -0.022976942, w: 0.7216911}
+      scale: {x: 0.9985032, y: 1.0011619, z: 1.0003055}
+    - name: ORG-toe.L
+      parentName: ORG-foot.L
+      position: {x: -0.0000000041945896, y: 0.15943985, z: 2.910383e-10}
+      rotation: {x: -0.020086098, y: 0.9964615, z: -0.08160788, w: 0.0011489734}
+      scale: {x: 1.0008601, y: 0.9949064, z: 1.004461}
+    - name: ORG-heel.02.L
+      parentName: ORG-foot.L
+      position: {x: 0.10977055, y: 0.014115065, z: 0.016365018}
+      rotation: {x: -0.36338666, y: 0.44196567, z: 0.5336173, w: -0.6227914}
+      scale: {x: 0.99490607, y: 0.99745184, z: 1.0078855}
+    - name: ORG-thigh.R
+      parentName: ORG-spine
+      position: {x: 0.1869199, y: -0.050752036, z: 0.0012000985}
+      rotation: {x: 0.9919089, y: -0.0859145, z: 0.005417324, w: 0.093306236}
+      scale: {x: 0.9993798, y: 0.9661428, z: 1.0372382}
+    - name: ORG-shin.R
+      parentName: ORG-thigh.R
+      position: {x: 0.000000009633368, y: 0.1334402, z: 0.000000013969839}
+      rotation: {x: 0.07451863, y: -0.0021405008, z: -0.09870828, w: 0.99232006}
+      scale: {x: 1.0235401, y: 0.9701177, z: 1.0078021}
+    - name: ORG-foot.R
+      parentName: ORG-shin.R
+      position: {x: 0.000000014486432, y: 0.18026538, z: -0.00000000721775}
+      rotation: {x: -0.6918167, y: 0.004885465, z: 0.022976942, w: 0.7216911}
+      scale: {x: 0.9985033, y: 1.0011617, z: 1.0003054}
+    - name: ORG-toe.R
+      parentName: ORG-foot.R
+      position: {x: -0.000000012570126, y: 0.15943986, z: -6.4028427e-10}
+      rotation: {x: 0.020086098, y: 0.9964615, z: -0.08160788, w: -0.0011489734}
+      scale: {x: 1.0008601, y: 0.9949063, z: 1.0044608}
+    - name: ORG-heel.02.R
+      parentName: ORG-foot.R
+      position: {x: -0.109770566, y: 0.014115065, z: 0.016365018}
+      rotation: {x: 0.36338666, y: 0.44196567, z: 0.5336173, w: 0.6227914}
+      scale: {x: 0.9949063, y: 0.99745184, z: 1.0078852}
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: rig.001
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  importBlendShapeDeformPercent: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
