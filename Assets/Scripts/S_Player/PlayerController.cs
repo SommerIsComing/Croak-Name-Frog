@@ -37,10 +37,12 @@ public class PlayerController : MonoBehaviour
             if (jumpHoldTimer >= superJumpHoldTime)
             {
                 abilityHolder.TriggerAbilityByName("SuperJump");
+                
             }
             else
             {
                 TryJump();
+                
             }
 
             jumpHoldTimer = 0f;
@@ -53,6 +55,7 @@ public class PlayerController : MonoBehaviour
         {
             abilityHolder.TriggerAbilityByName("SuperJump");
         }
+    
     }
 
     public void OnTongue(InputAction.CallbackContext context)
