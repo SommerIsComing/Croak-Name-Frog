@@ -65,17 +65,24 @@ Material:
     - _FoamSpread: 0.2
     - _FoamWidth: 0.05
     - _Fresnel_Size: 0
+    - _Glossiness: 100
     - _MAIN_LIGHT_SHADOWS: 1
     - _MAIN_LIGHT_SHADOWS_CASCADE: 1
     - _QueueControl: 0
     - _QueueOffset: 0
+    - _Rimlight_Size: 0
     - _SHADOWS_SOFT: 1
+    - _Shadow_Cutoff: 0.1
+    - _Shadow_Smoothness: 0
+    - _Shadow_Strength: 0.7
     - _Smoothness: 100
     - _WaveDisplacement: 0.002
     m_Colors:
     - _Base_Color: {r: 0, g: 0.98076916, b: 1, a: 1}
     - _FoamColor: {r: 1, g: 1, b: 1, a: 1}
     - _Fresnel_Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Highlight_Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Rimlight_Color: {r: 1, g: 1, b: 1, a: 1}
     - _Specular_Color: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
