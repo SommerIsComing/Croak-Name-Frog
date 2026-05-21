@@ -38,6 +38,7 @@ public class PlayerJump : MonoBehaviour
     void Update()
     {
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.1f, groundLayer);
+        animator.SetBool("isJumping", !grounded);
     }
 
     private void FixedUpdate()
@@ -59,6 +60,7 @@ public class PlayerJump : MonoBehaviour
 
             // Start cooldown
             Invoke(nameof(ResetJump), jumpCooldown);
+            animator.SetBool("isWalking", false);
             animator.SetBool("isJumping", true);
             }
          else
