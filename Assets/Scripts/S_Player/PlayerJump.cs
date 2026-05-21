@@ -24,6 +24,7 @@ public class PlayerJump : MonoBehaviour
     public float groundDrag = 6f;
     public bool IsGrounded => grounded;
     public bool gravityEnabled = true;
+    [SerializeField] Animator animator;
     
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -58,12 +59,20 @@ public class PlayerJump : MonoBehaviour
 
             // Start cooldown
             Invoke(nameof(ResetJump), jumpCooldown);
+            animator.SetBool("isJumping", true);
+            }
+         else
+        {
+            animator.SetBool("isJumping", false);
         }
+
+     
     }
 
     private void ResetJump()
     {
         readyToJump = true;
+        animator.SetBool("isJumping", false);
     }
 
     private void Gravity()
@@ -90,5 +99,7 @@ public class PlayerJump : MonoBehaviour
         {
             rb.AddForce(Physics.gravity * (gravityMultiplier - 1f), ForceMode.Acceleration);
         }
-    }
+
+        }
+    
 }

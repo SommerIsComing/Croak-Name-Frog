@@ -1310,6 +1310,7 @@ GameObject:
   - component: {fileID: 5284380372914753672}
   - component: {fileID: 8878891476989994057}
   - component: {fileID: 7140252040230431900}
+  - component: {fileID: 7674428747928264215}
   m_Layer: 0
   m_Name: TruePlayer
   m_TagString: Player
@@ -1522,6 +1523,7 @@ MonoBehaviour:
   rotationLerpSpeed: 12
   superJumpHoldTime: 0.4
   airMultiplier: 2
+  animator: {fileID: 7674428747928264215}
 --- !u!114 &3871119305362847313
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1547,6 +1549,7 @@ MonoBehaviour:
   grounded: 0
   groundDrag: 6
   gravityEnabled: 1
+  animator: {fileID: 7674428747928264215}
 --- !u!114 &5284380372914753672
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1600,6 +1603,28 @@ MonoBehaviour:
   currentHealth: 0
   maxHealth: 5
   respawnDelay: 1
+--- !u!95 &7674428747928264215
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4312849285191136095}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 570fd47a6b69d6041ba7812e1a76836a, type: 3}
+  m_Controller: {fileID: 9100000, guid: 758f1ed6dd2ec7e4287fa4ecd7c9a21e, type: 2}
+  m_CullingMode: 1
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &4513827310334115510
 GameObject:
   m_ObjectHideFlags: 0

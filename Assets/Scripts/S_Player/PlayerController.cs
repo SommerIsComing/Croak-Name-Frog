@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     private PlayerJump playerJump;
     private AbilityHolder abilityHolder;
     [SerializeField] private float airMultiplier = 0.5f;
+    [SerializeField] Animator animator;
     private bool jumpRequested;
 
     public void OnMove(InputAction.CallbackContext context)
@@ -36,10 +37,12 @@ public class PlayerController : MonoBehaviour
             if (jumpHoldTimer >= superJumpHoldTime)
             {
                 abilityHolder.TriggerAbilityByName("SuperJump");
+                
             }
             else
             {
                 TryJump();
+                
             }
 
             jumpHoldTimer = 0f;
@@ -52,6 +55,7 @@ public class PlayerController : MonoBehaviour
         {
             abilityHolder.TriggerAbilityByName("SuperJump");
         }
+    
     }
 
     public void OnTongue(InputAction.CallbackContext context)
@@ -104,10 +108,12 @@ public class PlayerController : MonoBehaviour
             Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
             Quaternion smoothedRotation = Quaternion.Slerp(rb.rotation, targetRotation, rotationLerpSpeed * Time.fixedDeltaTime);
             rb.MoveRotation(smoothedRotation);
+             animator.SetBool("isWalking", true);
         }
         else
         {
             rb.angularVelocity = Vector3.zero; // Stop rotation when no input
+            animator.SetBool("isWalking", false);
         }
 
         rb.MovePosition(rb.position + moveDirection * moveSpeed * controlMultiplier * Time.fixedDeltaTime);
