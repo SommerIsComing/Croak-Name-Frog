@@ -1475,8 +1475,12 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 47e7f099-1c60-4687-b9eb-808c81e088ef
     m_ActionName: 'Player/Tongue[/Keyboard/q,/DualSenseGamepadHID/buttonNorth]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8eab3892-ac2f-4bf0-8355-8a177a132716
+    m_ActionName: Player2/New action
   m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: Gamepad
+  m_DefaultControlScheme: 
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
@@ -1521,6 +1525,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   moveSpeed: 5
   rotationLerpSpeed: 12
+  walkBoolName: isWalking
+  moveDeadzone: 0.1
   superJumpHoldTime: 0.4
   airMultiplier: 2
   animator: {fileID: 7674428747928264215}
