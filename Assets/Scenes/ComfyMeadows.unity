@@ -798,7 +798,7 @@ GameObject:
   - component: {fileID: 77576162}
   - component: {fileID: 77576161}
   - component: {fileID: 77576160}
-  - component: {fileID: 77576159}
+  - component: {fileID: 77576165}
   m_Layer: 6
   m_Name: OldPhrogRoad
   m_TagString: Untagged
@@ -806,28 +806,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!64 &77576159
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 77576158}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: 32ec50d1df5626846ba911627f2c8aec, type: 2}
 --- !u!114 &77576160
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -841,13 +819,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.Splines::UnityEngine.Splines.SplineExtrude
   m_Container: {fileID: 77576163}
-  m_TargetMesh: {fileID: 4300000, guid: 32ec50d1df5626846ba911627f2c8aec, type: 2}
-  m_RebuildOnSplineChange: 1
+  m_TargetMesh: {fileID: 0}
+  m_RebuildOnSplineChange: 0
   m_RebuildFrequency: 30
   m_UpdateColliders: 1
   m_Sides: 8
   m_SegmentsPerUnit: 4
-  m_Capped: 1
+  m_Capped: 0
   m_Radius: 5
   m_Range: {x: 0, y: 1}
   m_FlipNormals: 0
@@ -915,7 +893,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 77576158}
-  m_Mesh: {fileID: 4300000, guid: 32ec50d1df5626846ba911627f2c8aec, type: 2}
+  m_Mesh: {fileID: 0}
 --- !u!114 &77576163
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1051,6 +1029,28 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 64.553, z: 0}
+--- !u!64 &77576165
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 77576158}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
 --- !u!4 &78175168 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6870634428816743338, guid: 944782c13cf66fd4283ab29a04647b15, type: 3}
@@ -2568,7 +2568,7 @@ GameObject:
   - component: {fileID: 268077120}
   - component: {fileID: 268077119}
   - component: {fileID: 268077118}
-  - component: {fileID: 268077117}
+  - component: {fileID: 268077123}
   m_Layer: 6
   m_Name: RoadBend
   m_TagString: Untagged
@@ -2576,28 +2576,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!64 &268077117
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 268077116}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: daa7ad61d476e2f4098400a76c8ac4df, type: 2}
 --- !u!114 &268077118
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2611,13 +2589,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.Splines::UnityEngine.Splines.SplineExtrude
   m_Container: {fileID: 268077121}
-  m_TargetMesh: {fileID: 4300000, guid: daa7ad61d476e2f4098400a76c8ac4df, type: 2}
-  m_RebuildOnSplineChange: 1
+  m_TargetMesh: {fileID: 0}
+  m_RebuildOnSplineChange: 0
   m_RebuildFrequency: 30
   m_UpdateColliders: 1
   m_Sides: 8
   m_SegmentsPerUnit: 4
-  m_Capped: 1
+  m_Capped: 0
   m_Radius: 7
   m_Range: {x: 0, y: 1}
   m_FlipNormals: 0
@@ -2685,7 +2663,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 268077116}
-  m_Mesh: {fileID: 4300000, guid: daa7ad61d476e2f4098400a76c8ac4df, type: 2}
+  m_Mesh: {fileID: 0}
 --- !u!114 &268077121
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2821,6 +2799,28 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &268077123
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 268077116}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
 --- !u!1 &278945442
 GameObject:
   m_ObjectHideFlags: 0
@@ -6757,13 +6757,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.Splines::UnityEngine.Splines.SplineExtrude
   m_Container: {fileID: 879986647}
-  m_TargetMesh: {fileID: 4300000, guid: 4fb6fa1a50fa7b54a98c74d7e693830e, type: 2}
-  m_RebuildOnSplineChange: 1
+  m_TargetMesh: {fileID: 0}
+  m_RebuildOnSplineChange: 0
   m_RebuildFrequency: 30
   m_UpdateColliders: 1
   m_Sides: 8
   m_SegmentsPerUnit: 4
-  m_Capped: 1
+  m_Capped: 0
   m_Radius: 10
   m_Range: {x: 0, y: 1}
   m_FlipNormals: 0
@@ -6831,7 +6831,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 879986643}
-  m_Mesh: {fileID: 4300000, guid: 4fb6fa1a50fa7b54a98c74d7e693830e, type: 2}
+  m_Mesh: {fileID: 0}
 --- !u!114 &879986647
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7128,7 +7128,7 @@ MeshCollider:
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: 4fb6fa1a50fa7b54a98c74d7e693830e, type: 2}
+  m_Mesh: {fileID: 0}
 --- !u!4 &902693977 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6870634428816743338, guid: 944782c13cf66fd4283ab29a04647b15, type: 3}
@@ -9604,9 +9604,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.Splines::UnityEngine.Splines.SplineExtrude
   m_Container: {fileID: 1302806367}
   m_TargetMesh: {fileID: 0}
-  m_RebuildOnSplineChange: 1
+  m_RebuildOnSplineChange: 0
   m_RebuildFrequency: 30
-  m_UpdateColliders: 1
+  m_UpdateColliders: 0
   m_Sides: 8
   m_SegmentsPerUnit: 4
   m_Capped: 0
@@ -12849,6 +12849,63 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1500373282878929572, guid: 7e6d319b7ec46c448af8d1d4a33db94d, type: 3}
   m_PrefabInstance: {fileID: 1612958213}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1631421439
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4312849285191136095, guid: 41611c9ecb950be4f8bcf6ce80932dee, type: 3}
+      propertyPath: m_Name
+      value: TruePlayer
+      objectReference: {fileID: 0}
+    - target: {fileID: 7752118881879045760, guid: 41611c9ecb950be4f8bcf6ce80932dee, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 27.343416
+      objectReference: {fileID: 0}
+    - target: {fileID: 7752118881879045760, guid: 41611c9ecb950be4f8bcf6ce80932dee, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.0742764
+      objectReference: {fileID: 0}
+    - target: {fileID: 7752118881879045760, guid: 41611c9ecb950be4f8bcf6ce80932dee, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -186.65419
+      objectReference: {fileID: 0}
+    - target: {fileID: 7752118881879045760, guid: 41611c9ecb950be4f8bcf6ce80932dee, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7752118881879045760, guid: 41611c9ecb950be4f8bcf6ce80932dee, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7752118881879045760, guid: 41611c9ecb950be4f8bcf6ce80932dee, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7752118881879045760, guid: 41611c9ecb950be4f8bcf6ce80932dee, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7752118881879045760, guid: 41611c9ecb950be4f8bcf6ce80932dee, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7752118881879045760, guid: 41611c9ecb950be4f8bcf6ce80932dee, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7752118881879045760, guid: 41611c9ecb950be4f8bcf6ce80932dee, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 41611c9ecb950be4f8bcf6ce80932dee, type: 3}
 --- !u!1001 &1646066710
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15114,9 +15171,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.Splines::UnityEngine.Splines.SplineExtrude
   m_Container: {fileID: 1952346354}
   m_TargetMesh: {fileID: 0}
-  m_RebuildOnSplineChange: 1
+  m_RebuildOnSplineChange: 0
   m_RebuildFrequency: 30
-  m_UpdateColliders: 1
+  m_UpdateColliders: 0
   m_Sides: 8
   m_SegmentsPerUnit: 4
   m_Capped: 0
@@ -16740,3 +16797,4 @@ SceneRoots:
   - {fileID: 335649744}
   - {fileID: 137201754}
   - {fileID: 576728151}
+  - {fileID: 1631421439}
