@@ -8,6 +8,7 @@ public class EnemyAI : MonoBehaviour
     private Transform playerTransform;
     private NavMeshAgent agent;
     private PlayerHeath playerHealth;
+    private float playerLookupTimer;
 
     //values
     [SerializeField] private float attackRange = 2f;
@@ -34,16 +35,23 @@ public class EnemyAI : MonoBehaviour
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        if(GameObject.FindGameObjectWithTag("Player") != null)
+        if (patrolPoints.Length > 0)
         {
-            playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
             currentPatrolIndex = Random.Range(0, patrolPoints.Length); // start ved et tilfældigt patrol point
-            playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHeath>();
         }
+
+        TryFindPlayer();
     }
 
     void Update()
     {
+        playerLookupTimer -= Time.deltaTime;
+        if ((playerTransform == null || playerHealth == null) && playerLookupTimer <= 0f)
+        {
+            TryFindPlayer();
+            playerLookupTimer = 0.5f;
+        }
+
         //returner hvis spilleren ikke er fundet
         if (playerTransform == null) return;
 
@@ -152,10 +160,27 @@ public class EnemyAI : MonoBehaviour
         {
             //ATTACK LOGIC HER (reducere spillerens health)
             Debug.Log(gameObject.name + ": attacking player!");
-            playerHealth.TakeDamage(attackDamage); // eksempel på at reducere spillerens health med 10
+            if (playerHealth != null)
+            {
+                playerHealth.TakeDamage(attackDamage); // eksempel på at reducere spillerens health med 10
+            }
 
             attackTimer = attackCooldown; // reset attackTimer til cooldown
         }
+    }
+
+    private void TryFindPlayer()
+    {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player == null)
+        {
+            playerTransform = null;
+            playerHealth = null;
+            return;
+        }
+
+        playerTransform = player.transform;
+        playerHealth = player.GetComponent<PlayerHeath>();
     }
 
 }
