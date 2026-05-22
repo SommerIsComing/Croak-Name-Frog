@@ -8,5 +8,7 @@ public class NPC_Data : ScriptableObject
 {
     public string npcName;
 
+    public string animTriggerName;
+
     [TextArea(3,5)] public List<string> dialogueText = new List<string>();
 }

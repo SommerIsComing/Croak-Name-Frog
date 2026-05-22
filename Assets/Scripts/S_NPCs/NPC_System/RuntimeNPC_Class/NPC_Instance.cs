@@ -19,13 +19,13 @@ public class NPC_Instance : MonoBehaviour, Interactable
     private void OnEnable()
     {
         GameEvent.OnAnimNeeded += PlayAnim;
-
+        GameEvent.OnInteractionNeeded += Interactable;
     }
 
     private void OnDisable()
     {
         GameEvent.OnAnimNeeded -= PlayAnim;
-
+        GameEvent.OnInteractionNeeded -= Interactable;
     }
 
     public void Interactable(string npcName, bool interactable)
@@ -52,11 +52,13 @@ public class NPC_Instance : MonoBehaviour, Interactable
         }
     }
 
-    public void PlayAnim(string animTriggerName)
+    public void PlayAnim(string triggerName)
     {
-        if (animTriggerName == npcData.npcName)
+        if (npcData.animTriggerName == null) return;
+
+        if (triggerName == npcData.animTriggerName)
         {
-            GetComponent<Animator>().SetTrigger(animTriggerName);
+            GetComponentInChildren<Animator>().SetTrigger(npcData.animTriggerName);
         }
     }
 }
