@@ -9,12 +9,17 @@ public class PlayerController : MonoBehaviour
     private Vector2 move;
     private Rigidbody rb;
 
+    [Header("Animation")]
+    [SerializeField] private string walkBoolName = "isWalking";
+    [SerializeField] private float moveDeadzone = 0.1f;
+
     [SerializeField] private float superJumpHoldTime = 0.4f;
     private bool jumpHeld;
     private float jumpHoldTimer;
     private PlayerJump playerJump;
     private AbilityHolder abilityHolder;
     [SerializeField] private float airMultiplier = 0.5f;
+    [SerializeField] Animator animator;
     private bool jumpRequested;
 
     public void OnMove(InputAction.CallbackContext context)
@@ -27,23 +32,31 @@ public class PlayerController : MonoBehaviour
         if (context.started)
         {
             jumpHeld = true;
+            animator.SetBool("isWindingUp", true);
             jumpHoldTimer = 0f;
         }
-
+    
         if (context.canceled)
         {
             jumpHeld = false;
+            animator.SetBool("isWindingUp", false);
+            animator.SetBool("isJumping", true);
             if (jumpHoldTimer >= superJumpHoldTime)
             {
                 abilityHolder.TriggerAbilityByName("SuperJump");
+                
             }
             else
             {
-                TryJump();
+                TryJump(); 
             }
-
             jumpHoldTimer = 0f;
         }
+        else
+        {
+         animator.SetBool("isJumping", false);
+        }
+
     }
 
     public void OnSuperJump(InputAction.CallbackContext context)
@@ -51,6 +64,7 @@ public class PlayerController : MonoBehaviour
         if (context.performed && abilityHolder != null)
         {
             abilityHolder.TriggerAbilityByName("SuperJump");
+
         }
     }
 
@@ -59,6 +73,7 @@ public class PlayerController : MonoBehaviour
         if (context.performed && abilityHolder != null)
         {
             abilityHolder.TriggerAbilityByName("Tongue");
+            animator.SetBool("isToungeMove", true);
         }
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -76,6 +91,7 @@ public class PlayerController : MonoBehaviour
         {
             jumpHoldTimer += Time.deltaTime;
         }
+        UpdateWalkAnimation();    
     }
 
     void FixedUpdate()
@@ -104,10 +120,12 @@ public class PlayerController : MonoBehaviour
             Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
             Quaternion smoothedRotation = Quaternion.Slerp(rb.rotation, targetRotation, rotationLerpSpeed * Time.fixedDeltaTime);
             rb.MoveRotation(smoothedRotation);
+             animator.SetBool("isWalking", true);
         }
         else
         {
             rb.angularVelocity = Vector3.zero; // Stop rotation when no input
+            animator.SetBool("isWalking", false);
         }
 
         rb.MovePosition(rb.position + moveDirection * moveSpeed * controlMultiplier * Time.fixedDeltaTime);
@@ -129,4 +147,16 @@ public class PlayerController : MonoBehaviour
         }
         return 1f;
     }
+    private void UpdateWalkAnimation()
+    {
+        if (animator == null || playerJump == null)
+        {
+            return;
+        }
+
+        bool isGrounded = playerJump.IsGrounded;
+        bool hasMoveInput = move.sqrMagnitude > (moveDeadzone * moveDeadzone);
+
+        animator.SetBool(walkBoolName, isGrounded && hasMoveInput);
+}
 }
