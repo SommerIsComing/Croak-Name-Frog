@@ -2243,6 +2243,7 @@ GameObject:
   - component: {fileID: 5824454343462414448}
   - component: {fileID: 4992144732785243813}
   - component: {fileID: 3301751703821393164}
+  - component: {fileID: 6509758479743511670}
   m_Layer: 0
   m_Name: Player2
   m_TagString: Player2
@@ -2405,8 +2406,12 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 47e7f099-1c60-4687-b9eb-808c81e088ef
     m_ActionName: 'Player/Tongue[/Keyboard/q]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8eab3892-ac2f-4bf0-8355-8a177a132716
+    m_ActionName: 'Player2/New action[/DualSenseGamepadHID/leftStick]'
   m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
+  m_DefaultControlScheme: Gamepad
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
@@ -2451,8 +2456,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   moveSpeed: 5
   rotationLerpSpeed: 12
+  walkBoolName: isWalking
+  moveDeadzone: 0.1
   superJumpHoldTime: 0.4
   airMultiplier: 0.5
+  animator: {fileID: 6509758479743511670}
 --- !u!114 &3856732862393157369
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2478,6 +2486,7 @@ MonoBehaviour:
   grounded: 0
   groundDrag: 6
   gravityEnabled: 1
+  animator: {fileID: 0}
 --- !u!114 &8187969274052799550
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2497,7 +2506,7 @@ MonoBehaviour:
     cooldownTime: 0.1
     activeTime: 0
     activateRequested: 0
-  - ability: {fileID: 11400000, guid: cef1a749933aba140ab7eb4a0d0c6207, type: 2}
+  - ability: {fileID: 11400000, guid: a67b35e1c6c286344b60187efef91268, type: 2}
     isUnlocked: 1
     state: 0
     cooldownTime: 1
@@ -2543,6 +2552,28 @@ MonoBehaviour:
   currentHealth: 0
   maxHealth: 4
   respawnDelay: 1
+--- !u!95 &6509758479743511670
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8650871458768888115}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 758f1ed6dd2ec7e4287fa4ecd7c9a21e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &8880796446482406511
 GameObject:
   m_ObjectHideFlags: 0
