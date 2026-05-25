@@ -75,6 +75,10 @@ public class PlayerController : MonoBehaviour
             abilityHolder.TriggerAbilityByName("Tongue");
             animator.SetBool("isToungeMove", true);
         }
+        else
+        {
+        animator.SetBool("isToungeMove", false);
+        }
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
