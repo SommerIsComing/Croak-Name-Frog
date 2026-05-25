@@ -51,9 +51,11 @@ Material:
     m_Floats:
     - _Ambient_Strength: 0.7
     - _Cutoff: 0.1
+    - _CutoutSize: 0
     - _DotOffset: 0
     - _DotSize: 0
     - _Falloff: 0
+    - _FalloffSize: 0
     - _Fresnel_Size: 0.35
     - _Glossiness: 0
     - _MAIN_LIGHT_SHADOWS: 1
@@ -62,12 +64,14 @@ Material:
     - _QueueOffset: 0
     - _Rimlight_Size: 0.1
     - _SHADOWS_SOFT: 1
+    - _Shadow_Brightness: 0.7
     - _Shadow_Cutoff: 0.1
     - _Shadow_Smoothness: 0
     - _Shadow_Strength: 0.7
     - _Smoothness: 100
     m_Colors:
     - _Base_Color: {r: 0.3962264, g: 0.3962264, b: 0.24483801, a: 1}
+    - _CutoutPos: {r: 0, g: 0, b: 0, a: 0}
     - _Fresnel_Color: {r: 1, g: 1, b: 1, a: 1}
     - _Fresnel_Highlight_Color: {r: 1, g: 1, b: 1, a: 1}
     - _Highlight_Color: {r: 1, g: 1, b: 1, a: 1}
