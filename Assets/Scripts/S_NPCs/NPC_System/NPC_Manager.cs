@@ -24,4 +24,9 @@ public class NPC_Manager : MonoBehaviour
     {
         return npcDataBase.GetNPCByID(npcID);
     }
+
+    public void DisplayDialogue(NPC_Data npcData)
+    {
+        //DialogueEvents.OnDialogueStart?.Invoke(npcData);
+    }
 }

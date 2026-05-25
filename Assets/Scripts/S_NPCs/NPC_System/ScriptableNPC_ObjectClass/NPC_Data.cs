@@ -10,5 +10,9 @@ public class NPC_Data : ScriptableObject
 
     public string animTriggerName;
 
-    [TextArea(3,5)] public List<string> dialogueText = new List<string>();
+    [TextArea(3,5)] public List<string> defaultDialogueText = new List<string>();
+
+    [TextArea(3, 5)] public List<string> activeQuestdialogueText = new List<string>();
+
+    [TextArea(3, 5)] public List<string> completedQuestDialogueText = new List<string>();
 }

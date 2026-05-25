@@ -514,7 +514,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5670854570622423036}
-  - component: {fileID: 3275718713947115954}
   m_Layer: 0
   m_Name: TrueBIRB
   m_TagString: Untagged
@@ -538,22 +537,6 @@ Transform:
   - {fileID: 2049782979053443895}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -3.566, y: 170.176, z: -19.76}
---- !u!114 &3275718713947115954
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2748877439570067550}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2f877cf4be697e4b822046696d02f30, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::NPC_Instance
-  npcData: {fileID: 0}
-  questGiven: 1
-  npcID: bird
-  isInteractable: 0
 --- !u!1 &2765590823395118241
 GameObject:
   m_ObjectHideFlags: 0
@@ -1487,6 +1470,7 @@ GameObject:
   - component: {fileID: 1844106704202718564}
   - component: {fileID: 4132135914103770863}
   - component: {fileID: 4542249838829269613}
+  - component: {fileID: 6313046915414641303}
   m_Layer: 0
   m_Name: AnimBody
   m_TagString: Untagged
@@ -1586,6 +1570,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &6313046915414641303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5017527121831105594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2f877cf4be697e4b822046696d02f30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NPC_Instance
+  npcData: {fileID: 0}
+  questGiven: 1
+  npcID: bird
+  isInteractable: 0
 --- !u!1 &5446439567552030511
 GameObject:
   m_ObjectHideFlags: 0

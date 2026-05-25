@@ -119,6 +119,8 @@ public class QuestManager : MonoBehaviour
 
     private void HandleNPCTalkedTo(string npc)
     {
+        if(activeQuests.Count == 0) return;
+
         // Gennemgår alle aktive quests og tjekker om npc interaktionen er relevant for nogen af questens aktive objectives
         foreach (QuestInstance quest in activeQuests)
         {

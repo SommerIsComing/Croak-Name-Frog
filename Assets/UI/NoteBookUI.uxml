@@ -1,0 +1,14 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="BookMarkButtonsContainer" style="flex-grow: 0; flex-direction: row; aspect-ratio: auto; align-items: flex-start; justify-content: space-evenly; align-self: flex-start; align-content: flex-start; top: 5%; left: 0%; width: 50%;">
+        <ui:Button text="Pause Menu" name="PauseMenuButton"/>
+        <ui:Button text="Quests" name="QuestLogButton"/>
+        <ui:Button text="Collectibles" name="CollectiblesButton"/>
+    </ui:VisualElement>
+    <ui:VisualElement name="PagesContainer" style="flex-grow: 0.9; top: 5%; left: 0%; align-self: center; flex-basis: 10%; flex-shrink: 0.9; flex-wrap: nowrap; flex-direction: column; align-items: stretch; justify-content: flex-start; align-content: center; width: 90%;">
+        <ui:VisualElement name="PauseMenuPage" style="flex-grow: 1; position: absolute; flex-direction: column; align-items: stretch; justify-content: flex-start; align-self: stretch; align-content: stretch; width: 100%; height: 100%;"/>
+        <ui:VisualElement name="QuestLogPage" style="flex-grow: 1; position: absolute; width: 100%; height: 100%;">
+            <ui:ListView/>
+        </ui:VisualElement>
+        <ui:VisualElement name="CollectiblesPage" style="flex-grow: 1; position: absolute; width: 100%; height: 100%;"/>
+    </ui:VisualElement>
+</ui:UXML>
