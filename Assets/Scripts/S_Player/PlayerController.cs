@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float airMultiplier = 0.5f;
     [SerializeField] Animator animator;
     private bool jumpRequested;
+    private bool shootHeld;
 
     public void OnMove(InputAction.CallbackContext context)
     {
@@ -80,6 +81,19 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("isToungeMove", false);
         }
     }
+
+    public void OnShoot(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            shootHeld = true;
+        }
+
+        if (context.canceled)
+        {
+            shootHeld = false;
+        }
+    }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -95,6 +109,12 @@ public class PlayerController : MonoBehaviour
         {
             jumpHoldTimer += Time.deltaTime;
         }
+
+        if (shootHeld && abilityHolder != null)
+        {
+            abilityHolder.TriggerAbilityByName("Shooter");
+        }
+
         UpdateWalkAnimation();    
     }
 

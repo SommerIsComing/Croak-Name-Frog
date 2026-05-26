@@ -2410,6 +2410,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 8eab3892-ac2f-4bf0-8355-8a177a132716
     m_ActionName: Player2/New action
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8a019cc7-db76-4e7d-a136-d88963f7164c
+    m_ActionName: 'Player/Shoot[/DualSenseGamepadHID/buttonWest,/Keyboard/r]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -2460,7 +2464,7 @@ MonoBehaviour:
   moveDeadzone: 0.1
   superJumpHoldTime: 0.4
   airMultiplier: 0.5
-  animator: {fileID: 0}
+  animator: {fileID: 7463668377609199509}
 --- !u!114 &3856732862393157369
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2507,6 +2511,12 @@ MonoBehaviour:
     activeTime: 0
     activateRequested: 0
   - ability: {fileID: 11400000, guid: cef1a749933aba140ab7eb4a0d0c6207, type: 2}
+    isUnlocked: 1
+    state: 0
+    cooldownTime: 1
+    activeTime: 0
+    activateRequested: 0
+  - ability: {fileID: 11400000, guid: 220aa8d487f0ef34dbf2a0f10cae2716, type: 2}
     isUnlocked: 1
     state: 0
     cooldownTime: 1
@@ -2562,7 +2572,7 @@ Animator:
   m_GameObject: {fileID: 8650871458768888115}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 570fd47a6b69d6041ba7812e1a76836a, type: 3}
-  m_Controller: {fileID: 9100000, guid: 334e33c2f02915443a8fcd5ce1f226d5, type: 2}
+  m_Controller: {fileID: 9100000, guid: 758f1ed6dd2ec7e4287fa4ecd7c9a21e, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

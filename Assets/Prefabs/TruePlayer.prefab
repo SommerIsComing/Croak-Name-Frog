@@ -1479,6 +1479,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 8eab3892-ac2f-4bf0-8355-8a177a132716
     m_ActionName: Player2/New action
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2043017787462805071}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnShoot
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 8a019cc7-db76-4e7d-a136-d88963f7164c
+    m_ActionName: 'Player/Shoot[/DualSenseGamepadHID/buttonWest,/Keyboard/r]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -1576,6 +1592,12 @@ MonoBehaviour:
     activeTime: 0
     activateRequested: 0
   - ability: {fileID: 11400000, guid: cef1a749933aba140ab7eb4a0d0c6207, type: 2}
+    isUnlocked: 1
+    state: 0
+    cooldownTime: 1
+    activeTime: 0
+    activateRequested: 0
+  - ability: {fileID: 11400000, guid: 220aa8d487f0ef34dbf2a0f10cae2716, type: 2}
     isUnlocked: 1
     state: 0
     cooldownTime: 1
