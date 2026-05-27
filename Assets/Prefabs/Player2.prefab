@@ -2460,10 +2460,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   moveSpeed: 5
   rotationLerpSpeed: 12
+  cameraBoundsPadding: 0.1
+  keepInsideCameraBounds: 1
+  sprintMultiplier: 2
   walkBoolName: isWalking
   moveDeadzone: 0.1
   superJumpHoldTime: 0.4
-  airMultiplier: 0.5
+  airMultiplier: 2
   animator: {fileID: 7463668377609199509}
 --- !u!114 &3856732862393157369
 MonoBehaviour:
@@ -2510,7 +2513,7 @@ MonoBehaviour:
     cooldownTime: 0.1
     activeTime: 0
     activateRequested: 0
-  - ability: {fileID: 11400000, guid: cef1a749933aba140ab7eb4a0d0c6207, type: 2}
+  - ability: {fileID: 11400000, guid: a67b35e1c6c286344b60187efef91268, type: 2}
     isUnlocked: 1
     state: 0
     cooldownTime: 1
@@ -2562,6 +2565,10 @@ MonoBehaviour:
   currentHealth: 0
   maxHealth: 4
   respawnDelay: 1
+  invulnerabilityDuration: 1
+  knockbackForce: 5
+  knockbackUpward: 2
+  flashInterval: 0.02
 --- !u!95 &7463668377609199509
 Animator:
   serializedVersion: 7

@@ -92,7 +92,7 @@ MonoBehaviour:
       m_SingletonActionBindings: []
       m_Flags: 0
     m_Reference: {fileID: 0}
-  m_PlayerPrefab: {fileID: 4312849285191136095, guid: 41611c9ecb950be4f8bcf6ce80932dee, type: 3}
+  m_PlayerPrefab: {fileID: 8650871458768888115, guid: 69bfb893351d4a64c837868e48475c08, type: 3}
   m_SplitScreen: 0
   m_MaintainAspectRatioInSplitScreen: 0
   m_FixedNumberOfSplitScreens: -1
@@ -115,6 +115,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraGroupBinder
   targetGroup: {fileID: 0}
+  cameraRotation: {fileID: 0}
 --- !u!114 &3390894159056974851
 MonoBehaviour:
   m_ObjectHideFlags: 0
