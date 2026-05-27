@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 1241275551729455550}
   - component: {fileID: 300654023526094982}
   - component: {fileID: 1070513866560598324}
+  - component: {fileID: -5404221324001303229}
   m_Layer: 0
   m_Name: StorNaelde01
-  m_TagString: Untagged
+  m_TagString: Collectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -90,3 +91,26 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!136 &-5404221324001303229
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2050888482371910637}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 2.1497393
+  m_Height: 5.319239
+  m_Direction: 1
+  m_Center: {x: -0.050484896, y: 2.652405, z: 0.0037094355}
