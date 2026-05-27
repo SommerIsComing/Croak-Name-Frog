@@ -13,9 +13,9 @@ public class UI_Manager : MonoBehaviour
     private Button questLogButton;
     private Button collectiblesButton;
 
-    private VisualElement pauseMenuPage;
-    private VisualElement questLogPage;
-    private VisualElement collectiblesPage;
+    public VisualElement pauseMenuPage;
+    public VisualElement questLogPage;
+    public VisualElement collectiblesPage;
 
     public bool noteBookUIDisplaying = true;
 
@@ -30,10 +30,7 @@ public class UI_Manager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
 
-    private void OnEnable()
-    {
         root = GetComponent<UIDocument>().rootVisualElement;
         buttonRoot = root.Q<VisualElement>("BookMarkButtonsContainer");
         pageRoot = root.Q<VisualElement>("PagesContainer");
@@ -45,13 +42,17 @@ public class UI_Manager : MonoBehaviour
         pauseMenuPage = pageRoot.Q<VisualElement>("PauseMenuPage");
         questLogPage = pageRoot.Q<VisualElement>("QuestLogPage");
         collectiblesPage = pageRoot.Q<VisualElement>("CollectiblesPage");
+    }
 
+    private void OnEnable()
+    {
         pauseMenuButton.clicked += DisplayPauseMenuPage;
         questLogButton.clicked += DisplayQuestLog;
         collectiblesButton.clicked += DisplayCollectibles;
 
         UIEvent.OnPauseMenuNeeded += DisplayNoteBook;
 
+        DisplayPauseMenuPage();
         HideNoteBook();
     }
 

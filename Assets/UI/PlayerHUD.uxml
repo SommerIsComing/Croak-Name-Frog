@@ -1,0 +1,6 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="QuestTrackerContainer" style="flex-grow: 0.125; flex-direction: column; aspect-ratio: auto; align-items: flex-start; align-self: flex-start; white-space: nowrap; background-color: rgba(0, 0, 0, 0.47);">
+        <ui:Label text="Label" name="PinnedQuestTitle" style="background-color: rgba(0, 0, 0, 0); color: rgb(255, 255, 255); font-size: 30px;"/>
+        <ui:Label text="Label" name="PinnedQuestObjective" style="background-color: rgba(0, 0, 0, 0); color: rgb(255, 255, 255); font-size: 20px;"/>
+    </ui:VisualElement>
+</ui:UXML>

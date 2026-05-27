@@ -13,6 +13,7 @@ public class QuestManager : MonoBehaviour
     // Liste over aktive/færdige quests i spillet
     public List<QuestInstance> activeQuests = new List<QuestInstance>();
     public List<QuestInstance> completedQuests = new List<QuestInstance>();
+    public QuestInstance pinnedQuest = null;
 
     // Singleton pattern til QuestManager, der sikrer at der kun er én instans af QuestManager i spillet
     private void Awake()
@@ -26,6 +27,8 @@ public class QuestManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        UIEvent.OnUIQuestRefresh?.Invoke();
     }
 
     private void OnEnable()
@@ -62,11 +65,15 @@ public class QuestManager : MonoBehaviour
                     {
                         //er det et relevant item, opdateres objective progress. hvis det pågældende objective er completed, tjekkes det om questen er fuldført
                         objective.currentObjectiveProgress = Mathf.Min(objective.currentObjectiveProgress + 1, objective.objectiveData.requiredProgress);
+
+                        UIEvent.OnUIQuestRefresh?.Invoke();
+
                         if (objective.IsObjectiveComplete())
                         {
                             if (quest.currentObjectiveIndex < quest.runtimeObjectives.Count)
                             {
                                 quest.currentObjectiveIndex += 1;
+                                UIEvent.OnUIQuestRefresh?.Invoke();
                             }
 
                             // Udfør eventuelle handlinger, der er knyttet til objective completion, før der tjekkes for quest completion
@@ -96,11 +103,15 @@ public class QuestManager : MonoBehaviour
                     {
                         //er det et relevant enemy, opdateres objective progress. hvis det pågældende objective er completed, tjekkes det om questen er fuldført
                         objective.currentObjectiveProgress = Mathf.Min(objective.currentObjectiveProgress + 1, objective.objectiveData.requiredProgress);
+
+                        UIEvent.OnUIQuestRefresh?.Invoke();
+
                         if (objective.IsObjectiveComplete())
                         {
                             if (quest.currentObjectiveIndex < quest.runtimeObjectives.Count)
                             {
                                 quest.currentObjectiveIndex += 1;
+                                UIEvent.OnUIQuestRefresh?.Invoke();
                             }
 
                             // Udfør eventuelle handlinger, der er knyttet til objective completion, før der tjekkes for quest completion
@@ -132,11 +143,15 @@ public class QuestManager : MonoBehaviour
                     {
                         //er det en relevant npc, opdateres objective progress. hvis det pågældende objective er completed, tjekkes det om questen er fuldført
                         objective.currentObjectiveProgress = Mathf.Min(objective.currentObjectiveProgress + 1, objective.objectiveData.requiredProgress);
+
+                        UIEvent.OnUIQuestRefresh?.Invoke();
+
                         if (objective.IsObjectiveComplete())
                         {
                             if (quest.currentObjectiveIndex < quest.runtimeObjectives.Count)
                             {
                                 quest.currentObjectiveIndex += 1;
+                                UIEvent.OnUIQuestRefresh?.Invoke();
                             }
 
                             // Udfør eventuelle handlinger, der er knyttet til objective completion, før der tjekkes for quest completion
@@ -166,11 +181,15 @@ public class QuestManager : MonoBehaviour
                     {
                         //er det et relevant område, opdateres objective progress. hvis det pågældende objective er completed, tjekkes det om questen er fuldført
                         objective.currentObjectiveProgress = Mathf.Min(objective.currentObjectiveProgress + 1, objective.objectiveData.requiredProgress);
+
+                        UIEvent.OnUIQuestRefresh?.Invoke();
+
                         if (objective.IsObjectiveComplete())
                         {
                             if (quest.currentObjectiveIndex < quest.runtimeObjectives.Count)
                             {
                                 quest.currentObjectiveIndex += 1;
+                                UIEvent.OnUIQuestRefresh?.Invoke();
                             }
 
                             // Udfør eventuelle handlinger, der er knyttet til objective completion, før der tjekkes for quest completion
@@ -213,6 +232,13 @@ public class QuestManager : MonoBehaviour
         {
             newQuest.PrepQuest();
             activeQuests.Add(newQuest);
+
+            UIEvent.OnUIQuestRefresh?.Invoke();
+
+            if(pinnedQuest == null)
+            {
+                PinQuest(newQuest);
+            }
         }
     }
 
@@ -227,9 +253,6 @@ public class QuestManager : MonoBehaviour
         }
 
         CompleteQuest(quest);
-        
-        // Opdater UI'et for quests ved at udløse en event
-        QuestEvents.OnUIQuestRefresh?.Invoke();
     }
 
     //fjern en quest fra listen over aktive quests, og tilføj den til listen over færdige quests
@@ -241,7 +264,20 @@ public class QuestManager : MonoBehaviour
 
             activeQuests.Remove(quest);
             completedQuests.Add(quest);
+
+            UIEvent.OnUIQuestRefresh?.Invoke();
         }
     }
 
+    public void PinQuest (QuestInstance quest)
+    {
+        pinnedQuest = quest;
+        UIEvent.OnUIQuestRefresh?.Invoke();
+    }
+
+    public void UnpinQuest()
+    {
+        pinnedQuest = null;
+        UIEvent.OnUIQuestRefresh?.Invoke();
+    }
 }

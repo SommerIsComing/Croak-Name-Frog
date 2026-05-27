@@ -27,6 +27,6 @@ public class NPC_Manager : MonoBehaviour
 
     public void DisplayDialogue(NPC_Data npcData)
     {
-        //DialogueEvents.OnDialogueStart?.Invoke(npcData);
+        //UIEvent.OnDialogueStart?.Invoke(npcData);
     }
 }
