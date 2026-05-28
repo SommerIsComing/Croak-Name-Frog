@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6642982258585464997}
   - component: {fileID: 5300483597871630497}
   - component: {fileID: 6413291603085482459}
+  - component: {fileID: 4637597876016825820}
   m_Layer: 0
   m_Name: Bellis01
   m_TagString: Collectable
@@ -114,3 +115,19 @@ CapsuleCollider:
   m_Height: 0.31228974
   m_Direction: 1
   m_Center: {x: 0.03452581, y: 0.13960718, z: -0.0013574362}
+--- !u!114 &4637597876016825820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7524750477771697083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88bc39bc8bcd2424690a0956470c7841, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ItemPickup
+  itemID: herb
+  hasPickedUp: 0
+  hasQuest: 0
+  isInteractableForPlayer: 0

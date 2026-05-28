@@ -61,6 +61,9 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "PauseGame",
+                    "type": "Button",
+                    "id": "ba70da69-e24c-4c6a-b827-3b8047c92c74",
                     "name": "Shoot",
                     "type": "Button",
                     "id": "8a019cc7-db76-4e7d-a136-d88963f7164c",
@@ -381,6 +384,23 @@
                 },
                 {
                     "name": "",
+                    "id": "11b51207-d10a-40c0-a30d-be5c8a4c04af",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Mouse&Keyboard",
+                    "action": "PauseGame",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b4b80b33-f835-4335-b0ec-8535cbb8c7cd",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Gamepad",
+                    "action": "PauseGame",
                     "id": "7bac400c-4030-47f5-b456-56dab0295e2a",
                     "path": "<Gamepad>/buttonWest",
                     "interactions": "",

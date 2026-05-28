@@ -1,16 +1,38 @@
 using UnityEngine;
 
-public class ItemPickup : MonoBehaviour
+public class ItemPickup : MonoBehaviour, Interactable
 {
     [SerializeField] private string itemID;
+    [SerializeField] private bool hasPickedUp = false;
+    [SerializeField] private bool hasQuest = false;
+    [SerializeField] private bool isInteractableForPlayer = false;
 
-    private void OnCollisionEnter(Collision collider)
+    private void OnEnable()
     {
-        if (collider.gameObject.CompareTag("Player"))
-        {
-            QuestEvents.OnItemCollected?.Invoke(itemID);
+        GameEvent.OnInteractionNeeded += MakeInteractable;
+    }
 
-            Destroy(gameObject);
+    public void Interact()
+    {
+        if (isInteractableForPlayer)
+        {
+            hasQuest = QuestManager.questManager.HasActiveQuests();
+
+            if (hasQuest && !hasPickedUp)
+            {
+                QuestEvents.OnItemCollected?.Invoke(itemID);
+                hasPickedUp = true;
+
+                //collect shit
+            }
+        }
+    }
+
+    private void MakeInteractable(string id, bool interactable)
+    {
+        if(itemID == id)
+        {
+            isInteractableForPlayer = interactable;
         }
     }
 }
