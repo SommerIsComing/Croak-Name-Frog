@@ -6,6 +6,9 @@ public class PlayerController : MonoBehaviour
     [Header("Movement")]
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float rotationLerpSpeed = 12f;
+    [SerializeField, Range(0f, 0.45f)] private float cameraBoundsPadding = 0.06f;
+    [SerializeField] private bool keepInsideCameraBounds = true;
+    [SerializeField] private float sprintMultiplier = 1.5f;
     private Vector2 move;
     private Rigidbody rb;
 
@@ -21,6 +24,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float airMultiplier = 0.5f;
     [SerializeField] Animator animator;
     private bool jumpRequested;
+    private bool shootHeld;
 
     public void OnMove(InputAction.CallbackContext context)
     {
@@ -75,6 +79,35 @@ public class PlayerController : MonoBehaviour
             abilityHolder.TriggerAbilityByName("Tongue");
             animator.SetBool("isToungeMove", true);
         }
+        else
+        {
+        animator.SetBool("isToungeMove", false);
+        }
+    }
+
+    public void OnShoot(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            shootHeld = true;
+        }
+
+        if (context.canceled)
+        {
+            shootHeld = false;
+        }
+    }
+
+    public void OnSprint(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            moveSpeed *= sprintMultiplier;
+        }
+        if (context.canceled)
+        {
+            moveSpeed /= sprintMultiplier;
+        }
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -91,6 +124,12 @@ public class PlayerController : MonoBehaviour
         {
             jumpHoldTimer += Time.deltaTime;
         }
+
+        if (shootHeld && abilityHolder != null)
+        {
+            abilityHolder.TriggerAbilityByName("Shooter");
+        }
+
         UpdateWalkAnimation();    
     }
 
@@ -102,6 +141,7 @@ public class PlayerController : MonoBehaviour
         }
 
         MovePlayer();
+        KeepPlayerInsideCameraBounds();
 
         if (jumpRequested)
         {
@@ -113,7 +153,16 @@ public class PlayerController : MonoBehaviour
     public void MovePlayer()
     {
         float controlMultiplier = GetAirControlMultiplier();
-        Vector3 moveDirection = new Vector3(move.x, 0, move.y);
+
+        Vector3 forward = Camera.main.transform.forward;
+        Vector3 right = Camera.main.transform.right;
+        forward.y = 0f;
+        right.y = 0f;
+        forward.Normalize();
+        right.Normalize();
+
+        Vector3 moveDirection = forward * move.y + right * move.x;
+
 
         if (moveDirection != Vector3.zero)
         {
@@ -159,4 +208,39 @@ public class PlayerController : MonoBehaviour
 
         animator.SetBool(walkBoolName, isGrounded && hasMoveInput);
 }
+
+    private void KeepPlayerInsideCameraBounds()
+    {
+        if (!keepInsideCameraBounds)
+        {
+            return;
+        }
+
+        Camera cam = Camera.main;
+        if (cam == null)
+        {
+            return;
+        }
+
+        Vector3 viewportPos = cam.WorldToViewportPoint(rb.position);
+        if (viewportPos.z <= 0f)
+        {
+            return;
+        }
+
+        float min = cameraBoundsPadding;
+        float max = 1f - cameraBoundsPadding;
+
+        float clampedX = Mathf.Clamp(viewportPos.x, min, max);
+        float clampedY = Mathf.Clamp(viewportPos.y, min, max);
+
+        if (Mathf.Approximately(clampedX, viewportPos.x) && Mathf.Approximately(clampedY, viewportPos.y))
+        {
+            return;
+        }
+
+        Vector3 clampedWorld = cam.ViewportToWorldPoint(new Vector3(clampedX, clampedY, viewportPos.z));
+        clampedWorld.y = rb.position.y;
+        rb.MovePosition(clampedWorld);
+    }
 }

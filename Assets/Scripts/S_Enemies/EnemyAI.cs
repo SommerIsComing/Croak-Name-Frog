@@ -162,7 +162,7 @@ public class EnemyAI : MonoBehaviour
             Debug.Log(gameObject.name + ": attacking player!");
             if (playerHealth != null)
             {
-                playerHealth.TakeDamage(attackDamage); // eksempel på at reducere spillerens health med 10
+                playerHealth.TakeDamage(attackDamage, transform.position); // eksempel på at reducere spillerens health med 10
             }
 
             attackTimer = attackCooldown; // reset attackTimer til cooldown
