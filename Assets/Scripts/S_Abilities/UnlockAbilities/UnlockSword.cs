@@ -1,12 +1,13 @@
 using UnityEngine;
 using System.Collections;
 
-public class UnlockShooter : MonoBehaviour
+public class UnlockSword : MonoBehaviour
 {
     [SerializeField] private string playerTag = "Player";
-    [SerializeField] private string abilityNameToUnlock = "Shooter";
-    [SerializeField] private string abilityNameToLock = "Sword";
+    [SerializeField] private string abilityNameToUnlock = "Sword";
+    [SerializeField] private string abilityNameToLock = "Shooter";
     [SerializeField] private bool lockAnotherAbilityOnPickup = true;
+
     private void OnTriggerEnter(Collider other)
     {
         if(!other.CompareTag(playerTag))
