@@ -22,16 +22,16 @@ public class NPC_Instance : MonoBehaviour, Interactable
     private void OnEnable()
     {
         GameEvent.OnAnimNeeded += PlayAnim;
-        GameEvent.OnInteractionNeeded += Interactable;
+        GameEvent.OnInteractionNeeded += MakeInteractable;
     }
 
     private void OnDisable()
     {
         GameEvent.OnAnimNeeded -= PlayAnim;
-        GameEvent.OnInteractionNeeded -= Interactable;
+        GameEvent.OnInteractionNeeded -= MakeInteractable;
     }
 
-    public void Interactable(string npcName, bool interactable)
+    public void MakeInteractable(string npcName, bool interactable)
     {
         if(npcName == npcData.npcName)
         {
@@ -43,7 +43,7 @@ public class NPC_Instance : MonoBehaviour, Interactable
     {
         if(isInteractable)
         {
-            QuestEvents.OnNPCTalkedTo?.Invoke(npcData.npcName);
+            QuestEvents.OnNPCTalkedTo?.Invoke(npcID);
 
             NPC_Manager.npcManager.DisplayDialogue(npcData);
 

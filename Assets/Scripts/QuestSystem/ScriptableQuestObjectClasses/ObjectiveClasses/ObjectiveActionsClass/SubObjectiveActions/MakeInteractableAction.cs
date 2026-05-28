@@ -4,9 +4,9 @@ using UnityEngine;
 public class MakeInteractableAction : ObjectiveAction
 {
     public bool isInteractable;
-    public string npcName;
+    public string id;
     public override void ExecuteAction()
     {
-        GameEvent.OnInteractionNeeded?.Invoke(npcName, isInteractable);
+        GameEvent.OnInteractionNeeded?.Invoke(id, isInteractable);
     }
 }

@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a9de7ef4bd4c8a45ae7f01b7e87541f, type: 3}
-  m_Name: CollectTreasure
-  m_EditorClassIdentifier: Assembly-CSharp::CollectObjective
-  objectiveDescription: Collect the treasure for the Bird
-  requiredProgress: 3
+  m_Script: {fileID: 11500000, guid: 409d255285ae3db47bd3cb4f4f99740a, type: 3}
+  m_Name: TalkToOldManAgain
+  m_EditorClassIdentifier: Assembly-CSharp::TalkObjective
+  objectiveDescription: Return to the old man with the herbs
+  requiredProgress: 1
   actionsUponCompletion: []
-  itemName: treasure
+  npcName: old_man
