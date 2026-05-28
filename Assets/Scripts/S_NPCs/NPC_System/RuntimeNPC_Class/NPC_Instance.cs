@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -13,6 +14,10 @@ public class NPC_Instance : MonoBehaviour, Interactable
     public string questToGiveID;
 
     public bool isInteractable = false;
+
+    public bool hasTalkedToPlayer = false;
+
+    public List<NPC_Data> dialogue;
 
     private void Start()
     {
@@ -58,6 +63,7 @@ public class NPC_Instance : MonoBehaviour, Interactable
             Debug.Log("Quest Given");
             questGiven = true;
             QuestEvents.OnQuestGivenByID?.Invoke(questToGiveID);
+            SetHasTalkedToPlayer(true);
         }
     }
 
@@ -67,5 +73,47 @@ public class NPC_Instance : MonoBehaviour, Interactable
         {
             GetComponentInChildren<Animator>().SetTrigger(npcData.animTriggerName);
         }
+    }
+
+    public NPC_Data GetNPCDialogue()
+    {
+        foreach(NPC_Data npcData in dialogue)
+        {
+            if (CorrectDialogueContext(npcData))
+            {
+                return npcData;
+            }
+        }
+
+        return null;
+    }
+
+    private bool CorrectDialogueContext(NPC_Data npcData)
+    {
+        switch (npcData.conditionType)
+        {
+            case DialogueConditionType.None:
+                return true;
+
+            case DialogueConditionType.FirstTimeTalking:
+                return !hasTalkedToPlayer;
+
+            case DialogueConditionType.ObjectiveInProgress:
+                return QuestManager.questManager.IsObjectiveInProgress(npcData.questID, npcData.requiredObjectiveIndex);
+
+            //case DialogueConditionType.ObjectiveComplete:
+                //return QuestManager.questManager.IsObjectiveComplete(npcData.questID, npcData.requiredObjectiveIndex);
+
+            case DialogueConditionType.QuestComplete:
+                return QuestManager.questManager.completedQuests.Exists(questInstance => questInstance.questData.questID == questToGiveID);
+
+            default:
+                return true;
+        }
+    }
+
+    public void SetHasTalkedToPlayer(bool value)
+    {
+        hasTalkedToPlayer = value;
     }
 }

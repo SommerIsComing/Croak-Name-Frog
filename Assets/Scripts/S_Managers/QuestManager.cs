@@ -267,6 +267,15 @@ public class QuestManager : MonoBehaviour
         CompleteQuest(quest);
     }
 
+    public bool IsObjectiveInProgress(string questID, int objectiveIndex)
+    {
+        QuestInstance quest = activeQuests.Find(q => q.questData.questID == questID);
+        if(quest == null || quest.runtimeObjectives.Count == 0) return false;
+
+        ObjectiveInstance currentObjective = quest.runtimeObjectives[quest.currentObjectiveIndex];
+        return !currentObjective.IsObjectiveComplete();
+    }
+
     //fjern en quest fra listen over aktive quests, og tilføj den til listen over færdige quests
     public void CompleteQuest(QuestInstance quest)
     {

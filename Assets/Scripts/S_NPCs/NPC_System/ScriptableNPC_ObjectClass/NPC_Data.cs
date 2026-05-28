@@ -10,9 +10,32 @@ public class NPC_Data : ScriptableObject
 
     public string animTriggerName;
 
-    [TextArea(3,5)] public List<string> defaultDialogueText = new List<string>();
+    [TextArea(3,6)] public List<string> defaultDialogueText = new List<string>();
 
-    [TextArea(3, 5)] public List<string> activeQuestdialogueText = new List<string>();
+    [TextArea(3, 6)] public List<string> firstTimeDialogueText = new List<string>();
 
-    [TextArea(3, 5)] public List<string> completedQuestDialogueText = new List<string>();
+    [TextArea(3, 6)] public List<string> objectiveInProgressDialogueText = new List<string>();
+
+    [TextArea(3, 6)] public List<string> objectiveCompleteDialogueText = new List<string>();
+
+    [TextArea(3, 6)] public List<string> QuestCompleteDialogueText = new List<string>();
+
+    public DialogueConditionType conditionType;
+
+    public string questID;
+
+    public int requiredObjectiveIndex;
+
+    public bool needsQuestComplete;
+
+    public bool oneTimeOnly;
+}
+
+public enum DialogueConditionType
+{
+    None,
+    FirstTimeTalking,
+    ObjectiveInProgress,
+    ObjectiveComplete,
+    QuestComplete
 }
