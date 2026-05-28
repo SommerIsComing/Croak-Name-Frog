@@ -5,7 +5,7 @@ public class PlayerUIController : MonoBehaviour
 {
     public void DisplayPauseMenu(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.started)
         {
             UIEvent.OnPauseMenuNeeded?.Invoke();
         }

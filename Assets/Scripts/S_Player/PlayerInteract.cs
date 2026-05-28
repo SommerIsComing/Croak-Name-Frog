@@ -10,8 +10,10 @@ public class PlayerInteract : MonoBehaviour
     //Metode der bliver kaldt når spilleren trykker på interaktions knappen, og kalder Interact() metoden på det nærmeste objekt hvis det findes
     public void OnInteraction(InputAction.CallbackContext context)
     {
-        closestinteractable?.Interact();
-        
+        if (context.started)
+        {
+            closestinteractable?.Interact();
+        }
     }
 
     private void OnTriggerEnter(Collider other)
