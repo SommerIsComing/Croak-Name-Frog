@@ -53,6 +53,7 @@ public class PlayerHeath : MonoBehaviour
         if (currentHealth <= 0 || isRespawning || isInvulnerable) return; // forhindrer yderligere skade, hvis spilleren allerede er død
         currentHealth -= damage;
         Debug.Log("Damaged - Current player health: " + currentHealth);
+        SoundManager.PlaySound(SoundType.HURT);
         if (currentHealth <= 0)
         {
             Die();
