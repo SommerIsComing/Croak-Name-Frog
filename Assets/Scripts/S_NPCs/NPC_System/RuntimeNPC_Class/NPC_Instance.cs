@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI;
 
 //Denne klasse repræsenterer en NPC i spillet. Den indeholder data om NPC'en og håndterer interaktioner og animationer baseret på de events, der bliver triggered.
 public class NPC_Instance : MonoBehaviour, Interactable
@@ -17,8 +18,6 @@ public class NPC_Instance : MonoBehaviour, Interactable
 
     public bool hasTalkedToPlayer = false;
 
-    public List<NPC_Data> dialogue;
-
     private void Start()
     {
         npcData = NPC_Manager.npcManager.AssignNPC(npcID);
@@ -28,6 +27,7 @@ public class NPC_Instance : MonoBehaviour, Interactable
     {
         GameEvent.OnAnimNeeded += PlayAnim;
         GameEvent.OnInteractionNeeded += MakeInteractable;
+        UIEvent.OnPlayerTalkedToTheFirstTime += SetHasTalkedToPlayer;
     }
 
     private void OnDisable()
@@ -46,11 +46,13 @@ public class NPC_Instance : MonoBehaviour, Interactable
 
     public void Interact()
     {
-        if(isInteractable)
+        NPC_DialogueObject currentDialogue = GetNPCDialogue();
+
+        if (isInteractable)
         {
             QuestEvents.OnNPCTalkedTo?.Invoke(npcID);
 
-            NPC_Manager.npcManager.DisplayDialogue(npcData);
+            NPC_Manager.npcManager.DisplayDialogue(currentDialogue);
 
             GiveQuest();
         }
@@ -63,7 +65,7 @@ public class NPC_Instance : MonoBehaviour, Interactable
             Debug.Log("Quest Given");
             questGiven = true;
             QuestEvents.OnQuestGivenByID?.Invoke(questToGiveID);
-            SetHasTalkedToPlayer(true);
+            SetHasTalkedToPlayer(npcData.npcName);
         }
     }
 
@@ -75,45 +77,49 @@ public class NPC_Instance : MonoBehaviour, Interactable
         }
     }
 
-    public NPC_Data GetNPCDialogue()
+    public NPC_DialogueObject GetNPCDialogue()
     {
-        foreach(NPC_Data npcData in dialogue)
+        foreach(NPC_DialogueObject npcDialogue in npcData.dialogue)
         {
-            if (CorrectDialogueContext(npcData))
+            if (CorrectDialogueContext(npcDialogue))
             {
-                return npcData;
+                return npcDialogue;
             }
         }
 
         return null;
     }
 
-    private bool CorrectDialogueContext(NPC_Data npcData)
+    private bool CorrectDialogueContext(NPC_DialogueObject npcDialogue)
     {
-        switch (npcData.conditionType)
+        switch (npcDialogue.conditionType)
         {
-            case DialogueConditionType.None:
-                return true;
-
-            case DialogueConditionType.FirstTimeTalking:
-                return !hasTalkedToPlayer;
-
-            case DialogueConditionType.ObjectiveInProgress:
-                return QuestManager.questManager.IsObjectiveInProgress(npcData.questID, npcData.requiredObjectiveIndex);
-
-            //case DialogueConditionType.ObjectiveComplete:
-                //return QuestManager.questManager.IsObjectiveComplete(npcData.questID, npcData.requiredObjectiveIndex);
-
             case DialogueConditionType.QuestComplete:
                 return QuestManager.questManager.completedQuests.Exists(questInstance => questInstance.questData.questID == questToGiveID);
+
+            case DialogueConditionType.ObjectiveComplete:
+                return QuestManager.questManager.IsObjectiveComplete(npcDialogue.questID, npcDialogue.requiredObjectiveIndex);
+
+            case DialogueConditionType.ObjectiveInProgress:
+                return QuestManager.questManager.IsObjectiveInProgress(npcDialogue.questID, npcDialogue.requiredObjectiveIndex);
+
+            case DialogueConditionType.FirstTimeTalking:
+
+                return !hasTalkedToPlayer;
+
+            case DialogueConditionType.None:
+                return true;
 
             default:
                 return true;
         }
     }
 
-    public void SetHasTalkedToPlayer(bool value)
+    public void SetHasTalkedToPlayer(string npcName)
     {
-        hasTalkedToPlayer = value;
+        if(npcName == npcData.npcName)
+        {
+            hasTalkedToPlayer = true;
+        }
     }
 }

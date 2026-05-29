@@ -10,9 +10,13 @@ public class PlayerInteract : MonoBehaviour
     //Metode der bliver kaldt når spilleren trykker på interaktions knappen, og kalder Interact() metoden på det nærmeste objekt hvis det findes
     public void OnInteraction(InputAction.CallbackContext context)
     {
-        if (context.started)
+        if (closestinteractable == null) { return; }
+        
+        if ((context.performed || context.started) && !(NPC_UI.npc_UI.IsDialogueDisplaying()))
         {
-            closestinteractable?.Interact();
+
+             closestinteractable.Interact();
+
         }
     }
 

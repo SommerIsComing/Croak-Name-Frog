@@ -62,6 +62,7 @@ public class UI_Manager : MonoBehaviour
         {
             root.style.display = DisplayStyle.Flex;
             noteBookUIDisplaying = true;
+            UIEvent.OnUIQuestRefresh?.Invoke();
         }
         else
         {
@@ -76,6 +77,8 @@ public class UI_Manager : MonoBehaviour
             root.style.display = DisplayStyle.None;
 
             noteBookUIDisplaying = false;
+
+            UIEvent.OnUIQuestRefresh?.Invoke();
         }
     }
 
@@ -88,6 +91,7 @@ public class UI_Manager : MonoBehaviour
             collectiblesPage.style.display = DisplayStyle.None;
 
             noteBookUIDisplaying = true;
+            UIEvent.OnUIQuestRefresh?.Invoke();
         }
     }
 
@@ -98,6 +102,7 @@ public class UI_Manager : MonoBehaviour
         collectiblesPage.style.display = DisplayStyle.None;
 
         noteBookUIDisplaying = true;
+        UIEvent.OnUIQuestRefresh?.Invoke();
     }
 
     private void DisplayCollectibles()
@@ -107,6 +112,7 @@ public class UI_Manager : MonoBehaviour
         collectiblesPage.style.display = DisplayStyle.Flex;
 
         noteBookUIDisplaying = true;
+        UIEvent.OnUIQuestRefresh?.Invoke();
     }
 
 }

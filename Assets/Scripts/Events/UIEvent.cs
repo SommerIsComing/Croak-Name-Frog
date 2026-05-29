@@ -7,4 +7,9 @@ public static class UIEvent
     public static Action OnUIQuestRefresh;
 
     public static Action OnPauseMenuNeeded;
+
+    public static Action<NPC_DialogueObject> OnDialogueStart;
+    public static Action OnDialogueContinue;
+
+    public static Action<string> OnPlayerTalkedToTheFirstTime;
 }

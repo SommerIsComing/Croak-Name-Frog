@@ -25,8 +25,15 @@ public class NPC_Manager : MonoBehaviour
         return npcDataBase.GetNPCByID(npcID);
     }
 
-    public void DisplayDialogue(NPC_Data npcData)
+    public void DisplayDialogue(NPC_DialogueObject npcDialogue)
     {
-        //UIEvent.OnDialogueStart?.Invoke(npcData);
+        if(npcDialogue == null) { Debug.Log("Dialogue is null"); return; }
+        
+        if(npcDialogue.conditionType == DialogueConditionType.FirstTimeTalking)
+        {
+            UIEvent.OnPlayerTalkedToTheFirstTime?.Invoke(npcDialogue.npcID);
+        }
+        
+        UIEvent.OnDialogueStart?.Invoke(npcDialogue);
     }
 }

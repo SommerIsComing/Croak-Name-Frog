@@ -7,14 +7,20 @@ using Label = UnityEngine.UIElements.Label;
 public class QuestPin : MonoBehaviour
 {
     private VisualElement root;
+    private VisualElement questPinContainer;
     private Label pinnedQuestTitle;
     private Label pinnedQuestObjective;
 
     private void Awake()
     {
-        root = GetComponent<UIDocument>().rootVisualElement;
+        root = GetComponent<UIDocument>().rootVisualElement.Q<VisualElement>("QuestTrackerContainer");
         pinnedQuestTitle = root.Q<Label>("PinnedQuestTitle");
         pinnedQuestObjective = root.Q<Label>("PinnedQuestObjective");
+    }
+
+    private void Start()
+    {
+        root.style.display = DisplayStyle.None;
     }
 
     private void OnEnable()
@@ -35,24 +41,25 @@ public class QuestPin : MonoBehaviour
 
         if(pinnedQuest == null)
         {
-            pinnedQuestTitle.text = "No Pinned Quest";
-            pinnedQuestObjective.text = "Find something to do!";
+            root.style.display = DisplayStyle.None;
             return;
         }
 
         if(pinnedQuest.runtimeObjectives.Count == 0)
         {
-            pinnedQuestTitle.text = "No Pinned Quest";
-            pinnedQuestObjective.text = "Find something to do!";
+            root.style.display = DisplayStyle.None;
             return;
         }
 
         if(pinnedQuest.currentObjectiveIndex >= pinnedQuest.runtimeObjectives.Count)
         {
+            root.style.display = DisplayStyle.Flex;
             pinnedQuestTitle.text = pinnedQuest.questData.questName;
             pinnedQuestObjective.text = "Quest Completed!";
             return;
         }
+
+        root.style.display = DisplayStyle.Flex;
 
         pinnedQuestTitle.text = pinnedQuest.questData.questName;
 
