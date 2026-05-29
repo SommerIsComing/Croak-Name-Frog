@@ -45,6 +45,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _ApplyWind: 1
     - _CutoutSize: 0
     - _FalloffSize: 0
     - _Glossiness: 1
@@ -57,11 +58,15 @@ Material:
     - _Shadow_Brightness: 0.7
     - _Shadow_Cutoff: 0.1
     - _Shadow_Softness: 0
+    - _WindIntensity: 0.25
+    - _WindScale: 5
+    - _WindShitFuck: 0
     m_Colors:
     - _Base_Color: {r: 1, g: 1, b: 1, a: 1}
     - _CutoutPos: {r: 0, g: 0, b: 0, a: 0}
     - _Highlight_Color: {r: 1, g: 1, b: 1, a: 1}
     - _Rimlight_Color: {r: 1, g: 1, b: 1, a: 1}
+    - _WindMovement: {r: 0.2, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &2791479400301122314
