@@ -1,5 +1,7 @@
 using UnityEngine;
 using System.Collections;
+using System.Security.Cryptography.X509Certificates;
+using Unity.VisualScripting;
 
 public class UnlockSword : MonoBehaviour
 {
@@ -7,6 +9,11 @@ public class UnlockSword : MonoBehaviour
     [SerializeField] private string abilityNameToUnlock = "Sword";
     [SerializeField] private string abilityNameToLock = "Shooter";
     [SerializeField] private bool lockAnotherAbilityOnPickup = true;
+    [SerializeField] private float respawnTime = 2f;
+    public bool swordIsUnlocked = false;
+    [SerializeField] private UnlockShooter unlockShooter;
+    [SerializeField] private GameObject swordVisual;
+    [SerializeField] private GameObject shooterVisual;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -18,18 +25,30 @@ public class UnlockSword : MonoBehaviour
         if (abilityHolder != null)
         {
             abilityHolder.UnlockAbilityByName(abilityNameToUnlock);
+            swordIsUnlocked = true;
+            swordVisual.SetActive(true);
             if (lockAnotherAbilityOnPickup && string.IsNullOrEmpty(abilityNameToLock) == false)
             {
                 abilityHolder.LockAbilityByName(abilityNameToLock);
+                unlockShooter.shooterIsUnlocked = false;
+                shooterVisual.SetActive(false);
             }
-            this.gameObject.SetActive(false);
             StartCoroutine(ReactivateObject());
         }
     }
 
     private IEnumerator ReactivateObject()
     {
-        yield return new WaitForSeconds(5f); // Adjust the delay as needed
-        this.gameObject.SetActive(true);
+        SetVisible(false);
+        yield return new WaitForSeconds(respawnTime); // Adjust the delay as needed
+        SetVisible(true);
+    }
+
+    private void SetVisible(bool visible)
+    {
+        foreach (var renderer in GetComponentsInChildren<Renderer>())
+            renderer.enabled = visible;
+        foreach (var col in GetComponentsInChildren<Collider>())
+            col.enabled = visible;
     }
 }

@@ -26,6 +26,11 @@ public class PlayerController : MonoBehaviour
     private bool jumpRequested;
     private bool shootHeld;
 
+    [Header("Ability Unlocking")]
+    [SerializeField] private UnlockShooter unlockShooter;
+    [SerializeField] private UnlockSword unlockSword;
+    public bool isAnyAttackUnlocked => (unlockShooter != null && unlockShooter.shooterIsUnlocked) || (unlockSword != null && unlockSword.swordIsUnlocked);
+
     public void OnMove(InputAction.CallbackContext context)
     {
         move = context.ReadValue<Vector2>();
@@ -85,11 +90,13 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void OnShoot(InputAction.CallbackContext context)
+    public void OnAttack(InputAction.CallbackContext context)
     {
         if (context.started)
         {
             shootHeld = true;
+            if (isAnyAttackUnlocked) 
+            animator.SetTrigger("isAttackingFirst");
         }
 
         if (context.canceled)

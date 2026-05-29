@@ -28,5 +28,21 @@ public class Sword : AbilitySO
     }
 
     private GameObject FindAttackZone(GameObject parent)
-    {}
+    {
+        // First, try to find the attack zone as a child of the parent
+        Transform attackZoneTransform = parent.transform.Find(attackZoneInChildName);
+        if (attackZoneTransform != null)
+        {
+            return attackZoneTransform.gameObject;
+        }
+
+        // If not found as a child, try to find it by tag
+        GameObject attackZone = GameObject.FindGameObjectWithTag(attackZoneTag);
+        if (attackZone != null && attackZone.transform.IsChildOf(parent.transform))
+        {
+            return attackZone;
+        }
+
+        return null;
+    }
 }
