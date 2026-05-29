@@ -1,0 +1,21 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="BookMarkButtonsContainer" style="flex-grow: 0; flex-direction: row; aspect-ratio: auto; align-items: flex-start; justify-content: space-evenly; align-self: flex-start; align-content: flex-start; top: 6%; left: 0%; width: 50%;">
+        <ui:Button text="Pause Menu" name="PauseMenuButton"/>
+        <ui:Button text="Quests" name="QuestLogButton"/>
+        <ui:Button text="Collectibles" name="CollectiblesButton"/>
+    </ui:VisualElement>
+    <ui:VisualElement name="PagesContainer" style="flex-grow: 0.9; top: 5%; left: 0%; align-self: center; flex-basis: 10%; flex-shrink: 0.9; flex-wrap: nowrap; flex-direction: column; align-items: stretch; justify-content: flex-start; align-content: center; width: 90%;">
+        <ui:VisualElement name="PauseMenuPage" style="flex-grow: 1; position: absolute; flex-direction: column; align-items: stretch; justify-content: flex-start; align-self: stretch; align-content: stretch; width: 100%; height: 100%; background-color: rgb(255, 0, 0); display: none; visibility: visible;"/>
+        <ui:VisualElement name="QuestLogPage" style="flex-grow: 1; position: absolute; width: 100%; height: 100%; background-color: rgb(81, 255, 0); border-top-width: 4px; border-right-width: 4px; border-bottom-width: 4px; border-left-width: 4px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); display: none;">
+            <ui:Label text="Quest-Log" name="QuestLogText" style="font-size: 40px; -unity-font-style: bold;"/>
+            <ui:Label text="Active Quests:" name="ActiveQuestsText" style="-unity-font-style: bold; font-size: 20px;"/>
+            <ui:ListView name="ActiveQuestsList" fixed-item-height="100" style="border-bottom-width: 1px; border-top-width: 1px; border-left-width: 0; border-right-width: 0; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0);"/>
+            <ui:Label text="Completed Quests:" name="CompletedQuestsText" style="-unity-font-style: bold; font-size: 20px;"/>
+            <ui:ListView name="CompletedQuestsList" fixed-item-height="100" style="border-top-width: 1px; border-left-width: 0; border-bottom-width: 1px; border-right-width: 0; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0);"/>
+        </ui:VisualElement>
+        <ui:VisualElement name="CollectiblesPage" style="flex-grow: 1; position: absolute; width: 100%; height: 100%; background-color: rgb(0, 25, 255); display: flex; flex-direction: row; align-items: flex-start;">
+            <ui:VisualElement name="CollectiblesDisplay" style="flex-grow: 1; align-self: stretch;"/>
+            <ui:VisualElement name="CollectiblesInfo" style="flex-grow: 1; align-self: stretch;"/>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
