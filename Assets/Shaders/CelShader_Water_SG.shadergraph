@@ -1011,20 +1011,6 @@
         {
             "m_OutputSlot": {
                 "m_Node": {
-                    "m_Id": "8aa00a6c97f142188d666f3616ea4a9b"
-                },
-                "m_SlotId": 2
-            },
-            "m_InputSlot": {
-                "m_Node": {
-                    "m_Id": "19982f68f653452598d2593633ad8299"
-                },
-                "m_SlotId": 0
-            }
-        },
-        {
-            "m_OutputSlot": {
-                "m_Node": {
                     "m_Id": "8b10dc2a0d644b92932518d9277084a4"
                 },
                 "m_SlotId": 2
@@ -1104,6 +1090,20 @@
                     "m_Id": "f1db6b7515d4453ba4e60f958f9c3c2f"
                 },
                 "m_SlotId": 2
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
+                    "m_Id": "8aa00a6c97f142188d666f3616ea4a9b"
+                },
+                "m_SlotId": 2
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "19982f68f653452598d2593633ad8299"
+                },
+                "m_SlotId": 0
             }
         },
         {
@@ -1711,7 +1711,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector4MaterialSlot",
     "m_ObjectId": "01151fe4e05f47e1afed59ecad0e14fb",
     "m_Id": 0,
-    "m_DisplayName": "Specular Color",
+    "m_DisplayName": "Highlight Color",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -3828,7 +3828,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "3ced7ef190f0428982c28a751f6f70ff",
     "m_Id": 0,
-    "m_DisplayName": "Ambient Strength",
+    "m_DisplayName": "Shadow Brightness",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -4538,6 +4538,9 @@
         },
         {
             "m_Id": "c7a913e7562740308d1e5aff3703249d"
+        },
+        {
+            "m_Id": "600f339eeb844f2f99bb282d85f36c54"
         }
     ],
     "synonyms": [],
@@ -5208,6 +5211,22 @@
         "z": 0.0,
         "w": 0.0
     },
+    "m_LiteralMode": false
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
+    "m_ObjectId": "600f339eeb844f2f99bb282d85f36c54",
+    "m_Id": 5,
+    "m_DisplayName": "AlphaClip",
+    "m_SlotType": 1,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "AlphaClip",
+    "m_StageCapability": 2,
+    "m_Value": 0.0,
+    "m_DefaultValue": 0.0,
+    "m_Labels": [],
     "m_LiteralMode": false
 }
 
@@ -6278,7 +6297,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector4MaterialSlot",
     "m_ObjectId": "83931bf70db4470d84fd4dee1a106477",
     "m_Id": 0,
-    "m_DisplayName": "Fresnel Color",
+    "m_DisplayName": "Rimlight Color",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -6591,49 +6610,6 @@
 
 {
     "m_SGVersion": 0,
-    "m_Type": "UnityEditor.ShaderGraph.MultiplyNode",
-    "m_ObjectId": "8aa00a6c97f142188d666f3616ea4a9b",
-    "m_Group": {
-        "m_Id": ""
-    },
-    "m_Name": "Multiply",
-    "m_DrawState": {
-        "m_Expanded": true,
-        "m_Position": {
-            "serializedVersion": "2",
-            "x": 3531.2490234375,
-            "y": 1010.9065551757813,
-            "width": 0.0,
-            "height": 0.0
-        }
-    },
-    "m_Slots": [
-        {
-            "m_Id": "7780941b3d0f4b828291c2491a630076"
-        },
-        {
-            "m_Id": "8ee1ec8d004943008c4749a5b2080a47"
-        },
-        {
-            "m_Id": "1d920138c3fe446595aa9f6fd225cc23"
-        }
-    ],
-    "synonyms": [
-        "multiplication",
-        "times",
-        "x"
-    ],
-    "m_Precision": 0,
-    "m_PreviewExpanded": true,
-    "m_DismissedVersion": 0,
-    "m_PreviewMode": 0,
-    "m_CustomColors": {
-        "m_SerializableColors": []
-    }
-}
-
-{
-    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.DynamicVectorMaterialSlot",
     "m_ObjectId": "8ae727ea6f9d412b844db05b141eb0f9",
     "m_Id": 1,
@@ -6837,6 +6813,49 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.MultiplyNode",
+    "m_ObjectId": "8aa00a6c97f142188d666f3616ea4a9b",
+    "m_Group": {
+        "m_Id": ""
+    },
+    "m_Name": "Multiply",
+    "m_DrawState": {
+        "m_Expanded": true,
+        "m_Position": {
+            "serializedVersion": "2",
+            "x": 3531.2490234375,
+            "y": 1010.9065551757813,
+            "width": 0.0,
+            "height": 0.0
+        }
+    },
+    "m_Slots": [
+        {
+            "m_Id": "7780941b3d0f4b828291c2491a630076"
+        },
+        {
+            "m_Id": "8ee1ec8d004943008c4749a5b2080a47"
+        },
+        {
+            "m_Id": "1d920138c3fe446595aa9f6fd225cc23"
+        }
+    ],
+    "synonyms": [
+        "multiplication",
+        "times",
+        "x"
+    ],
+    "m_Precision": 0,
+    "m_PreviewExpanded": true,
+    "m_DismissedVersion": 0,
+    "m_PreviewMode": 0,
+    "m_CustomColors": {
+        "m_SerializableColors": []
+    }
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.DynamicVectorMaterialSlot",
     "m_ObjectId": "90d3bfd2fda144b797fc2c36c3f81311",
     "m_Id": 0,
@@ -6867,7 +6886,7 @@
     "m_Title": "Light Add",
     "m_Position": {
         "x": 5722.99951171875,
-        "y": 481.0000305175781
+        "y": 480.9999694824219
     }
 }
 
@@ -7157,22 +7176,6 @@
 {
     "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
-    "m_ObjectId": "9aaee353f7c14db690a95995d3c003f8",
-    "m_Id": 0,
-    "m_DisplayName": "FoamFalling",
-    "m_SlotType": 1,
-    "m_Hidden": false,
-    "m_ShaderOutputName": "Out",
-    "m_StageCapability": 3,
-    "m_Value": 0.0,
-    "m_DefaultValue": 0.0,
-    "m_Labels": [],
-    "m_LiteralMode": false
-}
-
-{
-    "m_SGVersion": 0,
-    "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "9acfcece21f2414ea3a866d92bda4f17",
     "m_Id": 3,
     "m_DisplayName": "Delta Time",
@@ -7389,6 +7392,22 @@
     "m_EnumValues": [
         0
     ]
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
+    "m_ObjectId": "9aaee353f7c14db690a95995d3c003f8",
+    "m_Id": 0,
+    "m_DisplayName": "FoamFalling",
+    "m_SlotType": 1,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "Out",
+    "m_StageCapability": 3,
+    "m_Value": 0.0,
+    "m_DefaultValue": 0.0,
+    "m_Labels": [],
+    "m_LiteralMode": false
 }
 
 {
@@ -7788,22 +7807,6 @@
 
 {
     "m_SGVersion": 0,
-    "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
-    "m_ObjectId": "aa3fc162d4e34872a9d395f665741029",
-    "m_Id": 1,
-    "m_DisplayName": "Sine Time",
-    "m_SlotType": 1,
-    "m_Hidden": false,
-    "m_ShaderOutputName": "Sine Time",
-    "m_StageCapability": 3,
-    "m_Value": 0.0,
-    "m_DefaultValue": 0.0,
-    "m_Labels": [],
-    "m_LiteralMode": false
-}
-
-{
-    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.PropertyNode",
     "m_ObjectId": "ab056d2097b5420e94bb1671e6d9d165",
     "m_Group": {
@@ -7875,8 +7878,8 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": 4665.0,
-            "y": 1032.0,
+            "x": 4653.00048828125,
+            "y": 1032.0001220703125,
             "width": 140.0,
             "height": 142.0
         }
@@ -9836,8 +9839,8 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": 4257.0,
-            "y": 1034.0,
+            "x": 4245.0,
+            "y": 1031.9998779296875,
             "width": 164.0,
             "height": 95.0
         }
@@ -10920,5 +10923,21 @@
     "m_CustomColors": {
         "m_SerializableColors": []
     }
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
+    "m_ObjectId": "aa3fc162d4e34872a9d395f665741029",
+    "m_Id": 1,
+    "m_DisplayName": "Sine Time",
+    "m_SlotType": 1,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "Sine Time",
+    "m_StageCapability": 3,
+    "m_Value": 0.0,
+    "m_DefaultValue": 0.0,
+    "m_Labels": [],
+    "m_LiteralMode": false
 }
 
