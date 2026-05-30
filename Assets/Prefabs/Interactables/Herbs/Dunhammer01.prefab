@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5067981801426247344}
   - component: {fileID: 3713644643779705}
   - component: {fileID: 8624883535164397695}
+  - component: {fileID: -8527174249173925790}
   m_Layer: 0
   m_Name: Dunhammer01
   m_TagString: Collectable
@@ -131,3 +132,28 @@ MonoBehaviour:
   hasPickedUp: 0
   hasQuest: 0
   isInteractableForPlayer: 0
+--- !u!205 &-8527174249173925790
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8174279106097897538}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0, y: 0, z: 0}
+  m_Size: 1
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.6
+    fadeTransitionWidth: 0
+    renderers: []
+  - screenRelativeHeight: 0.3
+    fadeTransitionWidth: 0
+    renderers: []
+  - screenRelativeHeight: 0.01
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 5067981801426247344}
+  m_Enabled: 1

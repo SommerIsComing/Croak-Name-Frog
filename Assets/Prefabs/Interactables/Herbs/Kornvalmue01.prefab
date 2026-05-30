@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2670822353993156786}
   - component: {fileID: 9059356341991014740}
   - component: {fileID: 4068521469050484893}
+  - component: {fileID: 739021652475243254}
   m_Layer: 0
   m_Name: Kornvalmue01
   m_TagString: Collectable
@@ -114,3 +115,28 @@ CapsuleCollider:
   m_Height: 2.0388525
   m_Direction: 1
   m_Center: {x: -0.0008877665, y: 0.99952495, z: 0.023469731}
+--- !u!205 &739021652475243254
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4392401761279979448}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0, y: 0, z: 0}
+  m_Size: 1
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.6
+    fadeTransitionWidth: 0
+    renderers: []
+  - screenRelativeHeight: 0.3
+    fadeTransitionWidth: 0
+    renderers: []
+  - screenRelativeHeight: 0.01
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 9059356341991014740}
+  m_Enabled: 1

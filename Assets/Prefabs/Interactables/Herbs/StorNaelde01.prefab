@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 300654023526094982}
   - component: {fileID: 1070513866560598324}
   - component: {fileID: -5404221324001303229}
+  - component: {fileID: 6880908296081167397}
   m_Layer: 0
   m_Name: StorNaelde01
   m_TagString: Collectable
@@ -114,3 +115,28 @@ CapsuleCollider:
   m_Height: 5.319239
   m_Direction: 1
   m_Center: {x: -0.050484896, y: 2.652405, z: 0.0037094355}
+--- !u!205 &6880908296081167397
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2050888482371910637}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0, y: 0, z: 0}
+  m_Size: 1
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.6
+    fadeTransitionWidth: 0
+    renderers: []
+  - screenRelativeHeight: 0.3
+    fadeTransitionWidth: 0
+    renderers: []
+  - screenRelativeHeight: 0.01
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 1070513866560598324}
+  m_Enabled: 1

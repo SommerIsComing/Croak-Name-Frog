@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5300483597871630497}
   - component: {fileID: 6413291603085482459}
   - component: {fileID: 4637597876016825820}
+  - component: {fileID: 2756260446128626501}
   m_Layer: 0
   m_Name: Bellis01
   m_TagString: Collectable
@@ -131,3 +132,30 @@ MonoBehaviour:
   hasPickedUp: 0
   hasQuest: 0
   isInteractableForPlayer: 0
+--- !u!205 &2756260446128626501
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7524750477771697083}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0, y: 0, z: 0}
+  m_Size: 1
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.6
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 5300483597871630497}
+  - screenRelativeHeight: 0.3
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 5300483597871630497}
+  - screenRelativeHeight: 0.01
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 5300483597871630497}
+  m_Enabled: 1

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8671742632300356440}
   - component: {fileID: 2063894152306931106}
   - component: {fileID: 7985308322914392951}
+  - component: {fileID: -2581406156016524063}
   m_Layer: 0
   m_Name: SkovJordbaer01
   m_TagString: Collectable
@@ -114,3 +115,28 @@ CapsuleCollider:
   m_Height: 1.1535208
   m_Direction: 1
   m_Center: {x: 0.0019518435, y: 0.5444591, z: -0.08695355}
+--- !u!205 &-2581406156016524063
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6857679292870810096}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0, y: 0, z: 0}
+  m_Size: 1
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.6
+    fadeTransitionWidth: 0
+    renderers: []
+  - screenRelativeHeight: 0.3
+    fadeTransitionWidth: 0
+    renderers: []
+  - screenRelativeHeight: 0.01
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 2063894152306931106}
+  m_Enabled: 1
