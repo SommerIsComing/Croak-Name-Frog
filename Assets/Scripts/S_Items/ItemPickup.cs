@@ -23,7 +23,7 @@ public class ItemPickup : MonoBehaviour, Interactable
                 QuestEvents.OnItemCollected?.Invoke(itemID);
                 hasPickedUp = true;
 
-                //collect shit
+                Destroy(gameObject);
             }
         }
     }

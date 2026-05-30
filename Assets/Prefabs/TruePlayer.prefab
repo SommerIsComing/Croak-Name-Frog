@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 872106200025685229}
   - component: {fileID: 1451186400880757611}
   - component: {fileID: 1845167015698787189}
+  - component: {fileID: 3042122565281935945}
   m_Layer: 0
   m_Name: PlayerHUD
   m_TagString: Untagged
@@ -68,6 +69,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a657136e29f03dd4d83d64d88cc1e515, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::QuestPin
+--- !u!114 &3042122565281935945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 103276189613557639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 247dcae8aa1e2d8479e536d6dcdf1d4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NPC_UI
 --- !u!1 &436126721863407683
 GameObject:
   m_ObjectHideFlags: 0
@@ -1577,6 +1590,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: ba70da69-e24c-4c6a-b827-3b8047c92c74
     m_ActionName: 'Player/PauseGame[/Keyboard/escape]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 249843995803825157}
+        m_TargetAssemblyTypeName: PlayerUIController, Assembly-CSharp
+        m_MethodName: ContinueDialogue
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: e018057f-f8de-4307-ab96-095bf5ba4551
+    m_ActionName: 'Player/ContinueDialogue[/Mouse/leftButton]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

@@ -46,15 +46,15 @@ public class NPC_Instance : MonoBehaviour, Interactable
 
     public void Interact()
     {
-        NPC_DialogueObject currentDialogue = GetNPCDialogue();
-
         if (isInteractable)
         {
-            QuestEvents.OnNPCTalkedTo?.Invoke(npcID);
+            NPC_DialogueObject currentDialogue = GetNPCDialogue();
 
             NPC_Manager.npcManager.DisplayDialogue(currentDialogue);
 
             GiveQuest();
+
+            QuestEvents.OnNPCTalkedTo?.Invoke(npcID);
         }
     }
 
