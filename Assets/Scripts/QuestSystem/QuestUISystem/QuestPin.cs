@@ -39,13 +39,19 @@ public class QuestPin : MonoBehaviour
     {
         QuestInstance pinnedQuest = QuestManager.questManager.pinnedQuest;
 
-        if(pinnedQuest == null)
+        if (pinnedQuest == null)
         {
             root.style.display = DisplayStyle.None;
             return;
         }
 
         if(pinnedQuest.runtimeObjectives.Count == 0)
+        {
+            root.style.display = DisplayStyle.None;
+            return;
+        }
+
+        if(pinnedQuest.isQuestCompleted == true)
         {
             root.style.display = DisplayStyle.None;
             return;
@@ -59,16 +65,21 @@ public class QuestPin : MonoBehaviour
             return;
         }
 
-        root.style.display = DisplayStyle.Flex;
-
         pinnedQuestTitle.text = pinnedQuest.questData.questName;
 
         ObjectiveInstance currentPinnedObjective = pinnedQuest.runtimeObjectives[pinnedQuest.currentObjectiveIndex];
 
         if (!currentPinnedObjective.isObjectiveCompleted)
         {
-            pinnedQuestObjective.text = $"{currentPinnedObjective.objectiveData.objectiveDescription} " + $"{currentPinnedObjective.currentObjectiveProgress}/" + 
-            $"{currentPinnedObjective.objectiveData.requiredProgress}";
+            if(currentPinnedObjective.objectiveData.requiredProgress <= 1)
+            {
+                pinnedQuestObjective.text = $"{currentPinnedObjective.objectiveData.objectiveDescription} ";
+            }
+            else
+            {
+                pinnedQuestObjective.text = $"{currentPinnedObjective.objectiveData.objectiveDescription} " + $"{currentPinnedObjective.currentObjectiveProgress}/" +
+                $"{currentPinnedObjective.objectiveData.requiredProgress}";
+            }
             return;
         }
     }

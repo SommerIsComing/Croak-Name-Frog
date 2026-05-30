@@ -93,6 +93,8 @@ public class NPC_UI : MonoBehaviour
         isDialogueDisplaying = false;
         currentDialogue = null;
         currentDialogueIndex = 0;
+
+        UIEvent.OnUIQuestRefresh?.Invoke();
     }
 
     public bool IsDialogueDisplaying()

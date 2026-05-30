@@ -17,7 +17,7 @@ public class UI_Manager : MonoBehaviour
     public VisualElement questLogPage;
     public VisualElement collectiblesPage;
 
-    public bool noteBookUIDisplaying = true;
+    public bool noteBookUIDisplaying = false;
 
     private void Awake()
     {
@@ -67,6 +67,7 @@ public class UI_Manager : MonoBehaviour
         else
         {
             HideNoteBook();
+            UIEvent.OnUIQuestRefresh?.Invoke();
         }
     }
 

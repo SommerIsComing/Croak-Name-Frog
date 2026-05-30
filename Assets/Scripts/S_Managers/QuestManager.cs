@@ -82,6 +82,7 @@ public class QuestManager : MonoBehaviour
                                 foreach (ObjectiveAction action in objective.objectiveData.actionsUponCompletion)
                                 {
                                     action.ExecuteAction();
+                                    UIEvent.OnUIQuestRefresh?.Invoke();
                                 }
 
                                 CheckQuestCompletion(quest);
@@ -123,6 +124,7 @@ public class QuestManager : MonoBehaviour
                                 foreach (ObjectiveAction action in objective.objectiveData.actionsUponCompletion)
                                 {
                                     action.ExecuteAction();
+                                    UIEvent.OnUIQuestRefresh?.Invoke();
                                 }
 
                                 CheckQuestCompletion(quest);
@@ -166,6 +168,7 @@ public class QuestManager : MonoBehaviour
                                 foreach (ObjectiveAction action in objective.objectiveData.actionsUponCompletion)
                                 {
                                     action.ExecuteAction();
+                                    UIEvent.OnUIQuestRefresh?.Invoke();
                                 }
 
                                 CheckQuestCompletion(quest);
@@ -207,6 +210,7 @@ public class QuestManager : MonoBehaviour
                                 foreach (ObjectiveAction action in objective.objectiveData.actionsUponCompletion)
                                 {
                                     action.ExecuteAction();
+                                    UIEvent.OnUIQuestRefresh?.Invoke();
                                 }
 
                                 CheckQuestCompletion(quest);
