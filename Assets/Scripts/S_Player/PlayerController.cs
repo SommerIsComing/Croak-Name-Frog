@@ -31,6 +31,16 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private UnlockSword unlockSword;
     public bool isAnyAttackUnlocked => (unlockShooter != null && unlockShooter.shooterIsUnlocked) || (unlockSword != null && unlockSword.swordIsUnlocked);
 
+    [Header("Attack Combo")]
+    [SerializeField] private string attackFirstTrigger = "isAttackingFirst";
+    [SerializeField] private string attackSecondTrigger = "isAttackingSecond";
+    [SerializeField] private float comboWindow = 0.35f;
+    [SerializeField] private float holdRepeatInterval = 0.22f;
+    private bool attackHeld;
+    private float lastAttackTime = -999f;
+    private float nextAttackTime;
+    private int nextAttackIndex = 1;
+
     public void OnMove(InputAction.CallbackContext context)
     {
         move = context.ReadValue<Vector2>();
@@ -92,16 +102,20 @@ public class PlayerController : MonoBehaviour
 
     public void OnAttack(InputAction.CallbackContext context)
     {
+        if (!isAnyAttackUnlocked || animator == null)
+        {
+            return;
+        }
+
         if (context.started)
         {
-            shootHeld = true;
-            if (isAnyAttackUnlocked) 
-            animator.SetTrigger("isAttackingFirst");
+            attackHeld = true;
+            FireNextAttack();
         }
 
         if (context.canceled)
         {
-            shootHeld = false;
+            attackHeld = false;
         }
     }
 
@@ -139,7 +153,12 @@ public class PlayerController : MonoBehaviour
             abilityHolder.TriggerAbilityByName("Shooter");
         }
 
-        UpdateWalkAnimation();    
+        UpdateWalkAnimation();   
+
+        if (attackHeld && Time.time >= nextAttackTime)
+        {
+            FireNextAttack();
+        } 
     }
 
     void FixedUpdate()
@@ -251,5 +270,34 @@ public class PlayerController : MonoBehaviour
         Vector3 clampedWorld = cam.ViewportToWorldPoint(new Vector3(clampedX, clampedY, viewportPos.z));
         clampedWorld.y = rb.position.y;
         rb.MovePosition(clampedWorld);
+    }
+
+    private void FireNextAttack()
+    {
+        // If too much time passed, restart combo from attack 1.
+        if (Time.time - lastAttackTime > comboWindow)
+        {
+            nextAttackIndex = 1;
+        }
+
+        if (nextAttackIndex == 1)
+        {
+            animator.SetTrigger(attackFirstTrigger);
+            nextAttackIndex = 2;
+        }
+        else
+        {
+            animator.SetTrigger(attackSecondTrigger);
+            nextAttackIndex = 1;
+        }
+
+        // Optional: if you still want hold-shot behavior, call it here.
+        if (abilityHolder != null)
+        {
+            abilityHolder.TriggerAbilityByName("Shooter");
+        }
+
+        lastAttackTime = Time.time;
+        nextAttackTime = Time.time + holdRepeatInterval;
     }
 }

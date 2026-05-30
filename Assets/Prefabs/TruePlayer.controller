@@ -136,10 +136,10 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.085033715
+  m_TransitionDuration: 0.085033745
   m_TransitionOffset: 0
-  m_ExitTime: 0.24412003
-  m_HasExitTime: 0
+  m_ExitTime: 0.83845824
+  m_HasExitTime: 1
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
@@ -221,8 +221,6 @@ AnimatorState:
   - {fileID: 1873227884720094440}
   - {fileID: 28387441554109879}
   m_StateMachineBehaviours: []
-  m_StateMachineBehaviours:
-  - {fileID: -2090297667694936382}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -245,7 +243,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: rig_001|ATTACK2
-  m_Speed: 0.7
+  m_Speed: 0.5
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 2154250271339002057}
@@ -525,7 +523,7 @@ AnimatorStateMachine:
     m_Position: {x: -10, y: 480, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 6652298253582664219}
-    m_Position: {x: 500, y: 270, z: 0}
+    m_Position: {x: 490, y: 260, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -57697360699529418}
     m_Position: {x: 500, y: 160, z: 0}
