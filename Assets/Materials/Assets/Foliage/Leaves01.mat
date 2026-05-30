@@ -50,10 +50,13 @@ Material:
     m_Ints: []
     m_Floats:
     - _Ambient_Strength: 0.7
+    - _ApplyWind: 1
     - _Cutoff: 0.1
+    - _CutoutSize: 0
     - _DotOffset: 0
     - _DotSize: 0
     - _Falloff: 0
+    - _FalloffSize: 0
     - _Fresnel_Size: 0.05
     - _Glossiness: 5
     - _MAIN_LIGHT_SHADOWS: 1
@@ -62,18 +65,25 @@ Material:
     - _QueueOffset: 0
     - _Rimlight_Size: 0.1
     - _SHADOWS_SOFT: 1
+    - _Shadow_Brightness: 0.7
     - _Shadow_Cutoff: 0.1
     - _Shadow_Smoothness: 0
+    - _Shadow_Softness: 0
     - _Shadow_Strength: 0.7
     - _Smoothness: 100
+    - _WindIntensity: 0.1
+    - _WindScale: 0.1
+    - _WindShitFuck: 0
     m_Colors:
     - _Base_Color: {r: 0.28493932, g: 0.6698113, b: 0.1990477, a: 1}
+    - _CutoutPos: {r: 0, g: 0, b: 0, a: 0}
     - _Fresnel_Color: {r: 1, g: 1, b: 1, a: 1}
     - _Fresnel_Highlight_Color: {r: 1, g: 1, b: 1, a: 1}
     - _Highlight_Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _Rimlight_Color: {r: 1, g: 1, b: 1, a: 1}
     - _Specular_Color: {r: 0, g: 0, b: 0, a: 1}
     - _Specular_Highlight_Color: {r: 1, g: 1, b: 1, a: 1}
+    - _WindMovement: {r: 4, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &5435518103216322514

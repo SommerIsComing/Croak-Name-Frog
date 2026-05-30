@@ -122,6 +122,8 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         playerJump = GetComponent<PlayerJump>();
         abilityHolder = GetComponent<AbilityHolder>();
+        
+        DontDestroyOnLoad(gameObject); //Makes player persistant across scenes
     }
 
     // Update is called once per frame
