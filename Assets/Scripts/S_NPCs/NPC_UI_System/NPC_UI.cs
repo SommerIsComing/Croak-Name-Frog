@@ -46,6 +46,7 @@ public class NPC_UI : MonoBehaviour
     private void Start()
     {
         root.style.display = DisplayStyle.None;
+        isDialogueDisplaying = false;
     }
 
     private void StartDialogue(NPC_DialogueObject dialogue)
@@ -69,6 +70,8 @@ public class NPC_UI : MonoBehaviour
         ui_npcImage.style.backgroundImage = new StyleBackground(currentDialogue.npcSpeakerImage);
 
         ui_npcNameText.text = currentDialogue.npcSpeakerName;
+
+        isDialogueDisplaying = true;
     }
 
     public void ContinueDialogue()
@@ -76,6 +79,8 @@ public class NPC_UI : MonoBehaviour
         if (!isDialogueDisplaying) { return; }
 
         currentDialogueIndex++;
+
+        isDialogueDisplaying = true;
 
         if (currentDialogueIndex >= currentDialogue.dialogueText.Count)
         {

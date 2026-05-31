@@ -12,4 +12,7 @@ public static class UIEvent
     public static Action OnDialogueContinue;
 
     public static Action<string> OnPlayerTalkedToTheFirstTime;
+
+    public static Action<QuestInstance> OnNewQuest;
+    public static Action<QuestInstance> OnQuestCompleted;
 }

@@ -193,27 +193,30 @@ public class QuestManager : MonoBehaviour
                     {
                         if (quest.runtimeObjectives.IndexOf(objective) == quest.currentObjectiveIndex)
                         {
-                            //er det et relevant område, opdateres currentObjective progress. hvis det pågældende currentObjective er completed, tjekkes det om questen er fuldført
-                            objective.currentObjectiveProgress = Mathf.Min(objective.currentObjectiveProgress + 1, objective.objectiveData.requiredProgress);
-
-                            UIEvent.OnUIQuestRefresh?.Invoke();
-
-                            if (objective.IsObjectiveComplete())
+                            if (objective.IsRequiredQuestsComplete())
                             {
-                                if (quest.currentObjectiveIndex < quest.runtimeObjectives.Count)
-                                {
-                                    quest.currentObjectiveIndex += 1;
-                                    UIEvent.OnUIQuestRefresh?.Invoke();
-                                }
+                                //er det et relevant område, opdateres currentObjective progress. hvis det pågældende currentObjective er completed, tjekkes det om questen er fuldført
+                                objective.currentObjectiveProgress = Mathf.Min(objective.currentObjectiveProgress + 1, objective.objectiveData.requiredProgress);
 
-                                // Udfør eventuelle handlinger, der er knyttet til currentObjective completion, før der tjekkes for quest completion
-                                foreach (ObjectiveAction action in objective.objectiveData.actionsUponCompletion)
-                                {
-                                    action.ExecuteAction();
-                                    UIEvent.OnUIQuestRefresh?.Invoke();
-                                }
+                                UIEvent.OnUIQuestRefresh?.Invoke();
 
-                                CheckQuestCompletion(quest);
+                                if (objective.IsObjectiveComplete())
+                                {
+                                    if (quest.currentObjectiveIndex < quest.runtimeObjectives.Count)
+                                    {
+                                        quest.currentObjectiveIndex += 1;
+                                        UIEvent.OnUIQuestRefresh?.Invoke();
+                                    }
+
+                                    // Udfør eventuelle handlinger, der er knyttet til currentObjective completion, før der tjekkes for quest completion
+                                    foreach (ObjectiveAction action in objective.objectiveData.actionsUponCompletion)
+                                    {
+                                        action.ExecuteAction();
+                                        UIEvent.OnUIQuestRefresh?.Invoke();
+                                    }
+
+                                    CheckQuestCompletion(quest);
+                                }
                             }
                         }
                     }
@@ -250,10 +253,12 @@ public class QuestManager : MonoBehaviour
             activeQuests.Add(newQuest);
 
             UIEvent.OnUIQuestRefresh?.Invoke();
+            UIEvent.OnNewQuest?.Invoke(newQuest);
 
-            if(pinnedQuest == null)
+            if (pinnedQuest == null)
             {
                 PinQuest(newQuest);
+                UIEvent.OnUIQuestRefresh?.Invoke();
             }
         }
     }
@@ -304,6 +309,7 @@ public class QuestManager : MonoBehaviour
             completedQuests.Add(quest);
 
             UIEvent.OnUIQuestRefresh?.Invoke();
+            UIEvent.OnQuestCompleted?.Invoke(quest);
         }
     }
 

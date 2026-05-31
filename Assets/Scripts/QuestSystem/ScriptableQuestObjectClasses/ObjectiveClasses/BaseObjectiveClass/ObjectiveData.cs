@@ -11,4 +11,6 @@ public abstract class ObjectiveData : ScriptableObject
     public int requiredProgress;
 
     public List<ObjectiveAction> actionsUponCompletion = new List<ObjectiveAction>();
+
+    public List<QuestData> QuestsRequiredForCompletion = new List<QuestData>();
 }
