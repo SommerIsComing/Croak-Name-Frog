@@ -15,8 +15,8 @@ public class PlayerInteract : MonoBehaviour
         if ((context.performed || context.started) && !(NPC_UI.npc_UI.IsDialogueDisplaying()))
         {
 
-             closestinteractable.Interact();
-
+            closestinteractable.Interact();
+            InteractionPrompter.interactionPrompter.HideInteractionPrompt();
         }
     }
 
@@ -24,9 +24,10 @@ public class PlayerInteract : MonoBehaviour
     {
         MonoBehaviour interactable = other.GetComponent<MonoBehaviour>();
 
-        if(interactable is Interactable interactableObject)
+        if(interactable is Interactable interactableObject && interactableObject.IsInteractable())
         {
             closestinteractable = interactableObject;
+            InteractionPrompter.interactionPrompter.ShowInteractionPrompt(((MonoBehaviour)closestinteractable).transform);
         }
     }
 
@@ -37,6 +38,7 @@ public class PlayerInteract : MonoBehaviour
         if(interactable != null && interactable == closestinteractable)
         {
             closestinteractable = null;
+            InteractionPrompter.interactionPrompter.HideInteractionPrompt();
         }
     }
 }

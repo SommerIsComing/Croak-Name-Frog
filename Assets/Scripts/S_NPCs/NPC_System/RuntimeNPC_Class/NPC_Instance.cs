@@ -58,6 +58,11 @@ public class NPC_Instance : MonoBehaviour, Interactable
         }
     }
 
+    public bool IsInteractable()
+    {
+        return isInteractable;
+    }
+
     public void GiveQuest()
     {
         if (!questGiven && !string.IsNullOrEmpty(questToGiveID))

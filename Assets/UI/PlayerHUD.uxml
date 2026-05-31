@@ -10,4 +10,5 @@
             <ui:Label text="Label" name="DialogueText" style="white-space: normal; flex-shrink: 1; flex-grow: 1; align-items: flex-start; align-self: flex-start; color: rgb(255, 255, 255); font-size: 30px; -unity-font-style: normal; max-height: 100%; max-width: 95%; height: 95%;"/>
         </ui:VisualElement>
     </ui:VisualElement>
+    <ui:VisualElement name="InteractionContainer" style="flex-grow: 0; position: absolute; align-self: center; align-content: center; top: 0%; left: 0%; right: 0%; bottom: 0%; background-image: url(&quot;project://database/Assets/GameInputControllerIconsFree/keyboard/keyboard-solid/e.png?fileID=21300000&amp;guid=69da02ec34c73624b91727759ad616df&amp;type=3#e&quot;); -unity-background-scale-mode: scale-and-crop; aspect-ratio: 1; width: 5%; height: 7%; flex-shrink: 0; display: flex; background-color: rgba(255, 255, 255, 0.47); -unity-background-image-tint-color: rgb(255, 105, 220); background-position-x: center; background-position-y: center;"/>
 </ui:UXML>

@@ -28,6 +28,11 @@ public class ItemPickup : MonoBehaviour, Interactable
         }
     }
 
+    public bool IsInteractable()
+    {
+        return isInteractableForPlayer;
+    }
+
     private void MakeInteractable(string id, bool interactable)
     {
         if(itemID == id)
