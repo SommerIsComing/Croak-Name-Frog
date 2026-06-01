@@ -5,20 +5,16 @@ public class SwordActivate : MonoBehaviour
     [SerializeField] private string enemyTag = "Enemy";
     [SerializeField] private int damage = 1;
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        EnemyHeath enemyHealth = collision.collider.GetComponentInParent<EnemyHeath>();
-        if (enemyHealth == null)
+        if (other.CompareTag(enemyTag))
         {
-            return;
+            EnemyHealth enemyHealth = other.GetComponent<EnemyHealth>();
+            if (enemyHealth != null)
+            {
+                enemyHealth.TakeDamage(damage);
+            }
         }
-
-        if (!string.IsNullOrEmpty(enemyTag) && !enemyHealth.CompareTag(enemyTag))
-        {
-            return;
-        }
-
-        enemyHealth.TakeDamage(damage);
     }
 }
 
