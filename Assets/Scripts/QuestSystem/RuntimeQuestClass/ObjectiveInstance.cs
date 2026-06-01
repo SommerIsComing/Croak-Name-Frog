@@ -1,3 +1,5 @@
+using NUnit.Framework;
+using System.Xml.Linq;
 using UnityEngine;
 
 // ObjectiveInstance klassen repræsenterer en aktiv objective i spillet og indeholder information om objective status
@@ -25,5 +27,22 @@ public class ObjectiveInstance
             isObjectiveCompleted = false;
         }
         return currentObjectiveProgress >= objectiveData.requiredProgress;
+    }
+
+    public bool IsRequiredQuestsComplete()
+    {
+        if(objectiveData.QuestsRequiredForCompletion == null) { return true; }
+        
+        foreach(QuestData quest in objectiveData.QuestsRequiredForCompletion)
+        {
+            bool questIsCompleted = QuestManager.questManager.completedQuests.Exists(q => q.questData.questID == quest.questID);
+
+            if (!questIsCompleted)
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 }
