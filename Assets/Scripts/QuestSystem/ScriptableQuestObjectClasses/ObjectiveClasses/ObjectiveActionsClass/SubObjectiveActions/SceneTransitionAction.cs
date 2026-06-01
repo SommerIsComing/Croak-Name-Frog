@@ -7,6 +7,7 @@ public class SceneTransitionAction : ObjectiveAction
     public string sceneName;
     public override void ExecuteAction()
     {
+        Debug.Log("Tried Loading Scene");
         SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
     }
 }
