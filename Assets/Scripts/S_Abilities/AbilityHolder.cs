@@ -7,6 +7,16 @@ public class AbilityHolder : MonoBehaviour
 {
     public enum AbilityState { ready, active, cooldown }
 
+    private void OnEnable()
+    {
+        GameEvent.OnAbilityUnlockNeeded += UnlockAbilityByName;
+    }
+
+    private void OnDisable()
+    {
+        GameEvent.OnAbilityUnlockNeeded -= UnlockAbilityByName;
+    }
+
     [Serializable]
     public class AbilitySlot
     {
