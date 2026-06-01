@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TalkObjective
   objectiveDescription: Snak med Fuglen
   requiredProgress: 1
-  actionsUponCompletion: []
+  actionsUponCompletion:
+  - {fileID: 11400000, guid: 8cde5067b6c3070489ef82454ce066cf, type: 2}
   QuestsRequiredForCompletion: []
   npcName: bird

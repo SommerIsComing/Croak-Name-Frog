@@ -7,4 +7,5 @@ public static class GameEvent
     // Event der bliver kaldt når en animation skal afspilles, og sender navnet på den animation der skal afspilles som parameter
     public static Action<string> OnAnimNeeded;
     public static Action<string, bool> OnInteractionNeeded;
+    public static Action<string> OnAbilityUnlockNeeded;
 }

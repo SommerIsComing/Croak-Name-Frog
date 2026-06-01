@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TalkObjective
   objectiveDescription: Snak med den Gamle Mand igen
   requiredProgress: 1
-  actionsUponCompletion: []
+  actionsUponCompletion:
+  - {fileID: 11400000, guid: dcbea029b0269ef44aada2d7246a26ac, type: 2}
   QuestsRequiredForCompletion: []
   npcName: old_man
