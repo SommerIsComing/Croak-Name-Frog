@@ -1424,6 +1424,7 @@ GameObject:
   - component: {fileID: 1191480384769546780}
   - component: {fileID: 7674428747928264215}
   - component: {fileID: 249843995803825157}
+  - component: {fileID: 6348052611672451345}
   m_Layer: 3
   m_Name: TruePlayer
   m_TagString: Player
@@ -1693,6 +1694,8 @@ MonoBehaviour:
   animator: {fileID: 7674428747928264215}
   unlockShooter: {fileID: 0}
   unlockSword: {fileID: 0}
+  shooterAbilityName: Shooter
+  swordAbilityName: Sword
   attackFirstTrigger: isAttackingFirst
   attackSecondTrigger: isAttackingSecond
   comboWindow: 0.35
@@ -1767,7 +1770,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4312849285191136095}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 03819d1e663e92b498a1c513423e38f7, type: 3}
   m_Name: 
@@ -1839,6 +1842,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be3f98811b51da84c9273235fef725a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+--- !u!114 &6348052611672451345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4312849285191136095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59c9b25c9840f8b4c8187cc2ff5ef8c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerWeaponVisuals
+  swordVisual: {fileID: 5279888161171484955}
+  shooterVisual: {fileID: 6913348271922621829}
 --- !u!1 &4513827310334115510
 GameObject:
   m_ObjectHideFlags: 0
@@ -3039,7 +3056,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1707860416705753759, guid: 07b6d749fb2353941840176a2b1dba56, type: 3}
       propertyPath: m_Name
-      value: WeaponPivot
+      value: PlayerWeaponVisuals
       objectReference: {fileID: 0}
     - target: {fileID: 2993814683213902386, guid: 07b6d749fb2353941840176a2b1dba56, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3090,8 +3107,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 07b6d749fb2353941840176a2b1dba56, type: 3}
+--- !u!1 &5279888161171484955 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3161374959459600181, guid: 07b6d749fb2353941840176a2b1dba56, type: 3}
+  m_PrefabInstance: {fileID: 7105162372025497134}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5410706753134068764 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2993814683213902386, guid: 07b6d749fb2353941840176a2b1dba56, type: 3}
+  m_PrefabInstance: {fileID: 7105162372025497134}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6913348271922621829 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4425840067710229419, guid: 07b6d749fb2353941840176a2b1dba56, type: 3}
   m_PrefabInstance: {fileID: 7105162372025497134}
   m_PrefabAsset: {fileID: 0}
