@@ -13,14 +13,15 @@ MonoBehaviour:
   m_Name: Thoughts_mmmhhAgain
   m_EditorClassIdentifier: Assembly-CSharp::NPC_DialogueObject
   dialogueText:
-  - I need to know how to jump high enough to get past these rocks
-  - Also can't forget to pick up some soup for grandpa If I havent already
+  - "Det ser ud til jeg skal kunne hoppe virkelig h\xF8jt for at komme over de her
+    sten"
+  - Kan heller ikke glemme suppen til Bedstefar!
   npcSpeakerImage:
     m_Texture: {fileID: 2800000, guid: 32ceab08c4f566d41864b363169677c8, type: 3}
     m_Sprite: {fileID: 0}
     m_RenderTexture: {fileID: 0}
     m_VectorImage: {fileID: 0}
-  npcSpeakerName: Thoughts
+  npcSpeakerName: Indre Tanker
   npcID: thoughts
   conditionType: 2
   questID: mainQuest

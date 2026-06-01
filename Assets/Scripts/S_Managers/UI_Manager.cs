@@ -52,7 +52,7 @@ public class UI_Manager : MonoBehaviour
 
         UIEvent.OnPauseMenuNeeded += DisplayNoteBook;
 
-        DisplayPauseMenuPage();
+        DisplayQuestLog();
         HideNoteBook();
     }
 

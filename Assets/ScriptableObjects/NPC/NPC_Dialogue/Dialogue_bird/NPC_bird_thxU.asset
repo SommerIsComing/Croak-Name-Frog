@@ -13,14 +13,17 @@ MonoBehaviour:
   m_Name: NPC_bird_thxU
   m_EditorClassIdentifier: Assembly-CSharp::NPC_DialogueObject
   dialogueText:
-  - omg, thank you soo much for saving me from those spiders
-  - I really owe u one!
+  - wow, Du reddede mig fra edderkopperne! Tusind tak!
+  - "Jeg er for evigt i g\xE6ld til dig!"
+  - "Vidste du forresten at du kan hoppe endnu h\xF8jere hvis bare du tror nok p\xE5
+    det? "
+  - "Pr\xF8v det! Lad dit hop op!"
   npcSpeakerImage:
     m_Texture: {fileID: 2800000, guid: 0ecd0877c6288024ebd26571ba35178e, type: 3}
     m_Sprite: {fileID: 0}
     m_RenderTexture: {fileID: 0}
     m_VectorImage: {fileID: 0}
-  npcSpeakerName: Bird
+  npcSpeakerName: Fugl
   npcID: bird
   conditionType: 1
   questID: tree
