@@ -25,9 +25,4 @@ public float volume;
         audioSource.clip = songs[songPicked];
         audioSource.Play();
     }
-    void OnCollisionEnter (Collision other)
-    {
-       Destroy(gameObject);
-    }
-
 }

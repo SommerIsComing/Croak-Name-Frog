@@ -9,6 +9,12 @@ public class UnlockShooter : MonoBehaviour
     [SerializeField] private bool lockAnotherAbilityOnPickup = true;
     [SerializeField] private float respawnTime = 2f;
 
+    [SerializeField]private AudioSource audioSource; 
+
+    void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
     private void OnTriggerEnter(Collider other)
     {
         if(!other.CompareTag(playerTag))
@@ -24,6 +30,7 @@ public class UnlockShooter : MonoBehaviour
             if (visuals != null)
             {
                 visuals.SetShooterUnlocked(true);
+                 audioSource.Play();
             }
 
             if (lockAnotherAbilityOnPickup && string.IsNullOrEmpty(abilityNameToLock) == false)
