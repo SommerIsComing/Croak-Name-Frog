@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerCombat : MonoBehaviour
 {
+    [SerializeField] Animator animator;
     private GameObject hitBox;
 
     [SerializeField] private float attackDuration = 0.5f;
@@ -20,6 +21,11 @@ public class PlayerCombat : MonoBehaviour
         if (context.performed)
         {
             StartCoroutine(Attack());
+            animator.SetBool("isAttackingFirst", true);
+        }
+        else
+        {
+            animator.SetBool("isAttackingFirst", false);
         }
     }
 

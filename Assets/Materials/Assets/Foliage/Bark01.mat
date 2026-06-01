@@ -50,6 +50,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _Ambient_Strength: 0.7
+    - _ApplyWind: 1
     - _Cutoff: 0.1
     - _CutoutSize: 0
     - _DotOffset: 0
@@ -67,8 +68,12 @@ Material:
     - _Shadow_Brightness: 0.7
     - _Shadow_Cutoff: 0.1
     - _Shadow_Smoothness: 0
+    - _Shadow_Softness: 0
     - _Shadow_Strength: 0.7
     - _Smoothness: 100
+    - _WindIntensity: 0.1
+    - _WindScale: 0.01
+    - _WindShitFuck: 0
     m_Colors:
     - _Base_Color: {r: 0.3962264, g: 0.3962264, b: 0.24483801, a: 1}
     - _CutoutPos: {r: 0, g: 0, b: 0, a: 0}
@@ -78,6 +83,7 @@ Material:
     - _Rimlight_Color: {r: 1, g: 1, b: 1, a: 1}
     - _Specular_Color: {r: 0, g: 0, b: 0, a: 1}
     - _Specular_Highlight_Color: {r: 1, g: 1, b: 1, a: 1}
+    - _WindMovement: {r: 10, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &5435518103216322514
