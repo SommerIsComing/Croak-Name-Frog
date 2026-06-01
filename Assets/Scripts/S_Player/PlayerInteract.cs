@@ -10,17 +10,24 @@ public class PlayerInteract : MonoBehaviour
     //Metode der bliver kaldt når spilleren trykker på interaktions knappen, og kalder Interact() metoden på det nærmeste objekt hvis det findes
     public void OnInteraction(InputAction.CallbackContext context)
     {
-        closestinteractable?.Interact();
+        if (closestinteractable == null) { return; }
         
+        if ((context.performed || context.started) && !(NPC_UI.npc_UI.IsDialogueDisplaying()))
+        {
+
+            closestinteractable.Interact();
+            InteractionPrompter.interactionPrompter.HideInteractionPrompt();
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
         MonoBehaviour interactable = other.GetComponent<MonoBehaviour>();
 
-        if(interactable is Interactable interactableObject)
+        if(interactable is Interactable interactableObject && interactableObject.IsInteractable())
         {
             closestinteractable = interactableObject;
+            InteractionPrompter.interactionPrompter.ShowInteractionPrompt(((MonoBehaviour)closestinteractable).transform);
         }
     }
 
@@ -31,6 +38,7 @@ public class PlayerInteract : MonoBehaviour
         if(interactable != null && interactable == closestinteractable)
         {
             closestinteractable = null;
+            InteractionPrompter.interactionPrompter.HideInteractionPrompt();
         }
     }
 }

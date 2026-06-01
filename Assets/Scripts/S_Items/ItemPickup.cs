@@ -23,9 +23,14 @@ public class ItemPickup : MonoBehaviour, Interactable
                 QuestEvents.OnItemCollected?.Invoke(itemID);
                 hasPickedUp = true;
 
-                //collect shit
+                Destroy(gameObject);
             }
         }
+    }
+
+    public bool IsInteractable()
+    {
+        return isInteractableForPlayer;
     }
 
     private void MakeInteractable(string id, bool interactable)

@@ -30,7 +30,7 @@
                     "id": "20dd6f19-46d7-45bf-b67b-1df1bfb249fe",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": "Hold",
+                    "interactions": "Press",
                     "initialStateCheck": false
                 },
                 {
@@ -64,9 +64,15 @@
                     "name": "PauseGame",
                     "type": "Button",
                     "id": "ba70da69-e24c-4c6a-b827-3b8047c92c74",
-                    "name": "Shoot",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ContinueDialogue",
                     "type": "Button",
-                    "id": "8a019cc7-db76-4e7d-a136-d88963f7164c",
+                    "id": "e018057f-f8de-4307-ab96-095bf5ba4551",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -401,12 +407,6 @@
                     "processors": "",
                     "groups": ";Gamepad",
                     "action": "PauseGame",
-                    "id": "7bac400c-4030-47f5-b456-56dab0295e2a",
-                    "path": "<Gamepad>/buttonWest",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Gamepad",
-                    "action": "Shoot",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -418,6 +418,28 @@
                     "processors": "",
                     "groups": ";Mouse&Keyboard",
                     "action": "Shoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "cf8f5a1b-9e63-4b7d-91be-ffd97ca921a4",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Mouse&Keyboard",
+                    "action": "ContinueDialogue",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "cdb73ca1-248a-451f-a07b-66d9ea7ef00e",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Gamepad",
+                    "action": "ContinueDialogue",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
