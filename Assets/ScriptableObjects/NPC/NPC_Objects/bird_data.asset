@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::NPC_Data
   npcName: bird
   animTriggerName: spidersCleared
-  dialogueText:
-  - 'OMG! Thx U soo much!!! U saved me from those damn spiders '
+  dialogue:
+  - {fileID: 11400000, guid: aa679e23ab606a448b0e9a527f4f33b5, type: 2}
+  - {fileID: 11400000, guid: 6e7972042ca88a843b97c700596abe8d, type: 2}

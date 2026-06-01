@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::NPC_Data
   npcName: old_man
   animTriggerName: 
-  defaultDialogueText: []
-  activeQuestdialogueText: []
-  completedQuestDialogueText: []
+  dialogue:
+  - {fileID: 11400000, guid: 7a6b11dbfebc88e438175a6752b876ef, type: 2}
+  - {fileID: 11400000, guid: 23eec5aea7b9dd543a0d15ceafa2fd5f, type: 2}
+  - {fileID: 11400000, guid: 4b128f0d24a124c43b6796bec2234c2c, type: 2}
+  - {fileID: 11400000, guid: d737c3d42e2f3734d9788da344ddc3fe, type: 2}
