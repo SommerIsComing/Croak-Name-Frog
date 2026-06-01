@@ -16,19 +16,6 @@ public class PlayerCombat : MonoBehaviour
         hitBox.SetActive(false);
     }
 
-    public void OnAttack(InputAction.CallbackContext context)
-    {
-        if (context.performed)
-        {
-            StartCoroutine(Attack());
-            animator.SetBool("isAttackingFirst", true);
-        }
-        else
-        {
-            animator.SetBool("isAttackingFirst", false);
-        }
-    }
-
     IEnumerator Attack()
     {
         hitBox.SetActive(true);

@@ -13,19 +13,20 @@ MonoBehaviour:
   m_Name: NPC_greetings
   m_EditorClassIdentifier: Assembly-CSharp::NPC_DialogueObject
   dialogueText:
-  - Well, I guess this is it..
-  - Dont like leaving you all by yourself, but can't keep you here forever
-  - 'Grandpa''s resting-place is to the north. '
-  - Remember to bring some soup/flowers on your way there, we would love that
-  - Be safe sweat-heart :)
-  - I LOVE YA'!!!
-  - Ill be waiting right here for when you get back <3
+  - "T\xE6nk at det allerede er blevet tid..."
+  - Jeg kan ikke lide ideen om at lade dig rejse helt alene.. :(
+  - "..men siden du ikke er min lille fr\xF8-unge l\xE6ngere, kan jeg heller ikke
+    stoppe dig"
+  - "Bedstefars hvilested er nordp\xE5 "
+  - Husk at tage noget suppe med til ham. Det vil han elske! ;)
+  - "V\xE6r forsigtig min skat. Elsker dig!"
+  - Jeg skal nok vente lige her til engang  vender hjem <3
   npcSpeakerImage:
     m_Texture: {fileID: 2800000, guid: 93796416b95c9824d876d1405ad9d5f2, type: 3}
     m_Sprite: {fileID: 0}
     m_RenderTexture: {fileID: 0}
     m_VectorImage: {fileID: 0}
-  npcSpeakerName: Mom
+  npcSpeakerName: Mor
   npcID: mom
   conditionType: 1
   questID: mainQuest

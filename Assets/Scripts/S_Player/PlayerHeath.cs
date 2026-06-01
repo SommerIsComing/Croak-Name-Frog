@@ -67,7 +67,7 @@ public class PlayerHeath : MonoBehaviour
         StartCoroutine(InvulnerabilityRoutine());
     }
 
-    private void Die()
+    public void Die()
     {
         Debug.Log("Player has died.");
         StartCoroutine(RespawnRoutine());

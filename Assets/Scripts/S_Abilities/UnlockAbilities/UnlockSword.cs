@@ -1,7 +1,5 @@
 using UnityEngine;
 using System.Collections;
-using System.Security.Cryptography.X509Certificates;
-using Unity.VisualScripting;
 
 public class UnlockSword : MonoBehaviour
 {
@@ -10,10 +8,7 @@ public class UnlockSword : MonoBehaviour
     [SerializeField] private string abilityNameToLock = "Shooter";
     [SerializeField] private bool lockAnotherAbilityOnPickup = true;
     [SerializeField] private float respawnTime = 2f;
-    public bool swordIsUnlocked = false;
-    [SerializeField] private UnlockShooter unlockShooter;
-    [SerializeField] private GameObject swordVisual;
-    [SerializeField] private GameObject shooterVisual;
+
 
     private void OnTriggerEnter(Collider other)
     {
@@ -25,14 +20,23 @@ public class UnlockSword : MonoBehaviour
         if (abilityHolder != null)
         {
             abilityHolder.UnlockAbilityByName(abilityNameToUnlock);
-            swordIsUnlocked = true;
-            swordVisual.SetActive(true);
+
+            PlayerWeaponVisuals visuals = other.GetComponent<PlayerWeaponVisuals>();
+            if (visuals != null)
+            {
+                visuals.SetSwordUnlocked(true);
+            }
+
             if (lockAnotherAbilityOnPickup && string.IsNullOrEmpty(abilityNameToLock) == false)
             {
                 abilityHolder.LockAbilityByName(abilityNameToLock);
-                unlockShooter.shooterIsUnlocked = false;
-                shooterVisual.SetActive(false);
+
+                if (visuals != null)
+                {
+                    visuals.SetShooterUnlocked(false);
+                }
             }
+
             StartCoroutine(ReactivateObject());
         }
     }

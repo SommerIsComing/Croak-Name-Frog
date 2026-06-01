@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: NPC_bird_thxAgain
   m_EditorClassIdentifier: Assembly-CSharp::NPC_DialogueObject
   dialogueText:
-  - Thank you again! I am forever in your debt!
-  - Good luck on your journey :)
+  - "Endnu engang tak for hj\xE6lpen"
+  - "Held og lykke p\xE5 din rejse! :)"
   npcSpeakerImage:
     m_Texture: {fileID: 2800000, guid: 0ecd0877c6288024ebd26571ba35178e, type: 3}
     m_Sprite: {fileID: 0}
     m_RenderTexture: {fileID: 0}
     m_VectorImage: {fileID: 0}
-  npcSpeakerName: Bird
+  npcSpeakerName: Fugl
   npcID: bird
   conditionType: 4
   questID: tree
