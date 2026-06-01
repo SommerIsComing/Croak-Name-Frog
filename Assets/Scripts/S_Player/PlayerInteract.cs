@@ -12,7 +12,7 @@ public class PlayerInteract : MonoBehaviour
     {
         if (closestinteractable == null) { return; }
         
-        if ((context.performed || context.started) && !(NPC_UI.npc_UI.IsDialogueDisplaying()))
+        if (context.performed && !(NPC_UI.npc_UI.IsDialogueDisplaying()))
         {
 
             closestinteractable.Interact();
