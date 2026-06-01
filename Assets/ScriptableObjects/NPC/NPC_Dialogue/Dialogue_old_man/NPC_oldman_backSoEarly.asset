@@ -13,14 +13,15 @@ MonoBehaviour:
   m_Name: NPC_oldman_backSoEarly
   m_EditorClassIdentifier: Assembly-CSharp::NPC_DialogueObject
   dialogueText:
-  - Back already?? I need all 3 herbs to complete the soup
-  - scram kid!
+  - "Er du allerede tilbage?? Jeg skal bruge alle 3  blomster for at f\xE6rdigg\xF8re
+    suppen!"
+  - "Skynd dig! Jeg er ved at d\xF8 af sult!"
   npcSpeakerImage:
     m_Texture: {fileID: 2800000, guid: 5596baec35eafd244af15346f65a4dd9, type: 3}
     m_Sprite: {fileID: 0}
     m_RenderTexture: {fileID: 0}
     m_VectorImage: {fileID: 0}
-  npcSpeakerName: Old Man
+  npcSpeakerName: Gamle Mand
   npcID: old_man
   conditionType: 2
   questID: soup

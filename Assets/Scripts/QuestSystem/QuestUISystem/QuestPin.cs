@@ -20,7 +20,7 @@ public class QuestPin : MonoBehaviour
 
     private void Start()
     {
-        root.style.display = DisplayStyle.None;
+        root.style.display = DisplayStyle.Flex;
     }
 
     private void OnEnable()
