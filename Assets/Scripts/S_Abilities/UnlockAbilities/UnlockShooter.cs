@@ -8,10 +8,7 @@ public class UnlockShooter : MonoBehaviour
     [SerializeField] private string abilityNameToLock = "Sword";
     [SerializeField] private bool lockAnotherAbilityOnPickup = true;
     [SerializeField] private float respawnTime = 2f;
-    public bool shooterIsUnlocked = false;
-    [SerializeField] private UnlockSword sword;
-    [SerializeField] private GameObject shooterVisual;
-    [SerializeField] private GameObject swordVisual;
+
     private void OnTriggerEnter(Collider other)
     {
         if(!other.CompareTag(playerTag))
@@ -22,14 +19,23 @@ public class UnlockShooter : MonoBehaviour
         if (abilityHolder != null)
         {
             abilityHolder.UnlockAbilityByName(abilityNameToUnlock);
-            shooterIsUnlocked = true;
-            shooterVisual.SetActive(true);
+
+            PlayerWeaponVisuals visuals = other.GetComponent<PlayerWeaponVisuals>();
+            if (visuals != null)
+            {
+                visuals.SetShooterUnlocked(true);
+            }
+
             if (lockAnotherAbilityOnPickup && string.IsNullOrEmpty(abilityNameToLock) == false)
             {
                 abilityHolder.LockAbilityByName(abilityNameToLock);
-                sword.swordIsUnlocked = false;
-                swordVisual.SetActive(false);
+
+                if (visuals != null)
+                {
+                    visuals.SetSwordUnlocked(false);
+                }
             }
+
             StartCoroutine(ReactivateObject());
         }
     }
