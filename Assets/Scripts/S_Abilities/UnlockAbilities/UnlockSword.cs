@@ -8,8 +8,13 @@ public class UnlockSword : MonoBehaviour
     [SerializeField] private string abilityNameToLock = "Shooter";
     [SerializeField] private bool lockAnotherAbilityOnPickup = true;
     [SerializeField] private float respawnTime = 2f;
+    [SerializeField]private AudioSource audioSource; 
 
 
+    void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
     private void OnTriggerEnter(Collider other)
     {
         if(!other.CompareTag(playerTag))
@@ -25,6 +30,7 @@ public class UnlockSword : MonoBehaviour
             if (visuals != null)
             {
                 visuals.SetSwordUnlocked(true);
+                audioSource.Play();
             }
 
             if (lockAnotherAbilityOnPickup && string.IsNullOrEmpty(abilityNameToLock) == false)
