@@ -106,7 +106,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnAttack(InputAction.CallbackContext context)
     {
-        if (!isAnyAttackUnlocked || animator == null)
+        if (!isAnyAttackUnlocked || animator == null || UI_Manager.uiManager.noteBookUIDisplaying)
         {
             return;
         }
