@@ -1,6 +1,22 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:VisualElement name="QuestTrackerContainer" style="flex-grow: 0.125; flex-direction: column; aspect-ratio: auto; align-items: flex-start; align-self: flex-start; white-space: nowrap; background-color: rgba(0, 0, 0, 0.47);">
+    <ui:VisualElement name="QuestTrackerContainer" style="flex-grow: 1; flex-direction: column; aspect-ratio: auto; align-items: flex-start; align-self: flex-start; white-space: nowrap; background-color: rgba(0, 0, 0, 0.47); height: auto; min-height: 11%; max-height: 15%; position: absolute;">
         <ui:Label text="Label" name="PinnedQuestTitle" style="background-color: rgba(0, 0, 0, 0); color: rgb(255, 255, 255); font-size: 30px;"/>
         <ui:Label text="Label" name="PinnedQuestObjective" style="background-color: rgba(0, 0, 0, 0); color: rgb(255, 255, 255); font-size: 20px;"/>
+    </ui:VisualElement>
+    <ui:VisualElement name="DialogueContainer" style="flex-grow: 0; justify-content: flex-start; align-items: auto; align-self: center; align-content: center; width: 75%; top: 70%; flex-direction: row; flex-wrap: wrap; background-color: rgba(0, 0, 0, 0.47); height: 25%; position: absolute;">
+        <ui:VisualElement name="NPC_Image" style="flex-grow: 1; align-items: flex-start; align-self: flex-start; flex-direction: column; aspect-ratio: 1; border-top-width: 7px; border-right-width: 7px; border-bottom-width: 7px; border-left-width: 7px; border-top-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); margin-right: 22px; width: 100%; min-width: 18%; max-width: 18%; max-height: 113%; flex-shrink: 0; height: 100%; min-height: 100%;"/>
+        <ui:VisualElement name="TextBox" style="flex-grow: 1; align-items: flex-start; align-self: flex-start;">
+            <ui:Label text="Label" name="NPC_NameText" style="font-size: 40px; -unity-font-style: bold-and-italic; color: rgb(255, 255, 255); border-bottom-width: 7px; border-bottom-color: rgb(0, 0, 0);"/>
+            <ui:Label text="Label" name="DialogueText" style="white-space: normal; flex-shrink: 1; flex-grow: 1; align-items: flex-start; align-self: flex-start; color: rgb(255, 255, 255); font-size: 30px; -unity-font-style: normal; max-height: 100%; max-width: 95%; height: 95%;"/>
+        </ui:VisualElement>
+    </ui:VisualElement>
+    <ui:VisualElement name="InteractionContainer" style="flex-grow: 0; position: absolute; align-self: center; align-content: center; top: 0%; left: 0%; right: 0%; bottom: 0%; background-image: url(&quot;project://database/Assets/GameInputControllerIconsFree/keyboard/keyboard-solid/e.png?fileID=21300000&amp;guid=69da02ec34c73624b91727759ad616df&amp;type=3#e&quot;); -unity-background-scale-mode: scale-and-crop; aspect-ratio: 1; width: 5%; height: 7%; flex-shrink: 0; display: flex; background-color: rgba(255, 255, 255, 0.47); -unity-background-image-tint-color: rgb(255, 105, 220); background-position-x: center; background-position-y: center;"/>
+    <ui:VisualElement name="NewQuestContainer" style="flex-grow: 0; position: absolute; align-items: center; justify-content: center; align-self: center; align-content: center; flex-shrink: 0; top: 15%; width: 45%; height: auto; font-size: 46px; -unity-font-style: bold; -unity-text-align: upper-center; background-color: rgba(0, 0, 0, 0.47);">
+        <ui:Label text="New Quest Unlocked!" name="NewQuestText" style="background-color: rgba(0, 0, 0, 0); color: rgb(229, 217, 217);"/>
+        <ui:Label text="Label" name="NewQuestNameText" style="color: rgb(255, 255, 255); -unity-font-style: bold-and-italic; font-size: 30px;"/>
+    </ui:VisualElement>
+    <ui:VisualElement name="CompletedQuestContainer" style="flex-grow: 0; position: absolute; align-items: center; justify-content: center; align-self: center; align-content: center; flex-shrink: 0; top: 15%; width: 45%; height: auto; font-size: 46px; -unity-font-style: bold; -unity-text-align: upper-center; background-color: rgba(0, 0, 0, 0.47);">
+        <ui:Label text="Quest Completed!" name="CompletedQuestText" style="background-color: rgba(0, 0, 0, 0); color: rgb(229, 217, 217);"/>
+        <ui:Label text="Label" name="CompletedQuestNameText" style="color: rgb(255, 255, 255); -unity-font-style: bold-and-italic; font-size: 30px;"/>
     </ui:VisualElement>
 </ui:UXML>

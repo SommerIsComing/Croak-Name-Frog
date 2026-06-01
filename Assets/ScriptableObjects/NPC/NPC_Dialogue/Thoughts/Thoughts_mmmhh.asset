@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c254f70efef16544396a52fbdd313478, type: 3}
+  m_Name: Thoughts_mmmhh
+  m_EditorClassIdentifier: Assembly-CSharp::NPC_DialogueObject
+  dialogueText:
+  - mmmmhhh... Doesnt look like I can get past here yet.
+  - Time to explore!
+  npcSpeakerImage:
+    m_Texture: {fileID: 2800000, guid: 32ceab08c4f566d41864b363169677c8, type: 3}
+    m_Sprite: {fileID: 0}
+    m_RenderTexture: {fileID: 0}
+    m_VectorImage: {fileID: 0}
+  npcSpeakerName: Thoughts
+  npcID: thoughts
+  conditionType: 1
+  questID: mainQuest
+  requiredObjectiveIndex: 0
