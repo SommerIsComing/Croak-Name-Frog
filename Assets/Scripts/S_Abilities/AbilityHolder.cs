@@ -62,6 +62,18 @@ public class AbilityHolder : MonoBehaviour
         }
     }
 
+    public void LockAbilityByName(string abilityName)
+    {
+        for (int i = 0; i < abilitySlots.Count; i++)
+        {
+            if (abilitySlots[i].ability != null && abilitySlots[i].ability.name == abilityName)
+            {
+                abilitySlots[i].isUnlocked = false;
+                return;
+            }
+        }
+    }
+
     public void TriggerAbilityByName(string abilityName)
     {
         for (int i = 0; i < abilitySlots.Count; i++)

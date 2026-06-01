@@ -1,17 +1,20 @@
 using UnityEngine;
 using System.Collections;
+using System.Security.Cryptography.X509Certificates;
+using Unity.VisualScripting;
 
-public class UnlockShooter : MonoBehaviour
+public class UnlockSword : MonoBehaviour
 {
     [SerializeField] private string playerTag = "Player";
-    [SerializeField] private string abilityNameToUnlock = "Shooter";
-    [SerializeField] private string abilityNameToLock = "Sword";
+    [SerializeField] private string abilityNameToUnlock = "Sword";
+    [SerializeField] private string abilityNameToLock = "Shooter";
     [SerializeField] private bool lockAnotherAbilityOnPickup = true;
     [SerializeField] private float respawnTime = 2f;
-    public bool shooterIsUnlocked = false;
-    [SerializeField] private UnlockSword sword;
-    [SerializeField] private GameObject shooterVisual;
+    public bool swordIsUnlocked = false;
+    [SerializeField] private UnlockShooter unlockShooter;
     [SerializeField] private GameObject swordVisual;
+    [SerializeField] private GameObject shooterVisual;
+
     private void OnTriggerEnter(Collider other)
     {
         if(!other.CompareTag(playerTag))
@@ -22,13 +25,13 @@ public class UnlockShooter : MonoBehaviour
         if (abilityHolder != null)
         {
             abilityHolder.UnlockAbilityByName(abilityNameToUnlock);
-            shooterIsUnlocked = true;
-            shooterVisual.SetActive(true);
+            swordIsUnlocked = true;
+            swordVisual.SetActive(true);
             if (lockAnotherAbilityOnPickup && string.IsNullOrEmpty(abilityNameToLock) == false)
             {
                 abilityHolder.LockAbilityByName(abilityNameToLock);
-                sword.swordIsUnlocked = false;
-                swordVisual.SetActive(false);
+                unlockShooter.shooterIsUnlocked = false;
+                shooterVisual.SetActive(false);
             }
             StartCoroutine(ReactivateObject());
         }
@@ -37,7 +40,7 @@ public class UnlockShooter : MonoBehaviour
     private IEnumerator ReactivateObject()
     {
         SetVisible(false);
-        yield return new WaitForSeconds(respawnTime);
+        yield return new WaitForSeconds(respawnTime); // Adjust the delay as needed
         SetVisible(true);
     }
 
