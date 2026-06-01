@@ -29,7 +29,11 @@ public class PlayerController : MonoBehaviour
     [Header("Ability Unlocking")]
     [SerializeField] private UnlockShooter unlockShooter;
     [SerializeField] private UnlockSword unlockSword;
-    public bool isAnyAttackUnlocked => (unlockShooter != null && unlockShooter.shooterIsUnlocked) || (unlockSword != null && unlockSword.swordIsUnlocked);
+    [SerializeField] private string shooterAbilityName = "Shooter";
+    [SerializeField] private string swordAbilityName = "Sword";
+    public bool isAnyAttackUnlocked => abilityHolder != null &&
+                                       (abilityHolder.IsAbilityUnlockedByName(shooterAbilityName) ||
+                                        abilityHolder.IsAbilityUnlockedByName(swordAbilityName));
 
     [Header("Attack Combo")]
     [SerializeField] private string attackFirstTrigger = "isAttackingFirst";
@@ -136,6 +140,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         playerJump = GetComponent<PlayerJump>();
         abilityHolder = GetComponent<AbilityHolder>();
+        ResolveAbilityUnlockReferences();
         
         DontDestroyOnLoad(gameObject); //Makes player persistant across scenes
     }
@@ -270,6 +275,25 @@ public class PlayerController : MonoBehaviour
         Vector3 clampedWorld = cam.ViewportToWorldPoint(new Vector3(clampedX, clampedY, viewportPos.z));
         clampedWorld.y = rb.position.y;
         rb.MovePosition(clampedWorld);
+    }
+
+    private void ResolveAbilityUnlockReferences()
+    {
+        if (unlockShooter == null)
+        {
+            unlockShooter = Object.FindFirstObjectByType<UnlockShooter>(FindObjectsInactive.Include);
+        }
+
+        if (unlockSword == null)
+        {
+            unlockSword = Object.FindFirstObjectByType<UnlockSword>(FindObjectsInactive.Include);
+        }
+    }
+
+    public void SetAbilityUnlockReferences(UnlockShooter shooterUnlock, UnlockSword swordUnlock)
+    {
+        unlockShooter = shooterUnlock;
+        unlockSword = swordUnlock;
     }
 
     private void FireNextAttack()

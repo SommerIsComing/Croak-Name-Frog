@@ -25,6 +25,7 @@ public class SpawnManager : MonoBehaviour
         if (TryGetSpawnPoint(playerInput.playerIndex, out Transform spawnPoint))
         {
             ApplySpawn(playerInput.transform, spawnPoint);
+            AssignAbilityUnlockReferences(playerInput.transform);
             StartCoroutine(ApplySpawnAfterPhysics(playerInput.transform, spawnPoint));
         }
     }
@@ -42,8 +43,27 @@ public class SpawnManager : MonoBehaviour
         }
 
         ApplySpawn(playerInput.transform, spawnPoint);
+        AssignAbilityUnlockReferences(playerInput.transform);
         StartCoroutine(ApplySpawnAfterPhysics(playerInput.transform, spawnPoint));
         return true;
+    }
+
+    private static void AssignAbilityUnlockReferences(Transform playerTransform)
+    {
+        if (playerTransform == null)
+        {
+            return;
+        }
+
+        PlayerController controller = playerTransform.GetComponent<PlayerController>();
+        if (controller == null)
+        {
+            return;
+        }
+
+        UnlockShooter shooterUnlock = Object.FindFirstObjectByType<UnlockShooter>(FindObjectsInactive.Include);
+        UnlockSword swordUnlock = Object.FindFirstObjectByType<UnlockSword>(FindObjectsInactive.Include);
+        controller.SetAbilityUnlockReferences(shooterUnlock, swordUnlock);
     }
 
     private bool TryGetSpawnPoint(int spawnIndex, out Transform spawnPoint)
