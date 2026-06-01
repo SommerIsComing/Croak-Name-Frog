@@ -220,7 +220,8 @@ AnimatorState:
   m_Transitions:
   - {fileID: 1873227884720094440}
   - {fileID: 28387441554109879}
-  m_StateMachineBehaviours: []
+  m_StateMachineBehaviours:
+  - {fileID: 7540940438709133451}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -619,6 +620,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlaySoundEnter
   sound: 0
+  volume: 1
+--- !u!114 &7540940438709133451
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b34aba5791afd0429dc0c750ac9fc23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlaySoundEnter
+  sound: 1
   volume: 1
 --- !u!1101 &7575056613423658205
 AnimatorStateTransition:

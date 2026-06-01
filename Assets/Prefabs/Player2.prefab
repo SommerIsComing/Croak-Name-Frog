@@ -2246,6 +2246,7 @@ GameObject:
   - component: {fileID: 3301751703821393164}
   - component: {fileID: 7463668377609199509}
   - component: {fileID: 2901404549525027336}
+  - component: {fileID: 4881494143723776303}
   m_Layer: 3
   m_Name: Player2
   m_TagString: Player
@@ -2286,7 +2287,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8650871458768888115}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 514f7e8553b4fdc44a4de60f89542380, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -2428,11 +2429,35 @@ MonoBehaviour:
     m_ActionId: 8eab3892-ac2f-4bf0-8355-8a177a132716
     m_ActionName: Player2/New action
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4881494143723776303}
+        m_TargetAssemblyTypeName: PlayerUIController, Assembly-CSharp
+        m_MethodName: DisplayPauseMenu
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: ba70da69-e24c-4c6a-b827-3b8047c92c74
     m_ActionName: 'Player/PauseGame[/Keyboard/escape]'
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4881494143723776303}
+        m_TargetAssemblyTypeName: PlayerUIController, Assembly-CSharp
+        m_MethodName: ContinueDialogue
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: e018057f-f8de-4307-ab96-095bf5ba4551
     m_ActionName: 'Player/ContinueDialogue[/Mouse/leftButton]'
   m_NeverAutoSwitchControlSchemes: 0
@@ -2537,13 +2562,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AbilityHolder
   abilitySlots:
   - ability: {fileID: 11400000, guid: 2a7f429322f7c904e97d9ebe4083c5f2, type: 2}
-    isUnlocked: 1
+    isUnlocked: 0
     state: 0
     cooldownTime: 0.1
     activeTime: 0
     activateRequested: 0
   - ability: {fileID: 11400000, guid: a67b35e1c6c286344b60187efef91268, type: 2}
-    isUnlocked: 1
+    isUnlocked: 0
     state: 0
     cooldownTime: 1
     activeTime: 0
@@ -2635,6 +2660,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerWeaponVisuals
   swordVisual: {fileID: 5235155086344512314}
   shooterVisual: {fileID: 6778983971533127588}
+--- !u!114 &4881494143723776303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8650871458768888115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be3f98811b51da84c9273235fef725a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerUIController
 --- !u!1 &8880796446482406511
 GameObject:
   m_ObjectHideFlags: 0
