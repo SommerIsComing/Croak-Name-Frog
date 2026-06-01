@@ -86,6 +86,19 @@ public class AbilityHolder : MonoBehaviour
         }
     }
 
+    public bool IsAbilityUnlockedByName(string abilityName)
+    {
+        for (int i = 0; i < abilitySlots.Count; i++)
+        {
+            if (abilitySlots[i].ability != null && abilitySlots[i].ability.name == abilityName)
+            {
+                return abilitySlots[i].isUnlocked;
+            }
+        }
+
+        return false;
+    }
+
     // Update is called once per frame
     void Update()
     {
