@@ -29,18 +29,13 @@ public class MagicBullet : MonoBehaviour
     }
 
     
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        EnemyHeath enemyHealth = other.gameObject.GetComponent<EnemyHeath>();
+        EnemyHeath enemyHealth = collision.gameObject.GetComponent<EnemyHeath>();
         if (enemyHealth != null)
         {
             enemyHealth.TakeDamage(damage);
         }
-        Destroy(gameObject);
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
         Destroy(gameObject);
     }
 }
