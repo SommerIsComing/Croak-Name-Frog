@@ -15854,6 +15854,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BoggyWoodsTrigger
       objectReference: {fileID: 0}
+    - target: {fileID: 4883059004946468197, guid: 37f9f6446249f554b91f99471df34e16, type: 3}
+      propertyPath: areaID
+      value: BoggyWoods
+      objectReference: {fileID: 0}
     - target: {fileID: 7882195183072688780, guid: 37f9f6446249f554b91f99471df34e16, type: 3}
       propertyPath: m_LocalPosition.x
       value: 140.31413
@@ -18876,7 +18880,7 @@ PrefabInstance:
       objectReference: {fileID: 507969633}
     - target: {fileID: 2323240908567967256, guid: 41611c9ecb950be4f8bcf6ce80932dee, type: 3}
       propertyPath: xTargetOffset
-      value: -300
+      value: -200
       objectReference: {fileID: 0}
     - target: {fileID: 2323240908567967256, guid: 41611c9ecb950be4f8bcf6ce80932dee, type: 3}
       propertyPath: yTargetOffset
