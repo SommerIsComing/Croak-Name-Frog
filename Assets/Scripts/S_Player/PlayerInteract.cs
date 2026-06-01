@@ -18,6 +18,11 @@ public class PlayerInteract : MonoBehaviour
             closestinteractable.Interact();
             InteractionPrompter.interactionPrompter.HideInteractionPrompt();
         }
+        else if(context.performed && NPC_UI.npc_UI.IsDialogueDisplaying())
+        {
+            NPC_UI.npc_UI.ContinueDialogue();
+            return;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
