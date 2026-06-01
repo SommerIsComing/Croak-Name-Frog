@@ -17,6 +17,8 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private float attackCooldown = 1f;
     [SerializeField] private float chaseRange = 20f;
 
+    [SerializeField] Animator animator;
+
     //patrolling
     [SerializeField] private Transform[] patrolPoints;
     private int currentPatrolIndex = 0;
@@ -162,7 +164,12 @@ public class EnemyAI : MonoBehaviour
             Debug.Log(gameObject.name + ": attacking player!");
             if (playerHealth != null)
             {
+                animator.SetBool("IsAttacking", true);
                 playerHealth.TakeDamage(attackDamage, transform.position); // eksempel på at reducere spillerens health med 10
+            }
+            else
+            {
+                animator.SetBool("IsAttacking", false);
             }
 
             attackTimer = attackCooldown; // reset attackTimer til cooldown
@@ -182,5 +189,4 @@ public class EnemyAI : MonoBehaviour
         playerTransform = player.transform;
         playerHealth = player.GetComponent<PlayerHeath>();
     }
-
 }
