@@ -315,13 +315,15 @@ public class PlayerController : MonoBehaviour
             nextAttackIndex = 1;
         }
 
-        // Optional: if you still want hold-shot behavior, call it here.
         if (abilityHolder != null)
         {
-            abilityHolder.TriggerAbilityByName("Shooter");
+            // Only one should be unlocked at a time; AbilityHolder ignores locked slots.
+            abilityHolder.TriggerAbilityByName(swordAbilityName);
+            abilityHolder.TriggerAbilityByName(shooterAbilityName);
         }
 
         lastAttackTime = Time.time;
         nextAttackTime = Time.time + holdRepeatInterval;
     }
+
 }

@@ -312,13 +312,15 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6958310224334083671}
+  - component: {fileID: 8835081868898971474}
+  - component: {fileID: 4555894777243830173}
   m_Layer: 3
   m_Name: SWORD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6958310224334083671
 Transform:
   m_ObjectHideFlags: 0
@@ -335,6 +337,39 @@ Transform:
   - {fileID: 7097376207305445349}
   m_Father: {fileID: 2993814683213902386}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8835081868898971474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3161374959459600181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc4c2ecfaaba8d640869925d7d289741, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SwordActivate
+--- !u!65 &4555894777243830173
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3161374959459600181}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.36333084, y: 1.9920003, z: 0.13641359}
+  m_Center: {x: 0.01263368, y: 0.8796567, z: 0.0064843073}
 --- !u!1 &3679842532263464833
 GameObject:
   m_ObjectHideFlags: 0
