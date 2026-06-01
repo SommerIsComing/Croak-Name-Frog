@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a6b103913a7199488eb97de85c65725, type: 3}
+  m_Name: MainQuest
+  m_EditorClassIdentifier: Assembly-CSharp::QuestData
+  questName: Puddle & Mud
+  questID: mainQuest
+  questDescription: Visit grandpas resting-place up north - And remember to bring
+    SOUP!
+  questObjectives:
+  - {fileID: 11400000, guid: b3a9228acf2a5184cb51ec1ad6362e2d, type: 2}
+  - {fileID: 11400000, guid: 92876dfce2730e3429acde33c9743550, type: 2}
+  - {fileID: 11400000, guid: 7703d0bb8f24f4f4a9bce0ff4457eb04, type: 2}
+  questReward: 1000

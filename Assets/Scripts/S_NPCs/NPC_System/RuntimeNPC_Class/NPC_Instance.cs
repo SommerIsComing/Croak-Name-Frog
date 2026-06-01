@@ -1,5 +1,7 @@
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI;
 
 //Denne klasse repræsenterer en NPC i spillet. Den indeholder data om NPC'en og håndterer interaktioner og animationer baseret på de events, der bliver triggered.
 public class NPC_Instance : MonoBehaviour, Interactable
@@ -14,6 +16,8 @@ public class NPC_Instance : MonoBehaviour, Interactable
 
     public bool isInteractable = false;
 
+    public bool hasTalkedToPlayer = false;
+
     private void Start()
     {
         npcData = NPC_Manager.npcManager.AssignNPC(npcID);
@@ -23,6 +27,7 @@ public class NPC_Instance : MonoBehaviour, Interactable
     {
         GameEvent.OnAnimNeeded += PlayAnim;
         GameEvent.OnInteractionNeeded += MakeInteractable;
+        UIEvent.OnPlayerTalkedToTheFirstTime += SetHasTalkedToPlayer;
     }
 
     private void OnDisable()
@@ -41,14 +46,21 @@ public class NPC_Instance : MonoBehaviour, Interactable
 
     public void Interact()
     {
-        if(isInteractable)
+        if (isInteractable)
         {
-            QuestEvents.OnNPCTalkedTo?.Invoke(npcID);
+            NPC_DialogueObject currentDialogue = GetNPCDialogue();
 
-            NPC_Manager.npcManager.DisplayDialogue(npcData);
+            NPC_Manager.npcManager.DisplayDialogue(currentDialogue);
 
             GiveQuest();
+
+            QuestEvents.OnNPCTalkedTo?.Invoke(npcID);
         }
+    }
+
+    public bool IsInteractable()
+    {
+        return isInteractable;
     }
 
     public void GiveQuest()
@@ -58,6 +70,7 @@ public class NPC_Instance : MonoBehaviour, Interactable
             Debug.Log("Quest Given");
             questGiven = true;
             QuestEvents.OnQuestGivenByID?.Invoke(questToGiveID);
+            SetHasTalkedToPlayer(npcData.npcName);
         }
     }
 
@@ -66,6 +79,52 @@ public class NPC_Instance : MonoBehaviour, Interactable
         if (triggerName == npcData.animTriggerName && !string.IsNullOrEmpty(npcData.animTriggerName))
         {
             GetComponentInChildren<Animator>().SetTrigger(npcData.animTriggerName);
+        }
+    }
+
+    public NPC_DialogueObject GetNPCDialogue()
+    {
+        foreach(NPC_DialogueObject npcDialogue in npcData.dialogue)
+        {
+            if (CorrectDialogueContext(npcDialogue))
+            {
+                return npcDialogue;
+            }
+        }
+
+        return null;
+    }
+
+    private bool CorrectDialogueContext(NPC_DialogueObject npcDialogue)
+    {
+        switch (npcDialogue.conditionType)
+        {
+            case DialogueConditionType.QuestComplete:
+                return QuestManager.questManager.completedQuests.Exists(questInstance => questInstance.questData.questID == questToGiveID);
+
+            case DialogueConditionType.ObjectiveComplete:
+                return QuestManager.questManager.IsObjectiveComplete(npcDialogue.questID, npcDialogue.requiredObjectiveIndex);
+
+            case DialogueConditionType.ObjectiveInProgress:
+                return QuestManager.questManager.IsObjectiveInProgress(npcDialogue.questID, npcDialogue.requiredObjectiveIndex);
+
+            case DialogueConditionType.FirstTimeTalking:
+
+                return !hasTalkedToPlayer;
+
+            case DialogueConditionType.None:
+                return true;
+
+            default:
+                return true;
+        }
+    }
+
+    public void SetHasTalkedToPlayer(string npcName)
+    {
+        if(npcName == npcData.npcName)
+        {
+            hasTalkedToPlayer = true;
         }
     }
 }
