@@ -167,9 +167,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.25
+  m_TransitionDuration: 0.19982922
   m_TransitionOffset: 0
-  m_ExitTime: 0.8015873
+  m_ExitTime: 0.9506027
   m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -208,7 +208,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: BATTACK1
-  m_Speed: 1
+  m_Speed: 0.7
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 703577542363139543}
@@ -432,9 +432,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.24999994
-  m_TransitionOffset: 0.000000020629008
-  m_ExitTime: 0
+  m_TransitionDuration: 0.24999997
+  m_TransitionOffset: 0.053501774
+  m_ExitTime: 0.9321271
   m_HasExitTime: 1
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -457,10 +457,10 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.042202547
-  m_TransitionOffset: 0.060633935
-  m_ExitTime: 0.81216526
-  m_HasExitTime: 0
+  m_TransitionDuration: 0.25752044
+  m_TransitionOffset: 0.014294698
+  m_ExitTime: 0.97048736
+  m_HasExitTime: 1
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
@@ -509,12 +509,6 @@ AnimatorStateMachine:
     m_State: {fileID: -2985604862846331803}
     m_Position: {x: -10, y: 480, z: 0}
   - serializedVersion: 1
-    m_State: {fileID: 6652298253582664219}
-    m_Position: {x: 490, y: 290, z: 0}
-  - serializedVersion: 1
-    m_State: {fileID: -57697360699529418}
-    m_Position: {x: 500, y: 160, z: 0}
-  - serializedVersion: 1
     m_State: {fileID: -5309396386712791612}
     m_Position: {x: 270, y: 500, z: 0}
   - serializedVersion: 1
@@ -541,7 +535,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: BATTACK2
-  m_Speed: 1
+  m_Speed: 0.5
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 2507689900778153885}

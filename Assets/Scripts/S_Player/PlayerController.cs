@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
@@ -42,8 +43,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float holdRepeatInterval = 0.22f;
     private bool attackHeld;
     private float lastAttackTime = -999f;
-    private float nextAttackTime;
     private int nextAttackIndex = 1;
+    private Coroutine attackRepeatRoutine;
 
     public void OnMove(InputAction.CallbackContext context)
     {
@@ -115,12 +116,36 @@ public class PlayerController : MonoBehaviour
         {
             attackHeld = true;
             FireNextAttack();
+
+            if (attackRepeatRoutine != null)
+            {
+                StopCoroutine(attackRepeatRoutine);
+            }
+
+            attackRepeatRoutine = StartCoroutine(AttackRepeatLoop());
         }
 
         if (context.canceled)
         {
             attackHeld = false;
+
+            if (attackRepeatRoutine != null)
+            {
+                StopCoroutine(attackRepeatRoutine);
+                attackRepeatRoutine = null;
+            }
         }
+    }
+
+    // Animation Event hook: call this from attack clips when the projectile should fire.
+    public void FireShooterFromAnimationEvent()
+    {
+        if (abilityHolder == null)
+        {
+            return;
+        }
+
+        abilityHolder.TriggerAbilityByName(shooterAbilityName);
     }
 
     public void OnSprint(InputAction.CallbackContext context)
@@ -159,11 +184,6 @@ public class PlayerController : MonoBehaviour
         }
 
         UpdateWalkAnimation();   
-
-        if (attackHeld && Time.time >= nextAttackTime)
-        {
-            FireNextAttack();
-        } 
     }
 
     void FixedUpdate()
@@ -315,15 +335,24 @@ public class PlayerController : MonoBehaviour
             nextAttackIndex = 1;
         }
 
-        if (abilityHolder != null)
+        lastAttackTime = Time.time;
+    }
+
+    private IEnumerator AttackRepeatLoop()
+    {
+        while (attackHeld)
         {
-            // Only one should be unlocked at a time; AbilityHolder ignores locked slots.
-            abilityHolder.TriggerAbilityByName(swordAbilityName);
-            abilityHolder.TriggerAbilityByName(shooterAbilityName);
+            yield return new WaitForSeconds(holdRepeatInterval);
+
+            if (!attackHeld)
+            {
+                yield break;
+            }
+
+            FireNextAttack();
         }
 
-        lastAttackTime = Time.time;
-        nextAttackTime = Time.time + holdRepeatInterval;
+        attackRepeatRoutine = null;
     }
 
 }
