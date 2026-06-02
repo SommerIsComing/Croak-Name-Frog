@@ -45,96 +45,135 @@ public class PlayerController : MonoBehaviour
     private float lastAttackTime = -999f;
     private int nextAttackIndex = 1;
     private Coroutine attackRepeatRoutine;
+    private bool isInDialogue;
+
+    private void OnEnable()
+    {
+        GameEvent.OnDialogueInteractionStart += HandleDialogueStart;
+        GameEvent.OnDialogueInteractionEnd += HandleDialogueEnd;
+    }
+
+    private void OnDisable()
+    {
+        GameEvent.OnDialogueInteractionStart -= HandleDialogueStart;
+        GameEvent.OnDialogueInteractionEnd -= HandleDialogueEnd;
+    }
+
+    private void HandleDialogueStart()
+    {
+        isInDialogue = true;
+    }
+
+    private void HandleDialogueEnd()
+    {
+        isInDialogue = false;
+    }
 
     public void OnMove(InputAction.CallbackContext context)
     {
-        move = context.ReadValue<Vector2>();
+        if (!isInDialogue)
+        {
+            move = context.ReadValue<Vector2>();
+        }
     }
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (context.started)
+        if (!isInDialogue)
         {
-            jumpHeld = true;
-            animator.SetBool("isWindingUp", true);
-            jumpHoldTimer = 0f;
-        }
-    
-        if (context.canceled)
-        {
-            jumpHeld = false;
-            animator.SetBool("isWindingUp", false);
-            animator.SetBool("isJumping", true);
-            if (jumpHoldTimer >= superJumpHoldTime)
+            if (context.started)
             {
-                abilityHolder.TriggerAbilityByName("SuperJump");
-                
+                jumpHeld = true;
+                animator.SetBool("isWindingUp", true);
+                jumpHoldTimer = 0f;
+            }
+
+            if (context.canceled)
+            {
+                jumpHeld = false;
+                animator.SetBool("isWindingUp", false);
+                animator.SetBool("isJumping", true);
+                if (jumpHoldTimer >= superJumpHoldTime)
+                {
+                    abilityHolder.TriggerAbilityByName("SuperJump");
+
+                }
+                else
+                {
+                    TryJump();
+                }
+                jumpHoldTimer = 0f;
             }
             else
             {
-                TryJump(); 
+                animator.SetBool("isJumping", false);
             }
-            jumpHoldTimer = 0f;
-        }
-        else
-        {
-         animator.SetBool("isJumping", false);
         }
 
     }
 
     public void OnSuperJump(InputAction.CallbackContext context)
     {
-        if (context.performed && abilityHolder != null)
+        if (!isInDialogue)
         {
-            abilityHolder.TriggerAbilityByName("SuperJump");
+            if (context.performed && abilityHolder != null)
+            {
+                abilityHolder.TriggerAbilityByName("SuperJump");
 
+            }
         }
     }
 
     public void OnTongue(InputAction.CallbackContext context)
     {
-        if (context.performed && abilityHolder != null)
+        if (!isInDialogue)
         {
-            abilityHolder.TriggerAbilityByName("Tongue");
-            animator.SetBool("isToungeMove", true);
-        }
-        else
-        {
-        animator.SetBool("isToungeMove", false);
+            if (context.performed && abilityHolder != null)
+            {
+                abilityHolder.TriggerAbilityByName("Tongue");
+                animator.SetBool("isToungeMove", true);
+            }
+            else
+            {
+                animator.SetBool("isToungeMove", false);
+            }
         }
     }
 
     public void OnAttack(InputAction.CallbackContext context)
     {
-        if (!isAnyAttackUnlocked || animator == null || UI_Manager.uiManager.noteBookUIDisplaying)
+        if (!isInDialogue)
         {
-            return;
-        }
-
-        if (context.started)
-        {
-            attackHeld = true;
-            FireNextAttack();
-
-            if (attackRepeatRoutine != null)
+            if (!isAnyAttackUnlocked || animator == null || UI_Manager.uiManager.noteBookUIDisplaying)
             {
-                StopCoroutine(attackRepeatRoutine);
+                return;
             }
 
-            attackRepeatRoutine = StartCoroutine(AttackRepeatLoop());
-        }
-
-        if (context.canceled)
-        {
-            attackHeld = false;
-
-            if (attackRepeatRoutine != null)
+            if (context.started)
             {
-                StopCoroutine(attackRepeatRoutine);
-                attackRepeatRoutine = null;
+                attackHeld = true;
+                FireNextAttack();
+
+                if (attackRepeatRoutine != null)
+                {
+                    StopCoroutine(attackRepeatRoutine);
+                }
+
+                attackRepeatRoutine = StartCoroutine(AttackRepeatLoop());
+            }
+
+            if (context.canceled)
+            {
+                attackHeld = false;
+
+                if (attackRepeatRoutine != null)
+                {
+                    StopCoroutine(attackRepeatRoutine);
+                    attackRepeatRoutine = null;
+                }
             }
         }
+        
     }
 
     // Animation Event hook: call this from attack clips when the projectile should fire.
@@ -150,15 +189,19 @@ public class PlayerController : MonoBehaviour
 
     public void OnSprint(InputAction.CallbackContext context)
     {
-        if (context.started)
+        if (!isInDialogue)
         {
-            moveSpeed *= sprintMultiplier;
-        }
-        if (context.canceled)
-        {
-            moveSpeed /= sprintMultiplier;
+            if (context.started)
+            {
+                moveSpeed *= sprintMultiplier;
+            }
+            if (context.canceled)
+            {
+                moveSpeed /= sprintMultiplier;
+            }
         }
     }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -173,33 +216,39 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (jumpHeld)
+        if (!isInDialogue)
         {
-            jumpHoldTimer += Time.deltaTime;
-        }
+            if (jumpHeld)
+            {
+                jumpHoldTimer += Time.deltaTime;
+            }
 
-        if (shootHeld && abilityHolder != null)
-        {
-            abilityHolder.TriggerAbilityByName("Shooter");
-        }
+            if (shootHeld && abilityHolder != null)
+            {
+                abilityHolder.TriggerAbilityByName("Shooter");
+            }
 
-        UpdateWalkAnimation();   
+            UpdateWalkAnimation();
+        }
     }
 
     void FixedUpdate()
     {
-        if (rb == null)
+        if (!isInDialogue)
         {
-            return;
-        }
+            if (rb == null)
+            {
+                return;
+            }
 
-        MovePlayer();
-        KeepPlayerInsideCameraBounds();
+            MovePlayer();
+            KeepPlayerInsideCameraBounds();
 
-        if (jumpRequested)
-        {
-            TryJump();
-            jumpRequested = false;
+            if (jumpRequested)
+            {
+                TryJump();
+                jumpRequested = false;
+            }
         }
     }
 

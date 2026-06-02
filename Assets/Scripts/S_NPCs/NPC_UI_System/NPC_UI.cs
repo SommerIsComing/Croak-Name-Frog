@@ -60,6 +60,8 @@ public class NPC_UI : MonoBehaviour
         root.style.display = DisplayStyle.Flex;
         isDialogueDisplaying = true;
 
+        GameEvent.OnDialogueInteractionStart?.Invoke();
+
         UpdateDialogue();
     }
 
@@ -99,6 +101,7 @@ public class NPC_UI : MonoBehaviour
         currentDialogue = null;
         currentDialogueIndex = 0;
 
+        GameEvent.OnDialogueInteractionEnd?.Invoke();
         UIEvent.OnUIQuestRefresh?.Invoke();
     }
 
