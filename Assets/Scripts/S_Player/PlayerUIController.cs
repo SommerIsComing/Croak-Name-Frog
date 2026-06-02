@@ -12,9 +12,9 @@ public class PlayerUIController : MonoBehaviour
         }
     }
 
-    public void ContinueDialogue(InputAction.CallbackContext context)
+    public void ContinueDialogue()
     {
-        if (context.performed && NPC_UI.npc_UI.IsDialogueDisplaying())
+        if (NPC_UI.npc_UI.IsDialogueDisplaying())
         {
             UIEvent.OnDialogueContinue?.Invoke();
         }

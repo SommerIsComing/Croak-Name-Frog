@@ -132,10 +132,12 @@ LODGroup:
   m_LODs:
   - screenRelativeHeight: 0.6
     fadeTransitionWidth: 0
-    renderers: []
+    renderers:
+    - renderer: {fileID: 1070513866560598324}
   - screenRelativeHeight: 0.3
     fadeTransitionWidth: 0
-    renderers: []
+    renderers:
+    - renderer: {fileID: 1070513866560598324}
   - screenRelativeHeight: 0.01
     fadeTransitionWidth: 0
     renderers:
