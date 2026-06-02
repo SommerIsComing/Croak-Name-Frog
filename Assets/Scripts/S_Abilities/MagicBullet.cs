@@ -6,6 +6,12 @@ public class MagicBullet : MonoBehaviour
     [SerializeField] private float lifetime = 2f;
     [SerializeField] private int damage = 1;
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip shootSound;
+    [SerializeField] private AudioClip hitSound;
+    [SerializeField] private float shootVolume = 1f;
+
     private Rigidbody rb;
 
     private void Awake()
@@ -16,6 +22,10 @@ public class MagicBullet : MonoBehaviour
     public void Initialize(Vector3 direction, float speed, float lifetime)
     {
         rb.linearVelocity = direction.normalized * speed;
+        if (audioSource != null && shootSound != null)
+        {
+            audioSource.PlayOneShot(shootSound, shootVolume);
+        }
         Destroy(gameObject, lifetime);
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
