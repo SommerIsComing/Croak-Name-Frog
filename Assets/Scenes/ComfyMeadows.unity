@@ -806,7 +806,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 201087897265267577, guid: 6b587d0eeb134c548814f00b18832a82, type: 3}
       propertyPath: soundList.Array.size
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 201087897265267577, guid: 6b587d0eeb134c548814f00b18832a82, type: 3}
       propertyPath: 'soundList.Array.data[6]'
@@ -9618,6 +9618,7 @@ Transform:
   - {fileID: 420281981}
   - {fileID: 1527861025}
   - {fileID: 1182740493}
+  - {fileID: 1478467634}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &808550560 stripped
@@ -17660,12 +17661,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1478467631}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 290, y: 42.40015, z: -77.25423}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 453.03616, y: 5.4488792, z: -92.67815}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 805157755}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1483757730 stripped
 Transform:
@@ -19601,6 +19602,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2043017787462805071, guid: 41611c9ecb950be4f8bcf6ce80932dee, type: 3}
+      propertyPath: staffSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 0141dcfa3001b41428c6f0e117c2c21b, type: 3}
+    - target: {fileID: 2043017787462805071, guid: 41611c9ecb950be4f8bcf6ce80932dee, type: 3}
+      propertyPath: swordSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 1e5ad0ccb90b0564181581b85a041de4, type: 3}
+    - target: {fileID: 2043017787462805071, guid: 41611c9ecb950be4f8bcf6ce80932dee, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 1971191700}
     - target: {fileID: 4312849285191136095, guid: 41611c9ecb950be4f8bcf6ce80932dee, type: 3}
       propertyPath: m_Name
       value: TruePlayer
@@ -23994,6 +24007,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 944782c13cf66fd4283ab29a04647b15, type: 3}
+--- !u!82 &1971191700 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 3693682358967933018, guid: 6b587d0eeb134c548814f00b18832a82, type: 3}
+  m_PrefabInstance: {fileID: 30734246}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1976371049
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26793,7 +26811,6 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 323046135}
-  - {fileID: 1478467634}
   - {fileID: 736782285}
   - {fileID: 795301584}
   - {fileID: 1115414366}
