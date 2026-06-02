@@ -14,7 +14,6 @@ public class PlayerInteract : MonoBehaviour
         
         if (context.performed && !(NPC_UI.npc_UI.IsDialogueDisplaying()))
         {
-
             closestinteractable.Interact();
             InteractionPrompter.interactionPrompter.HideInteractionPrompt();
         }
