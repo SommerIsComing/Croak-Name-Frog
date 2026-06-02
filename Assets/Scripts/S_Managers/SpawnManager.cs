@@ -7,6 +7,10 @@ public class SpawnManager : MonoBehaviour
     [Header("Spawn Points")]
     public Transform[] spawnPoints;
 
+    [Header("Scene References")]
+    [SerializeField] private UnlockShooter shooterUnlock;
+    [SerializeField] private UnlockSword swordUnlock;
+
     public static SpawnManager Instance { get; private set; }
 
     private void Awake()
@@ -18,16 +22,33 @@ public class SpawnManager : MonoBehaviour
         {
             inputManager.notificationBehavior = PlayerNotifications.InvokeUnityEvents;
         }
+
+        if (shooterUnlock == null)
+        {
+            shooterUnlock = Object.FindFirstObjectByType<UnlockShooter>();
+        }
+
+        if (swordUnlock == null)
+        {
+            swordUnlock = Object.FindFirstObjectByType<UnlockSword>();
+        }
     }
 
     public void OnPlayerJoined(PlayerInput playerInput)
     {
-        if (TryGetSpawnPoint(playerInput.playerIndex, out Transform spawnPoint))
+        if (playerInput == null)
         {
-            ApplySpawn(playerInput.transform, spawnPoint);
-            AssignAbilityUnlockReferences(playerInput.transform);
-            StartCoroutine(ApplySpawnAfterPhysics(playerInput.transform, spawnPoint));
+            return;
         }
+
+        if (!TryGetSpawnPose(playerInput, out Vector3 spawnPosition, out Quaternion spawnRotation))
+        {
+            return;
+        }
+
+        ApplySpawn(playerInput.transform, spawnPosition, spawnRotation);
+        AssignAbilityUnlockReferences(playerInput.transform);
+        StartCoroutine(ApplySpawnAfterPhysics(playerInput.transform, spawnPosition, spawnRotation));
     }
 
     public bool TryRespawnPlayer(PlayerInput playerInput)
@@ -37,18 +58,18 @@ public class SpawnManager : MonoBehaviour
             return false;
         }
 
-        if (!TryGetSpawnPoint(playerInput.playerIndex, out Transform spawnPoint))
+        if (!TryGetSpawnPose(playerInput, out Vector3 spawnPosition, out Quaternion spawnRotation))
         {
             return false;
         }
 
-        ApplySpawn(playerInput.transform, spawnPoint);
+        ApplySpawn(playerInput.transform, spawnPosition, spawnRotation);
         AssignAbilityUnlockReferences(playerInput.transform);
-        StartCoroutine(ApplySpawnAfterPhysics(playerInput.transform, spawnPoint));
+        StartCoroutine(ApplySpawnAfterPhysics(playerInput.transform, spawnPosition, spawnRotation));
         return true;
     }
 
-    private static void AssignAbilityUnlockReferences(Transform playerTransform)
+    private void AssignAbilityUnlockReferences(Transform playerTransform)
     {
         if (playerTransform == null)
         {
@@ -61,9 +82,40 @@ public class SpawnManager : MonoBehaviour
             return;
         }
 
-        UnlockShooter shooterUnlock = Object.FindFirstObjectByType<UnlockShooter>(FindObjectsInactive.Include);
-        UnlockSword swordUnlock = Object.FindFirstObjectByType<UnlockSword>(FindObjectsInactive.Include);
         controller.SetAbilityUnlockReferences(shooterUnlock, swordUnlock);
+    }
+
+    private bool TryGetSpawnPose(PlayerInput playerInput, out Vector3 position, out Quaternion rotation)
+    {
+        position = default;
+        rotation = Quaternion.identity;
+
+        foreach (PlayerInput otherInput in PlayerInput.all)
+        {
+            if (otherInput == null || otherInput == playerInput)
+            {
+                continue;
+            }
+
+            Transform anchor = otherInput.transform;
+            if (anchor == null)
+            {
+                continue;
+            }
+
+            position = anchor.position + Vector3.up * 4f;
+            rotation = anchor.rotation;
+            return true;
+        }
+
+        if (TryGetSpawnPoint(playerInput.playerIndex, out Transform spawnPoint))
+        {
+            position = spawnPoint.position;
+            rotation = spawnPoint.rotation;
+            return true;
+        }
+
+        return false;
     }
 
     private bool TryGetSpawnPoint(int spawnIndex, out Transform spawnPoint)
@@ -83,30 +135,30 @@ public class SpawnManager : MonoBehaviour
         return spawnPoint != null;
     }
 
-    private static void ApplySpawn(Transform playerTransform, Transform spawnPoint)
+    private static void ApplySpawn(Transform playerTransform, Vector3 spawnPosition, Quaternion spawnRotation)
     {
         Rigidbody rb = playerTransform.GetComponent<Rigidbody>();
         if (rb != null)
         {
-            rb.position = spawnPoint.position;
-            rb.rotation = spawnPoint.rotation;
+            rb.position = spawnPosition;
+            rb.rotation = spawnRotation;
             rb.linearVelocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
             return;
         }
 
-        playerTransform.SetPositionAndRotation(spawnPoint.position, spawnPoint.rotation);
+        playerTransform.SetPositionAndRotation(spawnPosition, spawnRotation);
     }
 
-    private IEnumerator ApplySpawnAfterPhysics(Transform playerTransform, Transform spawnPoint)
+    private IEnumerator ApplySpawnAfterPhysics(Transform playerTransform, Vector3 spawnPosition, Quaternion spawnRotation)
     {
         yield return new WaitForFixedUpdate();
 
-        if (playerTransform == null || spawnPoint == null)
+        if (playerTransform == null)
         {
             yield break;
         }
 
-        ApplySpawn(playerTransform, spawnPoint);
+        ApplySpawn(playerTransform, spawnPosition, spawnRotation);
     }
 }
