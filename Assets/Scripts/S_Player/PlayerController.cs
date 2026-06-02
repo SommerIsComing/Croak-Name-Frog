@@ -254,6 +254,7 @@ public class PlayerController : MonoBehaviour
 
     public void MovePlayer()
     {
+        if(rb == null || Camera.main == null) { return; }
         float controlMultiplier = GetAirControlMultiplier();
 
         Vector3 forward = Camera.main.transform.forward;
