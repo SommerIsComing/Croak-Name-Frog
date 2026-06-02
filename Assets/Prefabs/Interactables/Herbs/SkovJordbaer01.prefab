@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2063894152306931106}
   - component: {fileID: 7985308322914392951}
   - component: {fileID: 3778276100560114615}
+  - component: {fileID: -1625198942554349830}
   m_Layer: 0
   m_Name: SkovJordbaer01
   m_TagString: Collectable
@@ -132,6 +133,33 @@ MonoBehaviour:
   hasPickedUp: 0
   hasQuest: 0
   isInteractableForPlayer: 0
+--- !u!205 &-1625198942554349830
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6857679292870810096}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0, y: 0, z: 0}
+  m_Size: 1
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.6
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 2063894152306931106}
+  - screenRelativeHeight: 0.3
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 2063894152306931106}
+  - screenRelativeHeight: 0.01
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 2063894152306931106}
+  m_Enabled: 1
 --- !u!1001 &5941357494794655370
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -150,11 +178,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8762196037098860407, guid: 623c798ce50525d42b8171263a304af2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.43
+      value: 0.707
       objectReference: {fileID: 0}
     - target: {fileID: 8762196037098860407, guid: 623c798ce50525d42b8171263a304af2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8762196037098860407, guid: 623c798ce50525d42b8171263a304af2, type: 3}
       propertyPath: m_LocalRotation.w
