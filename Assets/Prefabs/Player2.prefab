@@ -2241,7 +2241,6 @@ GameObject:
   - component: {fileID: 5395146654991940071}
   - component: {fileID: 3856732862393157369}
   - component: {fileID: 8187969274052799550}
-  - component: {fileID: 4992144732785243813}
   - component: {fileID: 3301751703821393164}
   - component: {fileID: 7463668377609199509}
   - component: {fileID: 2901404549525027336}
@@ -2365,7 +2364,7 @@ MonoBehaviour:
     m_ActionName: 'Player/Attack[/Mouse/leftButton,/Keyboard/enter]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4992144732785243813}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PlayerInteract, Assembly-CSharp
         m_MethodName: OnInteraction
         m_Mode: 0
@@ -2572,18 +2571,6 @@ MonoBehaviour:
     cooldownTime: 1
     activeTime: 0
     activateRequested: 0
---- !u!114 &4992144732785243813
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8650871458768888115}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79b5f954ae10f4e478bee30b6526f14a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerInteract
 --- !u!114 &3301751703821393164
 MonoBehaviour:
   m_ObjectHideFlags: 0
