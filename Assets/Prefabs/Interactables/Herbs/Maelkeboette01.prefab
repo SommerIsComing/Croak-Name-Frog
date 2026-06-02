@@ -149,10 +149,12 @@ LODGroup:
   m_LODs:
   - screenRelativeHeight: 0.6
     fadeTransitionWidth: 0
-    renderers: []
+    renderers:
+    - renderer: {fileID: 7705679517281887330}
   - screenRelativeHeight: 0.3
     fadeTransitionWidth: 0
-    renderers: []
+    renderers:
+    - renderer: {fileID: 7705679517281887330}
   - screenRelativeHeight: 0.01
     fadeTransitionWidth: 0
     renderers:
@@ -176,11 +178,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8762196037098860407, guid: 623c798ce50525d42b8171263a304af2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.43
+      value: 0.82
       objectReference: {fileID: 0}
     - target: {fileID: 8762196037098860407, guid: 623c798ce50525d42b8171263a304af2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8762196037098860407, guid: 623c798ce50525d42b8171263a304af2, type: 3}
       propertyPath: m_LocalRotation.w
