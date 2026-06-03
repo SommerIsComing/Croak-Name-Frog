@@ -31,11 +31,6 @@ public class QuestManager : MonoBehaviour
         UIEvent.OnUIQuestRefresh?.Invoke();
     }
 
-    private void Update()
-    {
-        Debug.Log(pinnedQuest.questData.questName);
-    }
-
     private void OnEnable()
     {
         // Questmanageren lytter på events for at opdatere quest status
@@ -259,7 +254,6 @@ public class QuestManager : MonoBehaviour
 
             UIEvent.OnNewQuest?.Invoke(newQuest);
 
-            Debug.Log("tries pinning quest");
             PinQuest(newQuest);
 
             UIEvent.OnUIQuestRefresh?.Invoke();
