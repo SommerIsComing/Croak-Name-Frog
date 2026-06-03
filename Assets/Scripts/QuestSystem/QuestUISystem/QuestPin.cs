@@ -41,8 +41,15 @@ public class QuestPin : MonoBehaviour
 
         if (pinnedQuest == null)
         {
-            root.style.display = DisplayStyle.None;
-            return;
+            QuestManager.questManager.AutoPinQuest();
+            pinnedQuest = QuestManager.questManager.pinnedQuest;
+
+            if(pinnedQuest == null)
+            {
+                root.style.display = DisplayStyle.None;
+                return;
+            }
+            root.style.display = DisplayStyle.Flex;
         }
 
         if(pinnedQuest.runtimeObjectives.Count == 0)
@@ -59,10 +66,16 @@ public class QuestPin : MonoBehaviour
 
         if(pinnedQuest.currentObjectiveIndex >= pinnedQuest.runtimeObjectives.Count)
         {
+            QuestManager.questManager.AutoPinQuest();
+            pinnedQuest = QuestManager.questManager.pinnedQuest;
+
+            if (pinnedQuest == null)
+            {
+                root.style.display = DisplayStyle.None;
+                return;
+            }
+
             root.style.display = DisplayStyle.Flex;
-            pinnedQuestTitle.text = pinnedQuest.questData.questName;
-            pinnedQuestObjective.text = "Quest Completed!";
-            return;
         }
 
         pinnedQuestTitle.text = pinnedQuest.questData.questName;
