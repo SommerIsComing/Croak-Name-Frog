@@ -21,4 +21,15 @@ public class SceneLoader : MonoBehaviour
         SceneManager.LoadScene(sceneToLoad, LoadSceneMode.Single);
     }
 
+    public void QuitGame()
+    {
+        Debug.Log("Quit Game");
+        #if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+        #else
+        Application.Quit();
+        #endif
+    }
+
+
 }
