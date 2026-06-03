@@ -20,7 +20,7 @@ public class QuestPin : MonoBehaviour
 
     private void Start()
     {
-        root.style.display = DisplayStyle.Flex;
+        root.style.display = DisplayStyle.None;
     }
 
     private void OnEnable()
@@ -37,46 +37,38 @@ public class QuestPin : MonoBehaviour
 
     private void UpdatePinnedQuest()
     {
+        if (QuestManager.questManager.pinnedQuest == null)
+        {
+             root.style.display = DisplayStyle.None;
+             return;
+        }
+
         QuestInstance pinnedQuest = QuestManager.questManager.pinnedQuest;
 
-        if (pinnedQuest == null)
+        if (pinnedQuest.runtimeObjectives.Count == 0)
         {
-            QuestManager.questManager.AutoPinQuest();
-            pinnedQuest = QuestManager.questManager.pinnedQuest;
-
-            if(pinnedQuest == null)
-            {
-                root.style.display = DisplayStyle.None;
-                return;
-            }
-            root.style.display = DisplayStyle.Flex;
-        }
-
-        if(pinnedQuest.runtimeObjectives.Count == 0)
-        {
+            pinnedQuest = null;
             root.style.display = DisplayStyle.None;
             return;
         }
 
-        if(pinnedQuest.isQuestCompleted == true)
+        if(pinnedQuest.isQuestCompleted == true || pinnedQuest.currentObjectiveIndex >= pinnedQuest.runtimeObjectives.Count)
         {
-            root.style.display = DisplayStyle.None;
-            return;
-        }
-
-        if(pinnedQuest.currentObjectiveIndex >= pinnedQuest.runtimeObjectives.Count)
-        {
-            QuestManager.questManager.AutoPinQuest();
-            pinnedQuest = QuestManager.questManager.pinnedQuest;
-
-            if (pinnedQuest == null)
+            if (QuestManager.questManager.pinnedQuest != null)
             {
+                QuestManager.questManager.AutoPinQuest();
+                pinnedQuest = QuestManager.questManager.pinnedQuest;
+                root.style.display = DisplayStyle.Flex;
+            }
+            else
+            {
+                pinnedQuest = null;
                 root.style.display = DisplayStyle.None;
                 return;
             }
-
-            root.style.display = DisplayStyle.Flex;
         }
+
+        root.style.display = DisplayStyle.Flex;
 
         pinnedQuestTitle.text = pinnedQuest.questData.questName;
 
