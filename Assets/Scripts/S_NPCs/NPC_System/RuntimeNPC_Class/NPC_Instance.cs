@@ -28,12 +28,22 @@ public class NPC_Instance : MonoBehaviour, Interactable
         GameEvent.OnAnimNeeded += PlayAnim;
         GameEvent.OnInteractionNeeded += MakeInteractable;
         UIEvent.OnPlayerTalkedToTheFirstTime += SetHasTalkedToPlayer;
+
+        if (!string.IsNullOrEmpty(npcID))
+        {
+            QuestTargetRegistry.questTargetRegistry.RegisterTarget(npcID, transform);
+        }
     }
 
     private void OnDisable()
     {
         GameEvent.OnAnimNeeded -= PlayAnim;
         GameEvent.OnInteractionNeeded -= MakeInteractable;
+
+        if (!string.IsNullOrEmpty(npcID))
+        {
+            QuestTargetRegistry.questTargetRegistry.UnregisterTarget(npcID, transform);
+        }
     }
 
     public void MakeInteractable(string npcName, bool interactable)

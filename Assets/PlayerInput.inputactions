@@ -68,6 +68,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Compass",
+                    "type": "Button",
+                    "id": "d2ab6357-b7a4-465a-8c71-3dfc212aa811",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -409,6 +418,17 @@
                     "processors": "",
                     "groups": ";Mouse&Keyboard",
                     "action": "Shoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9713aa0d-a008-4dc3-a632-0f380c2a3f6a",
+                    "path": "<Keyboard>/c",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Mouse&Keyboard",
+                    "action": "Compass",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

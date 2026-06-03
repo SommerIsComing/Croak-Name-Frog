@@ -47,6 +47,8 @@ public class PlayerController : MonoBehaviour
     private Coroutine attackRepeatRoutine;
     private bool isInDialogue;
 
+    [SerializeField] private Compass compass;
+
     private void OnEnable()
     {
         GameEvent.OnDialogueInteractionStart += HandleDialogueStart;
@@ -174,6 +176,28 @@ public class PlayerController : MonoBehaviour
             }
         }
         
+    }
+
+    public void OnCompass(InputAction.CallbackContext context)
+    {
+        if (!isInDialogue)
+        {
+            if (context.started)
+            {
+                if (compass != null)
+                {
+                    compass.ActivateCompass();
+                }
+            }
+
+            if (context.canceled)
+            {
+                if (compass != null)
+                {
+                    compass.DeactivateCompass();
+                }
+            }
+        }
     }
 
     // Animation Event hook: call this from attack clips when the projectile should fire.
