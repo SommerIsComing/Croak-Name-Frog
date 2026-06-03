@@ -8,4 +8,8 @@ public static class GameEvent
     public static Action<string> OnAnimNeeded;
     public static Action<string, bool> OnInteractionNeeded;
     public static Action<string> OnAbilityUnlockNeeded;
+
+    public static Action OnDialogueInteractionStart;
+
+    public static Action OnDialogueInteractionEnd;
 }
