@@ -109,4 +109,9 @@ public class NPC_UI : MonoBehaviour
     {
         return isDialogueDisplaying;
     }
+
+    public void SetDialogueDisplaying(bool value)
+    {
+        isDialogueDisplaying = value;
+    }
 }

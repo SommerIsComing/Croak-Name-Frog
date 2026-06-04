@@ -12,11 +12,13 @@ public class UI_Manager : MonoBehaviour
     private Button pauseMenuButton;
     private Button questLogButton;
     private Button collectiblesButton;
+    private Button currentButton;
 
     public VisualElement pauseMenuPage;
     public VisualElement questLogPage;
     public VisualElement collectiblesPage;
-
+    private ListView activeQuestsListUI;
+    private ListView completedQuestsListUI;
     public bool noteBookUIDisplaying = false;
 
     private void Awake()
@@ -42,7 +44,11 @@ public class UI_Manager : MonoBehaviour
         pauseMenuPage = pageRoot.Q<VisualElement>("PauseMenuPage");
         questLogPage = pageRoot.Q<VisualElement>("QuestLogPage");
         collectiblesPage = pageRoot.Q<VisualElement>("CollectiblesPage");
+
+        activeQuestsListUI = questLogPage.Q<ListView>("ActiveQuestsList");
+        completedQuestsListUI = questLogPage.Q<ListView>("CompletedQuestsList");
     }
+
 
     private void OnEnable()
     {
@@ -51,9 +57,20 @@ public class UI_Manager : MonoBehaviour
         collectiblesButton.clicked += DisplayCollectibles;
 
         UIEvent.OnPauseMenuNeeded += DisplayNoteBook;
+        UIEvent.OnControllerCancel += ReturnToButtonTab;
 
         DisplayQuestLog();
         HideNoteBook();
+    }
+
+    private void OnDisable()
+    {
+        pauseMenuButton.clicked -= DisplayPauseMenuPage;
+        questLogButton.clicked -= DisplayQuestLog;
+        collectiblesButton.clicked -= DisplayCollectibles;
+
+        UIEvent.OnPauseMenuNeeded -= DisplayNoteBook;
+        UIEvent.OnControllerCancel -= ReturnToButtonTab;
     }
 
     private void DisplayNoteBook()
@@ -62,6 +79,9 @@ public class UI_Manager : MonoBehaviour
         {
             root.style.display = DisplayStyle.Flex;
             noteBookUIDisplaying = true;
+
+            questLogButton.Focus();
+            currentButton = questLogButton;
             UIEvent.OnUIQuestRefresh?.Invoke();
         }
         else
@@ -79,7 +99,14 @@ public class UI_Manager : MonoBehaviour
 
             noteBookUIDisplaying = false;
 
+            currentButton = null;
+
+            root.Blur();
+
+            activeQuestsListUI.ClearSelection();
+
             UIEvent.OnUIQuestRefresh?.Invoke();
+
         }
     }
 
@@ -90,6 +117,8 @@ public class UI_Manager : MonoBehaviour
             pauseMenuPage.style.display = DisplayStyle.Flex;
             questLogPage.style.display = DisplayStyle.None;
             collectiblesPage.style.display = DisplayStyle.None;
+            pauseMenuButton.Focus();
+            currentButton = pauseMenuButton;
 
             noteBookUIDisplaying = true;
             UIEvent.OnUIQuestRefresh?.Invoke();
@@ -101,6 +130,31 @@ public class UI_Manager : MonoBehaviour
         pauseMenuPage.style.display = DisplayStyle.None;
         questLogPage.style.display = DisplayStyle.Flex;
         collectiblesPage.style.display = DisplayStyle.None;
+        currentButton = questLogButton;
+
+        activeQuestsListUI.ClearSelection();
+
+        activeQuestsListUI.selectionChanged += items =>
+        {
+            int index = activeQuestsListUI.selectedIndex;
+
+            VisualElement row = activeQuestsListUI.GetRootElementForIndex(index);
+
+            Button pinButton = row?.Q<Button>("PinButton");
+
+            pinButton?.Focus();
+        };
+
+        completedQuestsListUI.selectionChanged += items =>
+        {
+            int index = completedQuestsListUI.selectedIndex;
+
+            VisualElement row = completedQuestsListUI.GetRootElementForIndex(index);
+
+            Button pinButton = row?.Q<Button>("PinButton");
+
+            pinButton?.Focus();
+        };
 
         noteBookUIDisplaying = true;
         UIEvent.OnUIQuestRefresh?.Invoke();
@@ -111,9 +165,20 @@ public class UI_Manager : MonoBehaviour
         pauseMenuPage.style.display = DisplayStyle.None;
         questLogPage.style.display = DisplayStyle.None;
         collectiblesPage.style.display = DisplayStyle.Flex;
+        collectiblesButton.Focus();
+        currentButton = collectiblesButton;
 
         noteBookUIDisplaying = true;
         UIEvent.OnUIQuestRefresh?.Invoke();
+    }
+
+    private void ReturnToButtonTab()
+    {
+        if(!noteBookUIDisplaying) { return; }
+
+         activeQuestsListUI.ClearSelection();
+
+         currentButton?.Focus();
     }
 
 }
