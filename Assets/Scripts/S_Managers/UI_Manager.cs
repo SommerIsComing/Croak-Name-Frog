@@ -18,6 +18,7 @@ public class UI_Manager : MonoBehaviour
     public VisualElement questLogPage;
     public VisualElement collectiblesPage;
     private ListView activeQuestsListUI;
+    private ListView completedQuestsListUI;
     public bool noteBookUIDisplaying = false;
 
     private void Awake()
@@ -45,6 +46,7 @@ public class UI_Manager : MonoBehaviour
         collectiblesPage = pageRoot.Q<VisualElement>("CollectiblesPage");
 
         activeQuestsListUI = questLogPage.Q<ListView>("ActiveQuestsList");
+        completedQuestsListUI = questLogPage.Q<ListView>("CompletedQuestsList");
     }
 
 
@@ -134,10 +136,25 @@ public class UI_Manager : MonoBehaviour
 
         activeQuestsListUI.selectionChanged += items =>
         {
-            VisualElement selectedElement = activeQuestsListUI.Q<Button>("PinButton");
+            int index = activeQuestsListUI.selectedIndex;
 
-            selectedElement?.Focus();
-        }; 
+            VisualElement row = activeQuestsListUI.GetRootElementForIndex(index);
+
+            Button pinButton = row?.Q<Button>("PinButton");
+
+            pinButton?.Focus();
+        };
+
+        completedQuestsListUI.selectionChanged += items =>
+        {
+            int index = completedQuestsListUI.selectedIndex;
+
+            VisualElement row = completedQuestsListUI.GetRootElementForIndex(index);
+
+            Button pinButton = row?.Q<Button>("PinButton");
+
+            pinButton?.Focus();
+        };
 
         noteBookUIDisplaying = true;
         UIEvent.OnUIQuestRefresh?.Invoke();
