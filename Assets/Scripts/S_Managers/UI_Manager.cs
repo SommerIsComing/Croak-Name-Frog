@@ -1,7 +1,4 @@
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 
 public class UI_Manager : MonoBehaviour
@@ -80,6 +77,7 @@ public class UI_Manager : MonoBehaviour
         {
             root.style.display = DisplayStyle.Flex;
             noteBookUIDisplaying = true;
+
             questLogButton.Focus();
             currentButton = questLogButton;
             UIEvent.OnUIQuestRefresh?.Invoke();
@@ -102,7 +100,7 @@ public class UI_Manager : MonoBehaviour
             currentButton = null;
 
             root.Blur();
-            //activeQuestsListUI.Blur();
+
             activeQuestsListUI.ClearSelection();
 
             UIEvent.OnUIQuestRefresh?.Invoke();
@@ -132,7 +130,6 @@ public class UI_Manager : MonoBehaviour
         collectiblesPage.style.display = DisplayStyle.None;
         currentButton = questLogButton;
 
-        //activeQuestsListUI.Blur();
         activeQuestsListUI.ClearSelection();
 
         activeQuestsListUI.selectionChanged += items =>
@@ -160,10 +157,11 @@ public class UI_Manager : MonoBehaviour
 
     private void ReturnToButtonTab()
     {
-        //activeQuestsListUI.Blur();
-        activeQuestsListUI.ClearSelection();
+        if(!noteBookUIDisplaying) { return; }
 
-        currentButton?.Focus();
+         activeQuestsListUI.ClearSelection();
+
+         currentButton?.Focus();
     }
 
 }
