@@ -1,4 +1,3 @@
-using System.Runtime.Serialization.Formatters;
 using UnityEngine;
 
 public class AreaQuestTrigger : MonoBehaviour
