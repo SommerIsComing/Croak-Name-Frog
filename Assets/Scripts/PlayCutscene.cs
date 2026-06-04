@@ -8,7 +8,6 @@ public class PlayCutscene : MonoBehaviour
     [SerializeField] private MusicManager musicManager;
     [SerializeField] private GameObject player1;
     [SerializeField] private GameObject player2;
-    [SerializeField] private Transform voidSpawn;
 
 
     void OnTriggerEnter(Collider other)
