@@ -1750,6 +1750,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1975257727153348401}
   - component: {fileID: 8168757698895081872}
+  - component: {fileID: 5389209972030084875}
+  - component: {fileID: 8809917175294314884}
+  - component: {fileID: 5455639178591565203}
   m_Layer: 0
   m_Name: MOM PHROG
   m_TagString: Untagged
@@ -1767,7 +1770,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -11.12, y: -4.213324, z: -19.89}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2.4662287, y: 2.4662287, z: 2.4662287}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4674783048593125271}
@@ -1799,6 +1802,72 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!65 &5389209972030084875
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8435050728982911075}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.2734189, y: 1.1037666, z: 1}
+  m_Center: {x: -0.0000004124889, y: 0.5363048, z: 0}
+--- !u!54 &8809917175294314884
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8435050728982911075}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 14
+  m_CollisionDetection: 0
+--- !u!114 &5455639178591565203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8435050728982911075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2f877cf4be697e4b822046696d02f30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NPC_Instance
+  npcData: {fileID: 11400000, guid: 13f6ffb8219fa8e4892cf7b37503728e, type: 2}
+  questGiven: 0
+  npcID: mom
+  questToGiveID: mainQuest
+  isInteractable: 1
+  hasTalkedToPlayer: 0
 --- !u!1 &8734898626906236302
 GameObject:
   m_ObjectHideFlags: 0
