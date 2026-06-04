@@ -1,0 +1,32 @@
+:root {
+}
+
+.unity-button {
+}
+
+.unity-button:focus {
+    scale: 1.1;
+    -unity-background-image-tint-color: rgb(159, 159, 159);
+    -unity-font-style: bold;
+    border-left-width: 3px;
+    border-left-color: rgba(0, 0, 0, 0.78);
+    font-size: 17px;
+}
+
+.unity-button:hover{
+    scale: 1.1;
+    -unity-background-image-tint-color: rgb(200, 200, 200);
+    -unity-font-style: bold;
+    border-left-width: 3px;
+    border-left-color: rgba(0, 0, 0, 0.78);
+    font-size: 17px;
+}
+
+.unity-button:active {
+    scale: 0.95;
+    -unity-background-image-tint-color: rgb(100, 100, 100);
+    -unity-font-style: bold;
+    border-left-width: 3px;
+    border-left-color: rgba(0, 0, 0, 0.78);
+    font-size: 16px;
+}

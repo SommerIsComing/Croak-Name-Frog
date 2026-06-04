@@ -59,6 +59,7 @@ public class QuestPin : MonoBehaviour
                 QuestManager.questManager.AutoPinQuest();
                 pinnedQuest = QuestManager.questManager.pinnedQuest;
                 root.style.display = DisplayStyle.Flex;
+                return;
             }
             else
             {

@@ -48,13 +48,17 @@ public class NPC_Instance : MonoBehaviour, Interactable
     {
         if (isInteractable)
         {
+            NPC_UI.npc_UI.SetDialogueDisplaying(true);
+
+            GiveQuest();
+
             NPC_DialogueObject currentDialogue = GetNPCDialogue();
 
             NPC_Manager.npcManager.DisplayDialogue(currentDialogue);
 
-            GiveQuest();
-
             QuestEvents.OnNPCTalkedTo?.Invoke(npcID);
+
+            SetHasTalkedToPlayer(npcData.npcName);
         }
     }
 
@@ -70,7 +74,6 @@ public class NPC_Instance : MonoBehaviour, Interactable
             Debug.Log("Quest Given");
             questGiven = true;
             QuestEvents.OnQuestGivenByID?.Invoke(questToGiveID);
-            SetHasTalkedToPlayer(npcData.npcName);
         }
     }
 
@@ -122,7 +125,7 @@ public class NPC_Instance : MonoBehaviour, Interactable
 
     public void SetHasTalkedToPlayer(string npcName)
     {
-        if(npcName == npcData.npcName)
+        if(npcName == npcData.npcName && hasTalkedToPlayer != true)
         {
             hasTalkedToPlayer = true;
         }

@@ -19,4 +19,12 @@ public class PlayerUIController : MonoBehaviour
             UIEvent.OnDialogueContinue?.Invoke();
         }
     }
+
+    public void OnControllerCancel(InputAction.CallbackContext context)
+    {
+        if (UI_Manager.uiManager.noteBookUIDisplaying)
+        {
+            UIEvent.OnControllerCancel?.Invoke();
+        }
+    }
 }
