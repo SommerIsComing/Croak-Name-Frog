@@ -231,11 +231,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 545791696082807009}
-  - component: {fileID: 2281912171984977767}
-  - component: {fileID: 1302108533349916537}
-  - component: {fileID: 2431546922167273029}
   - component: {fileID: 3149302688906510868}
-  - component: {fileID: 125643961700313092}
   m_Layer: 0
   m_Name: PlayerHUD
   m_TagString: Untagged
@@ -258,53 +254,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 433484138413576727}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2281912171984977767
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 785795077673972619}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.dll::UnityEngine.UIElements.UIDocument
-  m_PanelSettings: {fileID: 11400000, guid: 7317a3ebe3b656a41b7f86ea82f9e035, type: 2}
-  m_ParentUI: {fileID: 0}
-  sourceAsset: {fileID: 9197481963319205126, guid: 27aaad12e574f92448e61d017474a3a2, type: 3}
-  m_SortingOrder: 0
-  m_Position: 0
-  m_WorldSpaceSizeMode: 1
-  m_WorldSpaceWidth: 1920
-  m_WorldSpaceHeight: 1080
-  m_PivotReferenceSize: 0
-  m_Pivot: 0
-  m_WorldSpaceCollider: {fileID: 0}
---- !u!114 &1302108533349916537
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 785795077673972619}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a657136e29f03dd4d83d64d88cc1e515, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::QuestPin
---- !u!114 &2431546922167273029
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 785795077673972619}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 247dcae8aa1e2d8479e536d6dcdf1d4c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::NPC_UI
 --- !u!114 &3149302688906510868
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -317,21 +266,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93a03af7a4337b648bac5ddf3cc4dc81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  yTargetOffset: 5
-  xTargetOffset: -290
---- !u!114 &125643961700313092
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 785795077673972619}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a85958a32fe6294fa9d89cf6e6ccc11, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  popUpDuration: 4
+  yTargetOffset: 3
+  xTargetOffset: 60
 --- !u!1 &918640409307735160
 GameObject:
   m_ObjectHideFlags: 0
