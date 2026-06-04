@@ -10,6 +10,7 @@ public static class UIEvent
 
     public static Action<NPC_DialogueObject> OnDialogueStart;
     public static Action OnDialogueContinue;
+    public static Action OnControllerCancel;
 
     public static Action<string> OnPlayerTalkedToTheFirstTime;
 
