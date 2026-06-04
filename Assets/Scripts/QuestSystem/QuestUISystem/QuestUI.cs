@@ -99,15 +99,15 @@ public class QuestUI : MonoBehaviour
         Button pinnedQuestButton = element.Q<Button>("PinButton");
 
         // Fjern tidligere tilknyttet action-event for at undgå multiple event calls
-        if(pinnedQuestButton.userData is Action oldAction)
+        if (pinnedQuestButton.userData is Action oldAction)
         {
             pinnedQuestButton.clicked -= oldAction;
         }
 
         // Opret en ny Action-event for pin knappen, som pinner questen hvis den ikke er pinned, og unpinner den hvis den allerede er pinned
-        Action newPinAction = () => 
-        { 
-            if(!isCompletedQuest && quest != QuestManager.questManager.pinnedQuest)
+        Action newPinAction = () =>
+        {
+            if (!isCompletedQuest && quest != QuestManager.questManager.pinnedQuest)
             {
                 QuestManager.questManager.PinQuest(quest);
             }
@@ -121,6 +121,17 @@ public class QuestUI : MonoBehaviour
         pinnedQuestButton.userData = newPinAction;
 
         pinnedQuestButton.clicked += newPinAction;
+
+
+        if (quest != QuestManager.questManager.pinnedQuest)
+        {
+            pinnedQuestButton.text = "Fastgør";
+
+        }
+        else
+        {
+            pinnedQuestButton.text = "Løsgør";
+        }
     }
 
     // Metode til at opdatere UI, når der sker ændringer i quests
