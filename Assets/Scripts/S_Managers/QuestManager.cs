@@ -13,7 +13,7 @@ public class QuestManager : MonoBehaviour
     // Liste over aktive/færdige quests i spillet
     public List<QuestInstance> activeQuests = new List<QuestInstance>();
     public List<QuestInstance> completedQuests = new List<QuestInstance>();
-    public QuestInstance pinnedQuest = null;
+    public QuestInstance pinnedQuest;
 
     // Singleton pattern til QuestManager, der sikrer at der kun er én instans af QuestManager i spillet
     private void Awake()
@@ -247,19 +247,16 @@ public class QuestManager : MonoBehaviour
         // den nye quest-instance "newQuest" tildeles quest-dataen fra quest databasen (fra HandleQuestGivenByID()-metoden)
         newQuest.questData = questData;
 
-        if(newQuest != null )
+        if(newQuest.questData != null )
         {
             newQuest.PrepQuest();
             activeQuests.Add(newQuest);
 
-            UIEvent.OnUIQuestRefresh?.Invoke();
             UIEvent.OnNewQuest?.Invoke(newQuest);
 
-            if (pinnedQuest == null)
-            {
-                PinQuest(newQuest);
-                UIEvent.OnUIQuestRefresh?.Invoke();
-            }
+            PinQuest(newQuest);
+
+            UIEvent.OnUIQuestRefresh?.Invoke();
         }
     }
 
@@ -311,6 +308,19 @@ public class QuestManager : MonoBehaviour
             UIEvent.OnUIQuestRefresh?.Invoke();
             UIEvent.OnQuestCompleted?.Invoke(quest);
         }
+    }
+
+    public void AutoPinQuest()
+    {
+        if (HasActiveQuests())
+        {
+            pinnedQuest = activeQuests[0];
+        }
+        else
+        {
+            pinnedQuest = null;
+        }
+        UIEvent.OnUIQuestRefresh?.Invoke();
     }
 
     public void PinQuest (QuestInstance quest)
