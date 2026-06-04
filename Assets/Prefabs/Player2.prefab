@@ -2611,6 +2611,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: ba70da69-e24c-4c6a-b827-3b8047c92c74
     m_ActionName: 'Player/PauseGame[/Keyboard/escape]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5395146654991940071}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnCompass
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: d2ab6357-b7a4-465a-8c71-3dfc212aa811
+    m_ActionName: 'Player/Compass[/Keyboard/c]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -2673,6 +2689,7 @@ MonoBehaviour:
   attackSecondTrigger: isAttackingSecond
   comboWindow: 0.35
   holdRepeatInterval: 0.22
+  compass: {fileID: 0}
 --- !u!114 &3856732862393157369
 MonoBehaviour:
   m_ObjectHideFlags: 0

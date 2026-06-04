@@ -232,6 +232,10 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         playerJump = GetComponent<PlayerJump>();
         abilityHolder = GetComponent<AbilityHolder>();
+        if (compass == null)
+        {
+            compass = Object.FindFirstObjectByType<Compass>(FindObjectsInactive.Include);
+        }
         ResolveAbilityUnlockReferences();
         
         DontDestroyOnLoad(gameObject); //Makes player persistant across scenes
