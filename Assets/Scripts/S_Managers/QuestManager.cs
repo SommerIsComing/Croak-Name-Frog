@@ -1,6 +1,8 @@
 using NUnit.Framework;
+using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor.PackageManager.Requests;
 using UnityEngine;
 
 // QuestManager klassen er ansvarlig for at håndtere alle aktive quests/objectives, opdatere quest/currentObjective progress, tjekke completion samt handlinger relateret til Quest events
@@ -141,8 +143,10 @@ public class QuestManager : MonoBehaviour
         if(activeQuests.Count == 0) return;
 
         // Gennemgår alle aktive quests og tjekker om npc interaktionen er relevant for nogen af questens aktive objectives
-        foreach (QuestInstance quest in activeQuests)
+        for (int i = activeQuests.Count - 1; i >= 0; i--)
         {
+            QuestInstance quest = activeQuests[i];
+
             foreach (ObjectiveInstance objective in quest.runtimeObjectives)
             {
                 if (objective.objectiveData is TalkObjective talkObjective)
@@ -252,12 +256,20 @@ public class QuestManager : MonoBehaviour
             newQuest.PrepQuest();
             activeQuests.Add(newQuest);
 
-            UIEvent.OnNewQuest?.Invoke(newQuest);
-
-            PinQuest(newQuest);
-
-            UIEvent.OnUIQuestRefresh?.Invoke();
+            StartCoroutine(AddQuestOrder(newQuest));
         }
+    }
+
+    IEnumerator AddQuestOrder(QuestInstance newQuest)
+    {
+        // Denne coroutine sikrer, at quests tilføjes i den rækkefølge, de modtages, ved at introducere en lille forsinkelse mellem tilføjelserne
+        yield return new WaitWhile(NPC_UI.npc_UI.IsDialogueDisplaying);
+
+        UIEvent.OnNewQuest?.Invoke(newQuest);
+
+        PinQuest(newQuest);
+
+        UIEvent.OnUIQuestRefresh?.Invoke();
     }
 
     //tjekker om alle aktive objectives i en aktiv quest er blevet gennemført. Er dette tilfældet angives questen som færdig
@@ -320,7 +332,6 @@ public class QuestManager : MonoBehaviour
         {
             pinnedQuest = null;
         }
-        UIEvent.OnUIQuestRefresh?.Invoke();
     }
 
     public void PinQuest (QuestInstance quest)
