@@ -14,6 +14,7 @@ public class CompassPin : MonoBehaviour
     [SerializeField] private bool useCameraForwardAsNorth = false;
     [SerializeField] private Camera worldCamera;
     [SerializeField] private float pinRotationOffset = 0f;
+    [SerializeField] private bool forceCenterPivot = true;
 
     private Transform currentTarget;
 
@@ -23,6 +24,8 @@ public class CompassPin : MonoBehaviour
         {
             pinRect = transform as RectTransform;
         }
+
+        EnsurePinRotatesFromCenter();
 
         if (player == null)
         {
@@ -37,6 +40,16 @@ public class CompassPin : MonoBehaviour
         {
             worldCamera = Camera.main;
         }
+    }
+
+    private void OnValidate()
+    {
+        if (pinRect == null)
+        {
+            pinRect = transform as RectTransform;
+        }
+
+        EnsurePinRotatesFromCenter();
     }
 
     private void Update()
@@ -137,5 +150,15 @@ public class CompassPin : MonoBehaviour
 
         float signedAngle = Vector3.SignedAngle(northForward.normalized, toTarget.normalized, Vector3.up);
         pinRect.localEulerAngles = new Vector3(0f, 0f, -signedAngle + pinRotationOffset);
+    }
+
+    private void EnsurePinRotatesFromCenter()
+    {
+        if (!forceCenterPivot || pinRect == null)
+        {
+            return;
+        }
+
+        pinRect.pivot = new Vector2(0.5f, 0.5f);
     }
 }
