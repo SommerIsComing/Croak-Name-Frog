@@ -433,6 +433,7 @@ GameObject:
   - component: {fileID: 807297030}
   - component: {fileID: 807297032}
   - component: {fileID: 807297031}
+  - component: {fileID: 807297033}
   m_Layer: 5
   m_Name: CompassPin
   m_TagString: Untagged
@@ -497,6 +498,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 807297029}
   m_CullTransparentMesh: 1
+--- !u!114 &807297033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 807297029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 906bc064006bf48458e22e3d5e459787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CompassPin
+  player: {fileID: 1275437046}
+  pinRect: {fileID: 807297030}
+  pointsOfInterest:
+  - {fileID: 1016492418}
+  useCameraForwardAsNorth: 1
+  worldCamera: {fileID: 1475371000}
+  pinRotationOffset: 0
 --- !u!1 &889210554
 GameObject:
   m_ObjectHideFlags: 0
@@ -626,6 +646,75 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1016492415
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1016492418}
+  - component: {fileID: 1016492417}
+  - component: {fileID: 1016492416}
+  m_Layer: 0
+  m_Name: POI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1016492416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1016492415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7fd1c83acacb741bc1b287dd9d3590, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CompassPoiTrigger
+  compassPin: {fileID: 807297033}
+  playerTag: Player
+  disableOnReached: 1
+--- !u!65 &1016492417
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1016492415}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 7.5630417, y: 1, z: 10.156181}
+  m_Center: {x: -0.4979515, y: 0, z: 0.5015497}
+--- !u!4 &1016492418
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1016492415}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 40.97, y: 1.62, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2182,3 +2271,4 @@ SceneRoots:
   - {fileID: 1883897629}
   - {fileID: 4361676355449169857}
   - {fileID: 1525407255}
+  - {fileID: 1016492418}
