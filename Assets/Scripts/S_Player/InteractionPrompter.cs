@@ -20,7 +20,7 @@ public class InteractionPrompter : MonoBehaviour
             interactionPrompter = this;
         }
         
-        root = GetComponent<UIDocument>().rootVisualElement.Q<VisualElement>("InteractionContainer");
+        root = GameObject.FindGameObjectWithTag("PlayerHUDroot").GetComponent<UIDocument>().rootVisualElement.Q<VisualElement>("InteractionContainer");
 
         mainCamera = Camera.main;
     }
