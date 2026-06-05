@@ -18,10 +18,6 @@ public class NPC_Instance : MonoBehaviour, Interactable
 
     public bool hasTalkedToPlayer = false;
 
-    private void Start()
-    {
-        npcData = NPC_Manager.npcManager.AssignNPC(npcID);
-    }
 
     private void OnEnable()
     {
@@ -34,6 +30,11 @@ public class NPC_Instance : MonoBehaviour, Interactable
     {
         GameEvent.OnAnimNeeded -= PlayAnim;
         GameEvent.OnInteractionNeeded -= MakeInteractable;
+    }
+
+    private void Start()
+    {
+        npcData = NPC_Manager.npcManager.AssignNPC(npcID);
     }
 
     public void MakeInteractable(string npcName, bool interactable)
@@ -57,8 +58,6 @@ public class NPC_Instance : MonoBehaviour, Interactable
             NPC_Manager.npcManager.DisplayDialogue(currentDialogue);
 
             QuestEvents.OnNPCTalkedTo?.Invoke(npcID);
-
-            SetHasTalkedToPlayer(npcData.npcName);
         }
     }
 

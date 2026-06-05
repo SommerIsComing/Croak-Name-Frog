@@ -1669,6 +1669,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: de919b0a-7e32-4cfc-b901-ae1a8689cce9
     m_ActionName: 'Player/Cancel[/DualSenseGamepadHID/buttonEast]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: d2ab6357-b7a4-465a-8c71-3dfc212aa811
+    m_ActionName: 'Player/Compass[/Keyboard/c,/DualSenseGamepadHID/leftTrigger]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -1731,6 +1735,7 @@ MonoBehaviour:
   attackSecondTrigger: isAttackingSecond
   comboWindow: 0.35
   holdRepeatInterval: 0.22
+  compass: {fileID: 0}
 --- !u!114 &3871119305362847313
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2056,7 +2061,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 1.53
+  m_Radius: 3
   m_Center: {x: 0, y: 0.82, z: 0}
 --- !u!114 &1230370978789215997
 MonoBehaviour:

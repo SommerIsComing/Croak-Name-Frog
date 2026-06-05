@@ -1,11 +1,13 @@
 using UnityEngine;
 using System.Collections.Generic;
 using NUnit.Framework.Constraints;
+using System.Collections;
 
 public class NPC_Manager : MonoBehaviour 
 {
     public static NPC_Manager npcManager;
     [SerializeField] private NPC_DataBASE npcDataBase;
+    [SerializeField] private NPC_Instance momNPC;
 
     private void Awake()
     {
@@ -18,6 +20,12 @@ public class NPC_Manager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    private IEnumerator Start()
+    {
+        yield return null; // Venter en frame for at sikre, at alle NPC'er er initialiseret
+        momNPC.Interact();
     }
 
     public NPC_Data AssignNPC(string npcID)
