@@ -107,11 +107,16 @@ public class NPC_Instance : MonoBehaviour, Interactable
                 return QuestManager.questManager.completedQuests.Exists(questInstance => questInstance.questData.questID == questToGiveID);
 
             case DialogueConditionType.RequirmentsMet:
-                QuestData quest = QuestManager.questManager.questDataBase.GetQuestByID(questToGiveID);
-                QuestInstance runtimeQuest = new QuestInstance();
+                QuestInstance runTimeQuest = QuestManager.questManager.activeQuests.Find(q => q.questData.questID == questToGiveID);
 
-                runtimeQuest.questData = quest;
-                ObjectiveInstance objective = runtimeQuest.runtimeObjectives[npcDialogue.requiredObjectiveIndex];
+                if(runTimeQuest == null) { return false;}
+
+                ObjectiveInstance objective = runTimeQuest.runtimeObjectives[npcDialogue.requiredObjectiveIndex];
+
+                bool result = objective.IsRequiredQuestsComplete();
+
+                Debug.Log("Checking RequirementsMet");
+                Debug.Log($"RequirementsMet result = {result}");
 
                 return objective.IsRequiredQuestsComplete();
 

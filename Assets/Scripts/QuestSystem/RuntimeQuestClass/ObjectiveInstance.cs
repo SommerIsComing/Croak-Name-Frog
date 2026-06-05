@@ -31,7 +31,7 @@ public class ObjectiveInstance
 
     public bool IsRequiredQuestsComplete()
     {
-        if(objectiveData.questsRequiredForCompletion == null) { return true; }
+        if(objectiveData.questsRequiredForCompletion == null || objectiveData.questsRequiredForCompletion.Count == 0) { return false; }
         
         foreach(QuestData quest in objectiveData.questsRequiredForCompletion)
         {
