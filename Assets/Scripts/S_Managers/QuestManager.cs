@@ -1,8 +1,8 @@
-using NUnit.Framework;
+//using NUnit.Framework;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor.PackageManager.Requests;
+//using Unity.VisualScripting;
+//using UnityEditor.PackageManager.Requests;
 using UnityEngine;
 
 // QuestManager klassen er ansvarlig for at håndtere alle aktive quests/objectives, opdatere quest/currentObjective progress, tjekke completion samt handlinger relateret til Quest events
