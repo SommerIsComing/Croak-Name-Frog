@@ -27,6 +27,7 @@ public enum DialogueConditionType
     FirstTimeTalking,
     ObjectiveInProgress,
     ObjectiveComplete,
+    RequirmentsMet,
     QuestComplete
 }
 

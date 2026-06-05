@@ -10,7 +10,7 @@ public class QuestManager : MonoBehaviour
 {
     // Singleton instans af QuestManager, der kan tilgås globalt i spillet samt database reference til at hente quest data
     public static QuestManager questManager;
-    [SerializeField] private QuestDataBASE questDataBase;
+    [SerializeField] public QuestDataBASE questDataBase;
 
     // Liste over aktive/færdige quests i spillet
     public List<QuestInstance> activeQuests = new List<QuestInstance>();
@@ -256,11 +256,11 @@ public class QuestManager : MonoBehaviour
             newQuest.PrepQuest();
             activeQuests.Add(newQuest);
 
-            StartCoroutine(AddQuestOrder(newQuest));
+            StartCoroutine(AddQuestInOrder(newQuest));
         }
     }
 
-    IEnumerator AddQuestOrder(QuestInstance newQuest)
+    IEnumerator AddQuestInOrder(QuestInstance newQuest)
     {
         // Denne coroutine sikrer, at quests tilføjes i den rækkefølge, de modtages, ved at introducere en lille forsinkelse mellem tilføjelserne
         yield return new WaitWhile(NPC_UI.npc_UI.IsDialogueDisplaying);

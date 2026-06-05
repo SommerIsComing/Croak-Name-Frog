@@ -31,9 +31,9 @@ public class ObjectiveInstance
 
     public bool IsRequiredQuestsComplete()
     {
-        if(objectiveData.QuestsRequiredForCompletion == null) { return true; }
+        if(objectiveData.questsRequiredForCompletion == null) { return true; }
         
-        foreach(QuestData quest in objectiveData.QuestsRequiredForCompletion)
+        foreach(QuestData quest in objectiveData.questsRequiredForCompletion)
         {
             bool questIsCompleted = QuestManager.questManager.completedQuests.Exists(q => q.questData.questID == quest.questID);
 
