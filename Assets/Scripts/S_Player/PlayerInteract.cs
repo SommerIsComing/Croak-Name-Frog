@@ -19,7 +19,7 @@ public class PlayerInteract : MonoBehaviour
         }
         else if(context.performed && NPC_UI.npc_UI.IsDialogueDisplaying())
         {
-            NPC_UI.npc_UI.ContinueDialogue();
+            UIEvent.OnDialogueContinue?.Invoke();
             InteractionPrompter.interactionPrompter.HideInteractionPrompt();
             return;
         }
