@@ -1,0 +1,5 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="ToolTipElement" style="flex-grow: 1;">
+        <ui:Label text="Tooltip" name="ToolTipLabel" style="color: rgb(255, 255, 255); -unity-font-definition: url(&quot;project://database/Assets/Fonts/Super%20Warming.ttf?fileID=12800000&amp;guid=bc7f5e7c7803bc74ebf140e8ed2e7576&amp;type=3#Super Warming&quot;); -unity-font-style: italic; font-size: 100px;"/>
+    </ui:VisualElement>
+</ui:UXML>
