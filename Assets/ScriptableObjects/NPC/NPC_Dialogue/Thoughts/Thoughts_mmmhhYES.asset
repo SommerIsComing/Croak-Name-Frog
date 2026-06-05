@@ -10,17 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c254f70efef16544396a52fbdd313478, type: 3}
-  m_Name: NPC_fishman_hello
+  m_Name: Thoughts_mmmhhYES
   m_EditorClassIdentifier: Assembly-CSharp::NPC_DialogueObject
   dialogueText:
-  - "Hey! Undskyld, men du m\xE5 alts\xE5 ikke fiske her! "
+  - "Endelig kan jeg bes\xF8ge bedstefar! Jeg kan nu hoppe h\xF8jt nok til at komme
+    over stenene.."
+  - Og jeg har suppen med til bedstefar!
   npcSpeakerImage:
-    m_Texture: {fileID: 2800000, guid: ab61b1d6dc5f2c140a45824cf4d67490, type: 3}
+    m_Texture: {fileID: 2800000, guid: 32ceab08c4f566d41864b363169677c8, type: 3}
     m_Sprite: {fileID: 0}
     m_RenderTexture: {fileID: 0}
     m_VectorImage: {fileID: 0}
-  npcSpeakerName: Fish Man
-  npcID: fishman
-  conditionType: 1
-  questID: fish
-  requiredObjectiveIndex: 0
+  npcSpeakerName: Indre Tanker
+  npcID: thoughts
+  conditionType: 4
+  questID: mainQuest
+  requiredObjectiveIndex: 1

@@ -561,7 +561,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3361587266966562252}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.28460518, y: 0.6631179, z: -0.48075044, w: -0.4981502}
+  m_LocalRotation: {x: -0.28460518, y: -0.6631179, z: 0.48075044, w: 0.4981502}
   m_LocalPosition: {x: -0.0035840694, y: 0.28213617, z: -0.023857282}
   m_LocalScale: {x: 1, y: 1, z: 0.9999999}
   m_ConstrainProportionsScale: 0
@@ -1821,7 +1821,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.4
+  m_Radius: 0.7
   m_Height: 1.15
   m_Direction: 1
   m_Center: {x: 0, y: 0.58, z: -0.15}
@@ -1850,7 +1850,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 1
-  m_Constraints: 80
+  m_Constraints: 94
   m_CollisionDetection: 1
 --- !u!114 &7741006949369538611
 MonoBehaviour:
@@ -1864,7 +1864,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2f877cf4be697e4b822046696d02f30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NPC_Instance
-  npcData: {fileID: 0}
+  npcData: {fileID: 11400000, guid: 13f6ffb8219fa8e4892cf7b37503728e, type: 2}
   questGiven: 0
   npcID: mom
   questToGiveID: mainQuest

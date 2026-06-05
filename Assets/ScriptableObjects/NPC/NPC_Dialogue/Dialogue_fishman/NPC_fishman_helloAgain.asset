@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c254f70efef16544396a52fbdd313478, type: 3}
-  m_Name: NPC_fishman_hello
+  m_Name: NPC_fishman_helloAgain
   m_EditorClassIdentifier: Assembly-CSharp::NPC_DialogueObject
   dialogueText:
-  - "Hey! Undskyld, men du m\xE5 alts\xE5 ikke fiske her! "
+  - "H\xF8rte du ikke hvad jeg sagde?? Du m\xE5 IKKE fiske her! "
+  - "Det er mit fiskeomr\xE5de. Find dit eget."
   npcSpeakerImage:
     m_Texture: {fileID: 2800000, guid: ab61b1d6dc5f2c140a45824cf4d67490, type: 3}
     m_Sprite: {fileID: 0}
@@ -21,6 +22,6 @@ MonoBehaviour:
     m_VectorImage: {fileID: 0}
   npcSpeakerName: Fish Man
   npcID: fishman
-  conditionType: 1
+  conditionType: 0
   questID: fish
   requiredObjectiveIndex: 0

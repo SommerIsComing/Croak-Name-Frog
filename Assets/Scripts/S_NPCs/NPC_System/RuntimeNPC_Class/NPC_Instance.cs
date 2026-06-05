@@ -18,10 +18,6 @@ public class NPC_Instance : MonoBehaviour, Interactable
 
     public bool hasTalkedToPlayer = false;
 
-    private void Start()
-    {
-        npcData = NPC_Manager.npcManager.AssignNPC(npcID);
-    }
 
     private void OnEnable()
     {
@@ -36,6 +32,11 @@ public class NPC_Instance : MonoBehaviour, Interactable
         GameEvent.OnInteractionNeeded -= MakeInteractable;
     }
 
+    private void Start()
+    {
+        npcData = NPC_Manager.npcManager.AssignNPC(npcID);
+    }
+
     public void MakeInteractable(string npcName, bool interactable)
     {
         if(npcName == npcData.npcName)
@@ -48,6 +49,8 @@ public class NPC_Instance : MonoBehaviour, Interactable
     {
         if (isInteractable)
         {
+            Debug.Log("Interacted");
+
             NPC_UI.npc_UI.SetDialogueDisplaying(true);
 
             GiveQuest();
@@ -57,8 +60,6 @@ public class NPC_Instance : MonoBehaviour, Interactable
             NPC_Manager.npcManager.DisplayDialogue(currentDialogue);
 
             QuestEvents.OnNPCTalkedTo?.Invoke(npcID);
-
-            SetHasTalkedToPlayer(npcData.npcName);
         }
     }
 
@@ -104,6 +105,20 @@ public class NPC_Instance : MonoBehaviour, Interactable
         {
             case DialogueConditionType.QuestComplete:
                 return QuestManager.questManager.completedQuests.Exists(questInstance => questInstance.questData.questID == questToGiveID);
+
+            case DialogueConditionType.RequirmentsMet:
+                QuestInstance runTimeQuest = QuestManager.questManager.activeQuests.Find(q => q.questData.questID == questToGiveID);
+
+                if(runTimeQuest == null) { return false;}
+
+                ObjectiveInstance objective = runTimeQuest.runtimeObjectives[npcDialogue.requiredObjectiveIndex];
+
+                bool result = objective.IsRequiredQuestsComplete();
+
+                Debug.Log("Checking RequirementsMet");
+                Debug.Log($"RequirementsMet result = {result}");
+
+                return objective.IsRequiredQuestsComplete();
 
             case DialogueConditionType.ObjectiveComplete:
                 return QuestManager.questManager.IsObjectiveComplete(npcDialogue.questID, npcDialogue.requiredObjectiveIndex);
