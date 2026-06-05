@@ -12,14 +12,6 @@ public class PlayerUIController : MonoBehaviour
         }
     }
 
-    public void ContinueDialogue()
-    {
-        if (NPC_UI.npc_UI.IsDialogueDisplaying())
-        {
-            UIEvent.OnDialogueContinue?.Invoke();
-        }
-    }
-
     public void OnControllerCancel(InputAction.CallbackContext context)
     {
         if (UI_Manager.uiManager.noteBookUIDisplaying)

@@ -49,6 +49,8 @@ public class NPC_Instance : MonoBehaviour, Interactable
     {
         if (isInteractable)
         {
+            Debug.Log("Interacted");
+
             NPC_UI.npc_UI.SetDialogueDisplaying(true);
 
             GiveQuest();
