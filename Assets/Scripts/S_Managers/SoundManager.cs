@@ -17,12 +17,20 @@ public enum SoundType
 public class SoundManager : MonoBehaviour
 {
     [SerializeField] private AudioClip[] soundList;
-    private static SoundManager instance;
+    private static SoundManager soundManager;
     private AudioSource audioSource;
 
     void Awake()
     {
-        instance = this;
+        if (soundManager == null)
+        {
+            soundManager = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
     private void Start()
     {
@@ -32,6 +40,6 @@ public class SoundManager : MonoBehaviour
     // Update is called once per frame
     public static void PlaySound(SoundType sound, float volume = 1)
     {
-        instance.audioSource.PlayOneShot(instance.soundList[(int)sound], volume);
+        soundManager.audioSource.PlayOneShot(soundManager.soundList[(int)sound], volume);
     }
 }

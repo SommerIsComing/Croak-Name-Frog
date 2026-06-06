@@ -11,7 +11,6 @@ public class InteractionPrompter : MonoBehaviour
     private Camera mainCamera;
 
     [SerializeField] private float yTargetOffset;
-    [SerializeField] private float xTargetOffset;
 
     private void Awake()
     {
@@ -45,9 +44,11 @@ public class InteractionPrompter : MonoBehaviour
         }
         root.style.display = DisplayStyle.Flex;
 
-        root.style.left = screenPosition.x + xTargetOffset;
+        Vector2 panelPosition = RuntimePanelUtils.ScreenToPanel(root.panel,screenPosition);
 
-        root.style.top = Screen.height - screenPosition.y;
+        root.style.left = panelPosition.x - root.resolvedStyle.width * 0.5f;
+
+        root.style.top = panelPosition.y - root.resolvedStyle.height;
     }
 
     public void ShowInteractionPrompt(Transform currentClosestInteractable)

@@ -44,8 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93a03af7a4337b648bac5ddf3cc4dc81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  yTargetOffset: 3
-  xTargetOffset: 60
+  yTargetOffset: 2
 --- !u!1 &436126721863407683
 GameObject:
   m_ObjectHideFlags: 0
@@ -1414,7 +1413,6 @@ GameObject:
   - component: {fileID: 249843995803825157}
   - component: {fileID: 6348052611672451345}
   - component: {fileID: 7788541753748043201}
-  - component: {fileID: 7884819670067593586}
   - component: {fileID: 7292084905188703431}
   m_Layer: 3
   m_Name: TruePlayer
@@ -1893,25 +1891,6 @@ MonoBehaviour:
   enemyTag: Enemy
   damage: 1
   hitboxCollider: {fileID: 5189345998845934639}
---- !u!114 &7884819670067593586
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4312849285191136095}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c66dc2c7e8d1b4742a4922bfe9d4a96f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SoundManager
-  soundList:
-  - {fileID: 8300000, guid: 2886fd6babd0bc14bbe0c0b42163680d, type: 3}
-  - {fileID: 8300000, guid: 7069ad87593506447bf8f558d9828368, type: 3}
-  - {fileID: 8300000, guid: 1e5ad0ccb90b0564181581b85a041de4, type: 3}
-  - {fileID: 8300000, guid: 2886fd6babd0bc14bbe0c0b42163680d, type: 3}
-  - {fileID: 8300000, guid: 0141dcfa3001b41428c6f0e117c2c21b, type: 3}
-  - {fileID: 8300000, guid: 12845239c259a8744801d2f18642a2ab, type: 3}
 --- !u!82 &7292084905188703431
 AudioSource:
   m_ObjectHideFlags: 0
