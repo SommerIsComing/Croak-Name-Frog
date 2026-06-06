@@ -58,12 +58,13 @@ Material:
     - _DotOffset: 0
     - _DotSize: 0
     - _Falloff: 0
-    - _FlowDirection: 0
+    - _FlowDirection: 0.2
     - _FlowSpeed: 0.2
+    - _FoamAmount: 0.5
     - _FoamFalling: 0
-    - _FoamPatternSize: 10
-    - _FoamSpread: 7.54
-    - _FoamWidth: 0
+    - _FoamPatternSize: 2
+    - _FoamSpread: 0.505
+    - _FoamWidth: 0.4
     - _Fresnel_Size: 0
     - _Glossiness: 100
     - _MAIN_LIGHT_SHADOWS: 1
@@ -71,13 +72,16 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Rimlight_Size: 0
+    - _RippleCount: 15
+    - _RippleDistance: 0.75
+    - _RippleSpeed: 2
     - _SHADOWS_SOFT: 1
     - _Shadow_Brightness: 0.5
     - _Shadow_Cutoff: 0.1
     - _Shadow_Smoothness: 0
     - _Shadow_Strength: 0.7
     - _Smoothness: 100
-    - _WaveDisplacement: 0.0001
+    - _WaveDisplacement: 0.0002
     m_Colors:
     - _Base_Color: {r: 0, g: 1, b: 0.8355696, a: 1}
     - _FoamColor: {r: 1, g: 0.9934059, b: 0.8632076, a: 1}
