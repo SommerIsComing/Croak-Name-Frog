@@ -594,7 +594,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4734956731591497512}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.72271484, z: -0, w: 0.69114643}
+  m_LocalRotation: {x: 0, y: -0.7227138, z: 0, w: 0.6911474}
   m_LocalPosition: {x: -146.27, y: 31.928356, z: 21.82}
   m_LocalScale: {x: 0.90572, y: 0.90572, z: 0.90572}
   m_ConstrainProportionsScale: 0
@@ -689,6 +689,7 @@ MonoBehaviour:
   attackDamage: 1
   attackCooldown: 1
   chaseRange: 20
+  speed: 3.5
   animator: {fileID: 3179456350414963272}
   patrolPoints:
   - {fileID: 0}

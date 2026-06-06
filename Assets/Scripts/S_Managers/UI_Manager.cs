@@ -91,7 +91,7 @@ public class UI_Manager : MonoBehaviour
         }
     }
 
-    private void HideNoteBook()
+    public void HideNoteBook()
     {
         if (noteBookUIDisplaying)
         {

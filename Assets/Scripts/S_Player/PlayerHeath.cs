@@ -82,8 +82,8 @@ public class PlayerHeath : MonoBehaviour
             yield return new WaitForSeconds(respawnDelay);
         }
 
-        bool respawned = SpawnManager.Instance != null
-            && SpawnManager.Instance.TryRespawnPlayer(playerInput);
+        bool respawned = SpawnManager.spawnManager != null
+            && SpawnManager.spawnManager.TryRespawnPlayer(playerInput);
 
         if (!respawned)
         {

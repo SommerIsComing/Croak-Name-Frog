@@ -25,7 +25,11 @@ public class NPC_Manager : MonoBehaviour
     private IEnumerator Start()
     {
         yield return null; // Venter en frame for at sikre, at alle NPC'er er initialiseret
-        momNPC.Interact();
+
+        if (momNPC != null)
+        {
+            momNPC.Interact();
+        }
     }
 
     public NPC_Data AssignNPC(string npcID)

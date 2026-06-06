@@ -18,6 +18,24 @@ public class SceneLoader : MonoBehaviour
     {
         Debug.Log("Loading: "+ sceneToLoad);
 
+        if(sceneToLoad == "Credits")
+        {
+            GameObject temp = new GameObject();
+            DontDestroyOnLoad(temp);
+
+            Scene ddolScene = temp.scene;
+
+            foreach (GameObject obj in ddolScene.GetRootGameObjects())
+            {
+                if (obj != temp)
+                {
+                    Destroy(obj);
+                }
+            }
+
+            Destroy(temp);
+        }
+    
         SceneManager.LoadScene(sceneToLoad, LoadSceneMode.Single);
     }
 

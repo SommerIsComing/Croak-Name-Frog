@@ -3,9 +3,24 @@ using UnityEngine;
 
 public class MusicManager : MonoBehaviour
 {
+public static MusicManager musicManager;
 private AudioSource audioSource;
 public AudioClip[] songs;
-public float volume; 
+public float volume;
+
+    private void Awake()
+    {
+        if (musicManager == null)
+        {
+            musicManager = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
