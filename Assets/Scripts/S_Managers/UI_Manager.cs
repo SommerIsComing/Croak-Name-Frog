@@ -83,6 +83,7 @@ public class UI_Manager : MonoBehaviour
             questLogButton.Focus();
             currentButton = questLogButton;
             UIEvent.OnUIQuestRefresh?.Invoke();
+            UIEvent.OnPauseMenuOpened?.Invoke();
         }
         else
         {
@@ -106,6 +107,7 @@ public class UI_Manager : MonoBehaviour
             activeQuestsListUI.ClearSelection();
 
             UIEvent.OnUIQuestRefresh?.Invoke();
+            UIEvent.OnPauseMenuClosed?.Invoke();
 
         }
     }
@@ -176,9 +178,11 @@ public class UI_Manager : MonoBehaviour
     {
         if(!noteBookUIDisplaying) { return; }
 
-         activeQuestsListUI.ClearSelection();
+        activeQuestsListUI.ClearSelection();
+        completedQuestsListUI.ClearSelection();
 
-         currentButton?.Focus();
+        Debug.Log("should focus on button");
+        currentButton?.Focus();
     }
 
 }

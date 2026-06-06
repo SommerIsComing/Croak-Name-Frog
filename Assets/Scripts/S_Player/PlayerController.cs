@@ -46,6 +46,7 @@ public class PlayerController : MonoBehaviour
     private int nextAttackIndex = 1;
     private Coroutine attackRepeatRoutine;
     private bool isInDialogue;
+    private bool isInMenu;
 
     [SerializeField] private Compass compass;
 
@@ -53,12 +54,18 @@ public class PlayerController : MonoBehaviour
     {
         GameEvent.OnDialogueInteractionStart += HandleDialogueStart;
         GameEvent.OnDialogueInteractionEnd += HandleDialogueEnd;
+
+        UIEvent.OnPauseMenuOpened += HandlePauseMenuOpened;
+        UIEvent.OnPauseMenuClosed += HandlePauseMenuClosed;
     }
 
     private void OnDisable()
     {
         GameEvent.OnDialogueInteractionStart -= HandleDialogueStart;
         GameEvent.OnDialogueInteractionEnd -= HandleDialogueEnd;
+
+        UIEvent.OnPauseMenuOpened -= HandlePauseMenuOpened;
+        UIEvent.OnPauseMenuClosed -= HandlePauseMenuClosed;
     }
 
     private void HandleDialogueStart()
@@ -71,9 +78,19 @@ public class PlayerController : MonoBehaviour
         isInDialogue = false;
     }
 
+    private void HandlePauseMenuOpened()
+    {
+        isInMenu = true;
+    }
+
+    private void HandlePauseMenuClosed()
+    {
+        isInMenu = false;
+    }
+
     public void OnMove(InputAction.CallbackContext context)
     {
-        if (!isInDialogue)
+        if (!isInDialogue && !isInMenu)
         {
             move = context.ReadValue<Vector2>();
         }
@@ -81,7 +98,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (!isInDialogue)
+        if (!isInDialogue && !isInMenu)
         {
             if (context.started)
             {
@@ -116,7 +133,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnSuperJump(InputAction.CallbackContext context)
     {
-        if (!isInDialogue)
+        if (!isInDialogue && !isInMenu)
         {
             if (context.performed && abilityHolder != null)
             {
@@ -128,7 +145,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnTongue(InputAction.CallbackContext context)
     {
-        if (!isInDialogue)
+        if (!isInDialogue && !isInMenu)
         {
             if (context.performed && abilityHolder != null)
             {
@@ -144,7 +161,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnAttack(InputAction.CallbackContext context)
     {
-        if (!isInDialogue)
+        if (!isInDialogue && !isInMenu)
         {
             if (!isAnyAttackUnlocked || animator == null || UI_Manager.uiManager.noteBookUIDisplaying)
             {
@@ -180,7 +197,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnCompass(InputAction.CallbackContext context)
     {
-        if (!isInDialogue)
+        if (!isInDialogue && !isInMenu)
         {
             if (context.started)
             {
@@ -213,7 +230,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnSprint(InputAction.CallbackContext context)
     {
-        if (!isInDialogue)
+        if (!isInDialogue && !isInMenu)
         {
             if (context.started)
             {
@@ -244,7 +261,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!isInDialogue)
+        if (!isInDialogue && !isInMenu)
         {
             if (jumpHeld)
             {
@@ -262,7 +279,7 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (!isInDialogue)
+        if (!isInDialogue && !isInMenu)
         {
             if (rb == null)
             {
