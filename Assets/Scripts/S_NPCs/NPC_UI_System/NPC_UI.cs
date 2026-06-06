@@ -30,8 +30,16 @@ public class NPC_UI : MonoBehaviour
 
     private void Awake()
     {
-        npc_UI = this;
-        
+        if (npc_UI == null)
+        {
+            npc_UI = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
         root = GetComponent<UIDocument>().rootVisualElement.Q<VisualElement>("DialogueContainer");
 
         ui_npcImage = root.Q<VisualElement>("NPC_Image");

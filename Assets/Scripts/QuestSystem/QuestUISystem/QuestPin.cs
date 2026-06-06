@@ -101,4 +101,9 @@ public class QuestPin : MonoBehaviour
             root.style.display = DisplayStyle.Flex;
         }
     }
+
+    public void HideQuestPins()
+    {
+        root.style.display = DisplayStyle.None;
+    }
 }

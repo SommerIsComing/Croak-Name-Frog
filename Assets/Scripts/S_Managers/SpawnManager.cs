@@ -11,11 +11,11 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] private UnlockShooter shooterUnlock;
     [SerializeField] private UnlockSword swordUnlock;
 
-    public static SpawnManager Instance { get; private set; }
+    public static SpawnManager spawnManager { get; private set; }
 
     private void Awake()
     {
-        Instance = this;
+        spawnManager = this;
 
         PlayerInputManager inputManager = GetComponent<PlayerInputManager>();
         if (inputManager != null)

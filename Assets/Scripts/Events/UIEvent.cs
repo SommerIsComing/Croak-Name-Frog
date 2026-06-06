@@ -16,4 +16,7 @@ public static class UIEvent
 
     public static Action<QuestInstance> OnNewQuest;
     public static Action<QuestInstance> OnQuestCompleted;
+
+    public static Action OnPauseMenuOpened;
+    public static Action OnPauseMenuClosed;
 }

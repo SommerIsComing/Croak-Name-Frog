@@ -248,7 +248,7 @@ public class QuestManager : MonoBehaviour
     public void AddQuest(QuestData questData)
     {
         QuestInstance newQuest = new QuestInstance();
-        // den nye quest-instance "newQuest" tildeles quest-dataen fra quest databasen (fra HandleQuestGivenByID()-metoden)
+        // den nye quest-soundManager "newQuest" tildeles quest-dataen fra quest databasen (fra HandleQuestGivenByID()-metoden)
         newQuest.questData = questData;
 
         if(newQuest.questData != null )

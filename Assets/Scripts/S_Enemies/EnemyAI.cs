@@ -16,6 +16,7 @@ public class EnemyAI : MonoBehaviour
     private float attackTimer;
     [SerializeField] private float attackCooldown = 1f;
     [SerializeField] private float chaseRange = 20f;
+    [SerializeField] private float speed = 1.5f;
 
     [SerializeField] Animator animator;
 
@@ -143,6 +144,7 @@ public class EnemyAI : MonoBehaviour
     {
         //sæt destination/orientering til spilleren
         agent.SetDestination(playerTransform.position);
+        agent.speed = speed;
         Vector3 lookPosition = playerTransform.position;
         lookPosition.y = transform.position.y;
         transform.LookAt(lookPosition);
