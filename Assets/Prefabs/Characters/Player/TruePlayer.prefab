@@ -1668,7 +1668,19 @@ MonoBehaviour:
     m_ActionId: de919b0a-7e32-4cfc-b901-ae1a8689cce9
     m_ActionName: 'Player/Cancel[/DualSenseGamepadHID/buttonEast]'
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2043017787462805071}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnCompass
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: d2ab6357-b7a4-465a-8c71-3dfc212aa811
     m_ActionName: 'Player/Compass[/Keyboard/c,/DualSenseGamepadHID/leftTrigger]'
   m_NeverAutoSwitchControlSchemes: 0
@@ -1715,22 +1727,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1ea79e801713904387ad6db42868a4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  moveSpeed: 5
+  moveSpeed: 7
+  sprintMultiplier: 1.8
   rotationLerpSpeed: 12
   cameraBoundsPadding: 0.045
   keepInsideCameraBounds: 1
-  sprintMultiplier: 2
+  airMultiplier: 1.5
+  animator: {fileID: 7674428747928264215}
   walkBoolName: isWalking
   moveDeadzone: 0.1
   superJumpHoldTime: 0.4
-  airMultiplier: 2
-  animator: {fileID: 7674428747928264215}
   unlockShooter: {fileID: 0}
   unlockSword: {fileID: 0}
   shooterAbilityName: Shooter
   swordAbilityName: Sword
+  superJumpAbilityName: SuperJump
   attackFirstTrigger: isAttackingFirst
   attackSecondTrigger: isAttackingSecond
+  comboActiveBool: comboActive
   comboWindow: 0.35
   holdRepeatInterval: 0.22
   compass: {fileID: 0}
@@ -1748,15 +1762,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerJump
   jumpForce: 10
   jumpCooldown: 0.25
+  jumpBufferTime: 0.2
+  coyoteTime: 0.2
   baseGravity: 2
   maxFallSpeed: 20
   fallSpeedMultiplier: 2
   maxLaunchSpeed: 15
-  playerHeight: 1
+  playerHeight: 0.1
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
   grounded: 0
+  groundCheckOffset: 0.3
   groundDrag: 6
   gravityEnabled: 1
   animator: {fileID: 7674428747928264215}
