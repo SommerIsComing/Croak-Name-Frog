@@ -6,8 +6,11 @@ public class PlayerJump : MonoBehaviour
     
     [Header("Jumping")]
     [SerializeField] private float jumpForce = 5f;
-    [SerializeField] private float jumpCooldown = 0.25f;
-
+    [SerializeField] private float jumpCooldown = 0.10f;
+    [SerializeField] private float jumpBufferTime = 0.2f;
+    [SerializeField] private float coyoteTime = 0.2f;
+    private float jumpBufferCounter;
+    private float coyoteTimeCounter;
     bool readyToJump;
     
 
@@ -21,9 +24,11 @@ public class PlayerJump : MonoBehaviour
     [SerializeField] private float playerHeight;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private bool grounded;
+    [SerializeField] private float groundCheckOffset = 0.1f;
     public float groundDrag = 6f;
     public bool IsGrounded => grounded;
     public bool gravityEnabled = true;
+
     [SerializeField] Animator animator;
     
 
@@ -37,38 +42,68 @@ public class PlayerJump : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.1f, groundLayer);
+        bool rawGrounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + groundCheckOffset, groundLayer);
+        grounded = rawGrounded && rb.linearVelocity.y <= 0.05f;
         animator.SetBool("isJumping", !grounded);
-    }
 
+        if (grounded)
+        {
+            coyoteTimeCounter = coyoteTime;
+        }
+        else
+        {
+            coyoteTimeCounter -= Time.deltaTime;
+        }
+
+         if (jumpBufferCounter > 0)
+        {
+            jumpBufferCounter -= Time.deltaTime;
+        }
+    }
     private void FixedUpdate()
     {
         Gravity();
+        if (readyToJump && coyoteTimeCounter > 0f && jumpBufferCounter > 0f)
+        {
+            PerformJump();
+        }
+    }
+
+    public void QueueJump()
+    {
+        jumpBufferCounter = jumpBufferTime;
     }
 
     public void Jump()
     {
-        if (readyToJump && grounded)
+        QueueJump();
+    }
+
+    public void PerformJump()
+    {
+        if (!readyToJump)
         {
-            readyToJump = false;
-
-            // Calculate jump direction
-            Vector3 jumpDirection = Vector3.up;
-
-            // Apply jump force
-            rb.AddForce(jumpDirection * jumpForce, ForceMode.Impulse);
-
-            // Start cooldown
-            Invoke(nameof(ResetJump), jumpCooldown);
-            animator.SetBool("isWalking", false);
-            animator.SetBool("isJumping", true);
-            }
-         else
-        {
-            animator.SetBool("isJumping", false);
+            return;
         }
 
-     
+        readyToJump = false;
+
+        // This prevents "jump just slows my fall" feeling
+        Vector3 v = rb.linearVelocity;
+        if (v.y < 0f)
+        {
+            v.y = 0f;
+            rb.linearVelocity = v;
+        }
+
+        rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+
+        jumpBufferCounter = 0f;
+        coyoteTimeCounter = 0f;
+
+        Invoke(nameof(ResetJump), jumpCooldown);
+        animator.SetBool("isWalking", false);
+        animator.SetBool("isJumping", true);
     }
 
     private void ResetJump()

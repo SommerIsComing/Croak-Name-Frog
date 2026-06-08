@@ -4,51 +4,67 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
-    [Header("Movement")]
-    [SerializeField] private float moveSpeed = 5f;
-    [SerializeField] private float rotationLerpSpeed = 12f;
-    [SerializeField, Range(0f, 0.45f)] private float cameraBoundsPadding = 0.06f;
-    [SerializeField] private bool keepInsideCameraBounds = true;
-    [SerializeField] private float sprintMultiplier = 1.5f;
-    private Vector2 move;
-    private Rigidbody rb;
+    [Header("Movement Settings")]
+[SerializeField] private float moveSpeed = 5f;
+[SerializeField] private float sprintMultiplier = 1.5f;
+[SerializeField] private float rotationLerpSpeed = 12f;
+[SerializeField, Range(0f, 0.45f)] private float cameraBoundsPadding = 0.06f;
+[SerializeField] private bool keepInsideCameraBounds = true;
+[SerializeField] private float airMultiplier = 0.5f;
 
-    [Header("Animation")]
-    [SerializeField] private string walkBoolName = "isWalking";
-    [SerializeField] private float moveDeadzone = 0.1f;
+[Header("Animation Settings")]
+[SerializeField] private Animator animator;
+[SerializeField] private string walkBoolName = "isWalking";
+[SerializeField] private float moveDeadzone = 0.1f;
+[SerializeField] private float superJumpHoldTime = 0.4f;
 
-    [SerializeField] private float superJumpHoldTime = 0.4f;
-    private bool jumpHeld;
-    private float jumpHoldTimer;
-    private PlayerJump playerJump;
-    private AbilityHolder abilityHolder;
-    [SerializeField] private float airMultiplier = 0.5f;
-    [SerializeField] Animator animator;
-    private bool jumpRequested;
-    private bool shootHeld;
+[Header("Ability Unlocking")]
+[SerializeField] private UnlockShooter unlockShooter;
+[SerializeField] private UnlockSword unlockSword;
+[SerializeField] private string shooterAbilityName = "Shooter";
+[SerializeField] private string swordAbilityName = "Sword";
+[SerializeField] private string superJumpAbilityName = "SuperJump";
 
-    [Header("Ability Unlocking")]
-    [SerializeField] private UnlockShooter unlockShooter;
-    [SerializeField] private UnlockSword unlockSword;
-    [SerializeField] private string shooterAbilityName = "Shooter";
-    [SerializeField] private string swordAbilityName = "Sword";
-    public bool isAnyAttackUnlocked => abilityHolder != null &&
-                                       (abilityHolder.IsAbilityUnlockedByName(shooterAbilityName) ||
-                                        abilityHolder.IsAbilityUnlockedByName(swordAbilityName));
+[Header("Attack Combo")]
+[SerializeField] private string attackFirstTrigger = "isAttackingFirst";
+[SerializeField] private string attackSecondTrigger = "isAttackingSecond";
+[SerializeField] private string comboActiveBool = "comboActive";
+[SerializeField] private float comboWindow = 0.35f;
+[SerializeField] private float holdRepeatInterval = 0.22f;
 
-    [Header("Attack Combo")]
-    [SerializeField] private string attackFirstTrigger = "isAttackingFirst";
-    [SerializeField] private string attackSecondTrigger = "isAttackingSecond";
-    [SerializeField] private float comboWindow = 0.35f;
-    [SerializeField] private float holdRepeatInterval = 0.22f;
-    private bool attackHeld;
-    private float lastAttackTime = -999f;
-    private int nextAttackIndex = 1;
-    private Coroutine attackRepeatRoutine;
-    private bool isInDialogue;
-    private bool isInMenu;
+[Header("Misc")]
+[SerializeField] private Compass compass;
 
-    [SerializeField] private Compass compass;
+// Cached components
+private Rigidbody rb;
+private PlayerJump playerJump;
+private AbilityHolder abilityHolder;
+
+// Movement runtime
+private float baseMoveSpeed;
+private Vector2 move;
+private bool isSprinting;
+private bool jumpRequested;
+
+// Jump runtime
+private bool jumpHeld;
+private float jumpHoldTimer;
+
+// Combat runtime
+private bool shootHeld;
+private bool attackHeld;
+private float lastAttackTime = -999f;
+private bool comboChainActive;
+private int nextAttackIndex = 1;
+private Coroutine attackRepeatRoutine;
+
+// UI/game locks
+private bool isInDialogue;
+private bool isInMenu;
+
+public bool isAnyAttackUnlocked => abilityHolder != null &&
+                                   (abilityHolder.IsAbilityUnlockedByName(shooterAbilityName) ||
+                                    abilityHolder.IsAbilityUnlockedByName(swordAbilityName));
 
     private void OnEnable()
     {
@@ -71,21 +87,25 @@ public class PlayerController : MonoBehaviour
     private void HandleDialogueStart()
     {
         isInDialogue = true;
+        ApplyMoveSpeed();
     }
 
     private void HandleDialogueEnd()
     {
         isInDialogue = false;
+        ApplyMoveSpeed();
     }
 
     private void HandlePauseMenuOpened()
     {
         isInMenu = true;
+        ApplyMoveSpeed();
     }
 
     private void HandlePauseMenuClosed()
     {
         isInMenu = false;
+        ApplyMoveSpeed();
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -98,12 +118,17 @@ public class PlayerController : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (!isInDialogue && !isInMenu)
+        if (isInDialogue || isInMenu)
         {
+            return;
+        }
+
+        bool canUseSuperJump = CanUseSuperJump();
+        
             if (context.started)
             {
-                jumpHeld = true;
-                animator.SetBool("isWindingUp", true);
+                jumpHeld = canUseSuperJump;
+                animator.SetBool("isWindingUp", canUseSuperJump);
                 jumpHoldTimer = 0f;
             }
 
@@ -111,22 +136,20 @@ public class PlayerController : MonoBehaviour
             {
                 jumpHeld = false;
                 animator.SetBool("isWindingUp", false);
-                animator.SetBool("isJumping", true);
-                if (jumpHoldTimer >= superJumpHoldTime)
-                {
-                    abilityHolder.TriggerAbilityByName("SuperJump");
 
+                if (canUseSuperJump && jumpHoldTimer >= superJumpHoldTime)
+                {
+                    abilityHolder.TriggerAbilityByName(superJumpAbilityName);
                 }
                 else
                 {
-                    TryJump();
+                    if (playerJump != null)
+                    {
+                        playerJump.QueueJump();
+                    }
                 }
-                jumpHoldTimer = 0f;
-            }
-            else
-            {
-                animator.SetBool("isJumping", false);
-            }
+
+        jumpHoldTimer = 0f;
         }
 
     }
@@ -137,7 +160,7 @@ public class PlayerController : MonoBehaviour
         {
             if (context.performed && abilityHolder != null)
             {
-                abilityHolder.TriggerAbilityByName("SuperJump");
+                abilityHolder.TriggerAbilityByName(superJumpAbilityName);
 
             }
         }
@@ -190,6 +213,8 @@ public class PlayerController : MonoBehaviour
                     StopCoroutine(attackRepeatRoutine);
                     attackRepeatRoutine = null;
                 }
+
+                ResetComboState();
             }
         }
         
@@ -230,17 +255,10 @@ public class PlayerController : MonoBehaviour
 
     public void OnSprint(InputAction.CallbackContext context)
     {
-        if (!isInDialogue && !isInMenu)
-        {
-            if (context.started)
-            {
-                moveSpeed *= sprintMultiplier;
-            }
-            if (context.canceled)
-            {
-                moveSpeed /= sprintMultiplier;
-            }
-        }
+        if (context.started) isSprinting = true;
+        if (context.canceled) isSprinting = false;
+
+        ApplyMoveSpeed();
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -249,6 +267,9 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         playerJump = GetComponent<PlayerJump>();
         abilityHolder = GetComponent<AbilityHolder>();
+
+        baseMoveSpeed = moveSpeed;
+        ApplyMoveSpeed();
         if (compass == null)
         {
             compass = Object.FindFirstObjectByType<Compass>(FindObjectsInactive.Include);
@@ -273,6 +294,11 @@ public class PlayerController : MonoBehaviour
                 abilityHolder.TriggerAbilityByName("Shooter");
             }
 
+            if (comboChainActive && !attackHeld && Time.time - lastAttackTime > comboWindow)
+            {
+                ResetComboState();
+            }
+
             UpdateWalkAnimation();
         }
     }
@@ -295,6 +321,12 @@ public class PlayerController : MonoBehaviour
                 jumpRequested = false;
             }
         }
+    }
+
+    private void ApplyMoveSpeed()
+    {
+        bool canMove = !isInDialogue && !isInMenu;
+        moveSpeed = baseMoveSpeed * ((isSprinting && canMove) ? sprintMultiplier : 1f);
     }
 
     public void MovePlayer()
@@ -413,11 +445,18 @@ public class PlayerController : MonoBehaviour
 
     private void FireNextAttack()
     {
+        if (animator == null)
+        {
+            return;
+        }
+
         // If too much time passed, restart combo from attack 1.
         if (Time.time - lastAttackTime > comboWindow)
         {
             nextAttackIndex = 1;
         }
+
+        animator.SetBool(comboActiveBool, true);
 
         if (nextAttackIndex == 1)
         {
@@ -431,6 +470,20 @@ public class PlayerController : MonoBehaviour
         }
 
         lastAttackTime = Time.time;
+        comboChainActive = true;
+    }
+
+    private void ResetComboState()
+    {
+        if (animator != null)
+        {
+            animator.ResetTrigger(attackFirstTrigger);
+            animator.ResetTrigger(attackSecondTrigger);
+            animator.SetBool(comboActiveBool, false);
+        }
+
+        comboChainActive = false;
+    nextAttackIndex = 1;
     }
 
     private IEnumerator AttackRepeatLoop()
@@ -450,4 +503,8 @@ public class PlayerController : MonoBehaviour
         attackRepeatRoutine = null;
     }
 
+    private bool CanUseSuperJump()
+    {
+        return abilityHolder != null && abilityHolder.IsAbilityUnlockedByName(superJumpAbilityName);
+    }
 }
