@@ -44,7 +44,6 @@ public class PlayerJump : MonoBehaviour
     {
         bool rawGrounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + groundCheckOffset, groundLayer);
         grounded = rawGrounded && rb.linearVelocity.y <= 0.05f;
-        animator.SetBool("isJumping", !grounded);
 
         if (grounded)
         {
@@ -117,6 +116,11 @@ public class PlayerJump : MonoBehaviour
         if (!gravityEnabled) return;
 
         float gravityMultiplier = baseGravity;
+
+        if (!grounded && rb.linearVelocity.y <= 0.05f)
+        {
+            animator.SetBool("isJumping", false);
+        }
 
         if (Mathf.Abs(rb.linearVelocity.y) < 0.1f) // Near the peak of the jump
         {
