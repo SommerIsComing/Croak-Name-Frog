@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class CompassPin : MonoBehaviour
 {
@@ -17,6 +18,16 @@ public class CompassPin : MonoBehaviour
     [SerializeField] private bool forceCenterPivot = true;
 
     private Transform currentTarget;
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
 
     private void Awake()
     {
@@ -40,6 +51,8 @@ public class CompassPin : MonoBehaviour
         {
             worldCamera = Camera.main;
         }
+
+        RefreshPOIFromScene();
     }
 
     private void OnValidate()
@@ -160,5 +173,25 @@ public class CompassPin : MonoBehaviour
         }
 
         pinRect.pivot = new Vector2(0.5f, 0.5f);
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        RefreshPOIFromScene();
+    }
+
+    private void RefreshPOIFromScene()
+    {
+        pointsOfInterest.Clear();
+
+        GameObject[] poiObjects = GameObject.FindGameObjectsWithTag("POI");
+        for (int i = 0; i < poiObjects.Length; i++)
+        {
+            Transform poiTransform = poiObjects[i].transform;
+            if (poiTransform != null)
+            {
+                pointsOfInterest.Add(poiTransform);
+            }
+        }
     }
 }
