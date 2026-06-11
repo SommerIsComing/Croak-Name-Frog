@@ -90,6 +90,14 @@ public class SpawnManager : MonoBehaviour
         position = default;
         rotation = Quaternion.identity;
 
+        // Always prefer explicit spawn points for deterministic multiplayer spawns.
+        if (TryGetSpawnPoint(playerInput.playerIndex, out Transform spawnPoint))
+        {
+            position = spawnPoint.position;
+            rotation = spawnPoint.rotation;
+            return true;
+        }
+
         foreach (PlayerInput otherInput in PlayerInput.all)
         {
             if (otherInput == null || otherInput == playerInput)
@@ -108,13 +116,6 @@ public class SpawnManager : MonoBehaviour
             return true;
         }
 
-        if (TryGetSpawnPoint(playerInput.playerIndex, out Transform spawnPoint))
-        {
-            position = spawnPoint.position;
-            rotation = spawnPoint.rotation;
-            return true;
-        }
-
         return false;
     }
 
@@ -126,12 +127,15 @@ public class SpawnManager : MonoBehaviour
             return false;
         }
 
-        if (spawnIndex < 0 || spawnIndex >= spawnPoints.Length)
+        int safeIndex = spawnIndex;
+        if (safeIndex < 0)
         {
-            return false;
+            safeIndex = 0;
         }
 
-        spawnPoint = spawnPoints[spawnIndex];
+        safeIndex %= spawnPoints.Length;
+
+        spawnPoint = spawnPoints[safeIndex];
         return spawnPoint != null;
     }
 
