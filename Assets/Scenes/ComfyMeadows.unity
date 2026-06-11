@@ -1565,6 +1565,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: POI_Rocks
       objectReference: {fileID: 0}
+    - target: {fileID: 8197361669650442007, guid: 1f4e9993385e79f47b40c456b83612cc, type: 3}
+      propertyPath: m_TagString
+      value: POI
+      objectReference: {fileID: 0}
     - target: {fileID: 8560994354758762640, guid: 1f4e9993385e79f47b40c456b83612cc, type: 3}
       propertyPath: m_Size.x
       value: 11.249023
@@ -1623,7 +1627,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 166298055}
   - {fileID: 963760838}
   - {fileID: 326290955}
   - {fileID: 929409752}
@@ -3172,7 +3175,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 51769256}
+    m_TransformParent: {fileID: 992942495}
     m_Modifications:
     - target: {fileID: 2765258414839848161, guid: 9e4ef0c451afcc14b8a7636e427e6153, type: 3}
       propertyPath: m_IsActive
@@ -3184,20 +3187,20 @@ PrefabInstance:
       objectReference: {fileID: 992942495}
     - target: {fileID: 2981215393477695409, guid: 9e4ef0c451afcc14b8a7636e427e6153, type: 3}
       propertyPath: pointsOfInterest.Array.size
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2981215393477695409, guid: 9e4ef0c451afcc14b8a7636e427e6153, type: 3}
       propertyPath: 'pointsOfInterest.Array.data[0]'
       value: 
-      objectReference: {fileID: 963760838}
+      objectReference: {fileID: 326290955}
     - target: {fileID: 2981215393477695409, guid: 9e4ef0c451afcc14b8a7636e427e6153, type: 3}
       propertyPath: 'pointsOfInterest.Array.data[1]'
       value: 
-      objectReference: {fileID: 326290955}
+      objectReference: {fileID: 929409752}
     - target: {fileID: 2981215393477695409, guid: 9e4ef0c451afcc14b8a7636e427e6153, type: 3}
       propertyPath: 'pointsOfInterest.Array.data[2]'
       value: 
-      objectReference: {fileID: 929409752}
+      objectReference: {fileID: 0}
     - target: {fileID: 6290476583357615469, guid: 9e4ef0c451afcc14b8a7636e427e6153, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -11437,6 +11440,10 @@ PrefabInstance:
     - target: {fileID: 8197361669650442007, guid: 1f4e9993385e79f47b40c456b83612cc, type: 3}
       propertyPath: m_Name
       value: POI_Soup
+      objectReference: {fileID: 0}
+    - target: {fileID: 8197361669650442007, guid: 1f4e9993385e79f47b40c456b83612cc, type: 3}
+      propertyPath: m_TagString
+      value: POI
       objectReference: {fileID: 0}
     - target: {fileID: 8560994354758762640, guid: 1f4e9993385e79f47b40c456b83612cc, type: 3}
       propertyPath: m_Size.x
@@ -25105,7 +25112,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 7752118881879045760, guid: 41611c9ecb950be4f8bcf6ce80932dee, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 166298055}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 41611c9ecb950be4f8bcf6ce80932dee, type: 3}
 --- !u!1001 &1642715832
@@ -31544,6 +31554,10 @@ PrefabInstance:
     - target: {fileID: 8197361669650442007, guid: 1f4e9993385e79f47b40c456b83612cc, type: 3}
       propertyPath: m_Name
       value: POI_Spiders
+      objectReference: {fileID: 0}
+    - target: {fileID: 8197361669650442007, guid: 1f4e9993385e79f47b40c456b83612cc, type: 3}
+      propertyPath: m_TagString
+      value: POI
       objectReference: {fileID: 0}
     - target: {fileID: 8560994354758762640, guid: 1f4e9993385e79f47b40c456b83612cc, type: 3}
       propertyPath: m_Size.x
