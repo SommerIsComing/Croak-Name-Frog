@@ -6,7 +6,7 @@ public class InventoryUI : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI coinText;
     [SerializeField] private GameObject coinImage;
-    [SerializeField] private float showTime = 1f;
+    [SerializeField] private float showTime = 2f;
 
     private Coroutine hideRoutine;
 
