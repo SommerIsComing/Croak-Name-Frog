@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 using System.Collections;
 
 public class PlayerHeath : MonoBehaviour
@@ -17,11 +16,9 @@ public class PlayerHeath : MonoBehaviour
     private Renderer[] renderers;
 
     private bool isRespawning;
-    private PlayerInput playerInput;
 
     private void Awake()
     {
-        playerInput = GetComponent<PlayerInput>();
         rb = GetComponent<Rigidbody>();
         renderers = GetComponentsInChildren<Renderer>();
     }
@@ -82,12 +79,12 @@ public class PlayerHeath : MonoBehaviour
             yield return new WaitForSeconds(respawnDelay);
         }
 
-        bool respawned = SpawnManager.spawnManager != null
-            && SpawnManager.spawnManager.TryRespawnPlayer(playerInput);
+        bool respawned = PlayerManager.playerManager != null
+            && PlayerManager.playerManager.TryRespawnPlayer(transform);
 
         if (!respawned)
         {
-            Debug.LogWarning("Respawn failed because SpawnManager or spawn point is missing.", this);
+            Debug.LogWarning("Respawn failed because PlayerManager or spawn point is missing.", this);
         }
 
         currentHealth = maxHealth;
