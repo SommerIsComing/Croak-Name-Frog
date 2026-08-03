@@ -22,10 +22,13 @@ public class MagicBullet : MonoBehaviour
     public void Initialize(Vector3 direction, float speed, float lifetime)
     {
         rb.linearVelocity = direction.normalized * speed;
+        /*
         if (audioSource != null && shootSound != null)
         {
             audioSource.PlayOneShot(shootSound, shootVolume);
         }
+        */
+        SoundManager.PlaySound(SoundType.STAFF);
         Destroy(gameObject, lifetime);
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
