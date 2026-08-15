@@ -13,19 +13,26 @@ MonoBehaviour:
   m_Name: NPC_oldman_youDidIt
   m_EditorClassIdentifier: Assembly-CSharp::NPC_DialogueObject
   dialogueText:
-  - Jaaaa!!! Endelig!
-  - Suppen er komplet!!!
-  - "Alt sammen takket v\xE6re dig :)"
-  - "H\xF8r her... hvad siger du til at jeg jeg l\xE6rer dig mit \xE6ldgamle tunge-trick??"
-  - "Kunne jeg forestille mig at du ville f\xE5 brug for :)"
-  - "Bare pas p\xE5 du ikke kommer til at sidde fast p\xE5 de forkerte ting, ok?"
-  - "N\xC5! Jeg har travt, og du er i vejen. Her er din suppe"
+  - 'You have the flowers! Excellent!
+
+    In the pot they go to bubble away!'
+  - ' And just like that we have a soup ready for tasting!'
+  - '*slurp*'
+  - Hm. Mhm...
+  - '*sluuurp*'
+  - Well, I'll be... That's the best soup I ever done made! Good job, sprout!
+  - Have yourself a bowl, as promised. And as a thank you, let me teach you the old
+    art of the Tounge Grapple!
+  - If you shoot out your tongoue towards something, it'll stick to it and you can
+    pull yourself closer!
+  - Just... be careful. Sometimes that extra movement isn't worth the taste of what
+    you'll be sticking to...
   npcSpeakerImage:
     m_Texture: {fileID: 2800000, guid: 5596baec35eafd244af15346f65a4dd9, type: 3}
     m_Sprite: {fileID: 0}
     m_RenderTexture: {fileID: 0}
     m_VectorImage: {fileID: 0}
-  npcSpeakerName: Gamle Mand
+  npcSpeakerName: Old Frogge
   npcID: old_man
   conditionType: 3
   questID: soup
