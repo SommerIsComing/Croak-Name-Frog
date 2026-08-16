@@ -4,139 +4,47 @@ using System.Collections;
 
 public class SpawnManager : MonoBehaviour
 {
-    [Header("Spawn Points")]
-    public Transform[] spawnPoints;
+    [Header("Respawn Point (on death)")]
+    [SerializeField] private Transform respawnPoint;
 
-    [Header("Scene References")]
-    [SerializeField] private UnlockShooter shooterUnlock;
-    [SerializeField] private UnlockSword swordUnlock;
+    [Header("Scene Entry Point (on scene load)")]
+    [SerializeField] private Transform sceneEntryPoint;
 
     public static SpawnManager spawnManager { get; private set; }
 
     private void Awake()
     {
         spawnManager = this;
-
-        PlayerInputManager inputManager = GetComponent<PlayerInputManager>();
-        if (inputManager != null)
-        {
-            inputManager.notificationBehavior = PlayerNotifications.InvokeUnityEvents;
-        }
-
-        if (shooterUnlock == null)
-        {
-            shooterUnlock = Object.FindFirstObjectByType<UnlockShooter>();
-        }
-
-        if (swordUnlock == null)
-        {
-            swordUnlock = Object.FindFirstObjectByType<UnlockSword>();
-        }
+        PlacePlayerAtSceneEntry();
     }
 
-    public void OnPlayerJoined(PlayerInput playerInput)
+    private void PlacePlayerAtSceneEntry()
     {
-        if (playerInput == null)
+        if (sceneEntryPoint == null)
         {
             return;
         }
 
-        if (!TryGetSpawnPose(playerInput, out Vector3 spawnPosition, out Quaternion spawnRotation))
+        PlayerController player = Object.FindFirstObjectByType<PlayerController>();
+        if (player == null)
         {
             return;
         }
 
-        ApplySpawn(playerInput.transform, spawnPosition, spawnRotation);
-        AssignAbilityUnlockReferences(playerInput.transform);
-        StartCoroutine(ApplySpawnAfterPhysics(playerInput.transform, spawnPosition, spawnRotation));
+        ApplySpawn(player.transform, sceneEntryPoint.position, sceneEntryPoint.rotation);
+        StartCoroutine(ApplySpawnAfterPhysics(player.transform, sceneEntryPoint.position, sceneEntryPoint.rotation));
     }
 
     public bool TryRespawnPlayer(PlayerInput playerInput)
     {
-        if (playerInput == null)
+        if (playerInput == null || respawnPoint == null)
         {
             return false;
         }
 
-        if (!TryGetSpawnPose(playerInput, out Vector3 spawnPosition, out Quaternion spawnRotation))
-        {
-            return false;
-        }
-
-        ApplySpawn(playerInput.transform, spawnPosition, spawnRotation);
-        AssignAbilityUnlockReferences(playerInput.transform);
-        StartCoroutine(ApplySpawnAfterPhysics(playerInput.transform, spawnPosition, spawnRotation));
+        ApplySpawn(playerInput.transform, respawnPoint.position, respawnPoint.rotation);
+        StartCoroutine(ApplySpawnAfterPhysics(playerInput.transform, respawnPoint.position, respawnPoint.rotation));
         return true;
-    }
-
-    private void AssignAbilityUnlockReferences(Transform playerTransform)
-    {
-        if (playerTransform == null)
-        {
-            return;
-        }
-
-        PlayerController controller = playerTransform.GetComponent<PlayerController>();
-        if (controller == null)
-        {
-            return;
-        }
-
-        controller.SetAbilityUnlockReferences(shooterUnlock, swordUnlock);
-    }
-
-    private bool TryGetSpawnPose(PlayerInput playerInput, out Vector3 position, out Quaternion rotation)
-    {
-        position = default;
-        rotation = Quaternion.identity;
-
-        // Always prefer explicit spawn points for deterministic multiplayer spawns.
-        if (TryGetSpawnPoint(playerInput.playerIndex, out Transform spawnPoint))
-        {
-            position = spawnPoint.position;
-            rotation = spawnPoint.rotation;
-            return true;
-        }
-
-        foreach (PlayerInput otherInput in PlayerInput.all)
-        {
-            if (otherInput == null || otherInput == playerInput)
-            {
-                continue;
-            }
-
-            Transform anchor = otherInput.transform;
-            if (anchor == null)
-            {
-                continue;
-            }
-
-            position = anchor.position + Vector3.up * 4f;
-            rotation = anchor.rotation;
-            return true;
-        }
-
-        return false;
-    }
-
-    private bool TryGetSpawnPoint(int spawnIndex, out Transform spawnPoint)
-    {
-        spawnPoint = null;
-        if (spawnPoints == null || spawnPoints.Length == 0)
-        {
-            return false;
-        }
-
-        int safeIndex = spawnIndex;
-        if (safeIndex < 0)
-        {
-            safeIndex = 0;
-        }
-
-        safeIndex %= spawnPoints.Length;
-
-        spawnPoint = spawnPoints[safeIndex];
-        return spawnPoint != null;
     }
 
     private static void ApplySpawn(Transform playerTransform, Vector3 spawnPosition, Quaternion spawnRotation)

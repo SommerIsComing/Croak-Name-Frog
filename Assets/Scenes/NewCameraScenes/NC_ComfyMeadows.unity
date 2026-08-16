@@ -4883,8 +4883,28 @@ PrefabInstance:
       value: PlayerManager
       objectReference: {fileID: 0}
     - target: {fileID: 2305019679180549203, guid: 31a4ca6d63c429a4c88975135b4e452c, type: 3}
+      propertyPath: m_AllowJoining
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2305019679180549203, guid: 31a4ca6d63c429a4c88975135b4e452c, type: 3}
+      propertyPath: m_PlayerPrefab
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2305019679180549203, guid: 31a4ca6d63c429a4c88975135b4e452c, type: 3}
       propertyPath: m_MaxPlayerCount
-      value: 2
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2305019679180549203, guid: 31a4ca6d63c429a4c88975135b4e452c, type: 3}
+      propertyPath: m_PlayerJoinedEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2305019679180549203, guid: 31a4ca6d63c429a4c88975135b4e452c, type: 3}
+      propertyPath: m_PlayerJoinedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 279079275}
+    - target: {fileID: 2305019679180549203, guid: 31a4ca6d63c429a4c88975135b4e452c, type: 3}
+      propertyPath: m_PlayerJoinedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: SpawnManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 3390894159056974851, guid: 31a4ca6d63c429a4c88975135b4e452c, type: 3}
       propertyPath: 'spawnPoints.Array.data[0]'
@@ -4942,11 +4962,24 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2305019679180549203, guid: 31a4ca6d63c429a4c88975135b4e452c, type: 3}
+    - {fileID: 4589779013079004162, guid: 31a4ca6d63c429a4c88975135b4e452c, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 31a4ca6d63c429a4c88975135b4e452c, type: 3}
+--- !u!114 &279079275 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3390894159056974851, guid: 31a4ca6d63c429a4c88975135b4e452c, type: 3}
+  m_PrefabInstance: {fileID: 279079274}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 072936be6ebfcea41b7c8a89396c95ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpawnManager
 --- !u!1001 &281702909
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17580,10 +17613,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2451437097068998171, guid: 9197ac22f54d12245a16ad19808c4d99, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -228.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 2451437097068998171, guid: 9197ac22f54d12245a16ad19808c4d99, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -286.6649
+      objectReference: {fileID: 0}
     - target: {fileID: 4819801011431720035, guid: 9197ac22f54d12245a16ad19808c4d99, type: 3}
       propertyPath: Target.TrackingTarget
       value: 
       objectReference: {fileID: 992942495}
+    - target: {fileID: 5529910921436504330, guid: 9197ac22f54d12245a16ad19808c4d99, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -228.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 5529910921436504330, guid: 9197ac22f54d12245a16ad19808c4d99, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -286.6649
+      objectReference: {fileID: 0}
     - target: {fileID: 5652572278499271850, guid: 9197ac22f54d12245a16ad19808c4d99, type: 3}
       propertyPath: HorizontalAxis.Center
       value: 0
@@ -24339,7 +24388,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7752118881879045760, guid: 41611c9ecb950be4f8bcf6ce80932dee, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 13.8
+      value: 11.87
       objectReference: {fileID: 0}
     - target: {fileID: 7752118881879045760, guid: 41611c9ecb950be4f8bcf6ce80932dee, type: 3}
       propertyPath: m_LocalPosition.y
@@ -24347,7 +24396,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7752118881879045760, guid: 41611c9ecb950be4f8bcf6ce80932dee, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -228.55
+      value: -223.45
       objectReference: {fileID: 0}
     - target: {fileID: 7752118881879045760, guid: 41611c9ecb950be4f8bcf6ce80932dee, type: 3}
       propertyPath: m_LocalRotation.w
