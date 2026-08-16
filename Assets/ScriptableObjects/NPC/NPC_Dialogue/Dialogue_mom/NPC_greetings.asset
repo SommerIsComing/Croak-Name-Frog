@@ -13,20 +13,19 @@ MonoBehaviour:
   m_Name: NPC_greetings
   m_EditorClassIdentifier: Assembly-CSharp::NPC_DialogueObject
   dialogueText:
-  - "T\xE6nk at det allerede er blevet tid..."
-  - Jeg kan ikke lide ideen om at lade dig rejse helt alene.. :(
-  - "..men siden du ikke er min lille fr\xF8-unge l\xE6ngere, kan jeg heller ikke
-    stoppe dig"
-  - "Bedstefars hvilested er nordp\xE5 "
-  - Husk at tage noget suppe med til ham. Det vil han elske! ;)
-  - "V\xE6r forsigtig min skat. Elsker dig!"
-  - Jeg skal nok vente lige her til engang  vender hjem <3
+  - Why, hello there, my little adventurer!
+  - Are you off to see Grandpa in the Boggy Woods?
+  - You should pick up some soup on the way for him. You know how he loves his soups!
+  - Oh, and I hear some big rocks have fallen on the road to the Boggy Woods...
+  - But I'm sure you'll manage to find a way over them! You always find your way!
+  - I love you! Say hi to grandpa for me. And please do take care out there, okay?
+  - Alright! Off you go, then!
   npcSpeakerImage:
     m_Texture: {fileID: 2800000, guid: 93796416b95c9824d876d1405ad9d5f2, type: 3}
     m_Sprite: {fileID: 0}
     m_RenderTexture: {fileID: 0}
     m_VectorImage: {fileID: 0}
-  npcSpeakerName: Mor
+  npcSpeakerName: Mom
   npcID: mom
   conditionType: 1
   questID: mainQuest
