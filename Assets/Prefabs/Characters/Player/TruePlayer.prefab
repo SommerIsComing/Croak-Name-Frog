@@ -1683,6 +1683,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: d2ab6357-b7a4-465a-8c71-3dfc212aa811
     m_ActionName: 'Player/Compass[/Keyboard/c,/DualSenseGamepadHID/leftTrigger]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: d9f5abee-2ef9-450c-af7f-e555d99ce874
+    m_ActionName: 'Player/CameraReset[/DualSenseGamepadHID/rightTrigger,/Mouse/middleButton]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -1730,9 +1734,12 @@ MonoBehaviour:
   moveSpeed: 7
   sprintMultiplier: 1.8
   rotationLerpSpeed: 12
-  cameraBoundsPadding: 0.045
-  keepInsideCameraBounds: 1
+  sideTurnInputRange: 0.45
+  sideTurnSpeedMultiplier: 0.55
   airMultiplier: 1.5
+  backwardTurnDotThreshold: -0.45
+  backwardTurnLockDuration: 0.1
+  backwardMoveSpeedMultiplier: 0.95
   animator: {fileID: 7674428747928264215}
   walkBoolName: isWalking
   moveDeadzone: 0.1
