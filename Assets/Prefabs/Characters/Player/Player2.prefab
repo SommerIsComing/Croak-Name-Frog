@@ -2726,15 +2726,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   moveSpeed: 7
+  sprintMultiplier: 1.8
   rotationLerpSpeed: 12
   cameraBoundsPadding: 0.045
   keepInsideCameraBounds: 1
-  sprintMultiplier: 1.8
+  airMultiplier: 1.5
+  animator: {fileID: 7463668377609199509}
   walkBoolName: isWalking
   moveDeadzone: 0.1
   superJumpHoldTime: 0.4
-  airMultiplier: 1.5
-  animator: {fileID: 7463668377609199509}
   unlockShooter: {fileID: 0}
   unlockSword: {fileID: 0}
   shooterAbilityName: Shooter
@@ -2742,6 +2742,7 @@ MonoBehaviour:
   superJumpAbilityName: SuperJump
   attackFirstTrigger: isAttackingFirst
   attackSecondTrigger: isAttackingSecond
+  comboActiveBool: comboActive
   comboWindow: 0.35
   holdRepeatInterval: 0.22
   compass: {fileID: 0}
@@ -2770,7 +2771,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   grounded: 0
-  groundCheckOffset: 0.5
+  groundCheckOffset: 0.3
   groundDrag: 6
   gravityEnabled: 1
   animator: {fileID: 7463668377609199509}
