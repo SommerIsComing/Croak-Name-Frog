@@ -31,9 +31,6 @@ public class EnemyAI : MonoBehaviour
         Chase,
         Attack
     }
-    [SerializeField] private aiStates currentState = aiStates.Patrol;
-
-
     //start-metode finder referencerne til player og navmeshagenten
     private void Start()
     {
@@ -102,17 +99,14 @@ public class EnemyAI : MonoBehaviour
         if (bestScore == (int)attackScore) // ATTACK
         {
             AttackPlayer();
-            currentState = aiStates.Attack;
         }
         else if(bestScore == (int)chaseScore) // CHASE
         {
             ChasePlayer();
-            currentState = aiStates.Chase;
         }
         else // PATROL
         {
             Patrol();
-            currentState = aiStates.Patrol;
         }
     }
 

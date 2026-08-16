@@ -8,9 +8,12 @@ public class PlayerController : MonoBehaviour
 [SerializeField] private float moveSpeed = 5f;
 [SerializeField] private float sprintMultiplier = 1.5f;
 [SerializeField] private float rotationLerpSpeed = 12f;
-[SerializeField, Range(0f, 0.45f)] private float cameraBoundsPadding = 0.06f;
-[SerializeField] private bool keepInsideCameraBounds = true;
+[SerializeField] private float sideTurnInputRange = 0.45f;
+[SerializeField] private float sideTurnSpeedMultiplier = 0.55f;
 [SerializeField] private float airMultiplier = 0.5f;
+[SerializeField] private float backwardTurnDotThreshold = -0.45f;
+[SerializeField] private float backwardTurnLockDuration = 0.1f;
+[SerializeField] private float backwardMoveSpeedMultiplier = 0.95f;
 
 [Header("Animation Settings")]
 [SerializeField] private Animator animator;
@@ -45,6 +48,7 @@ private float baseMoveSpeed;
 private Vector2 move;
 private bool isSprinting;
 private bool jumpRequested;
+private float backwardTurnLockTimer;
 
 // Jump runtime
 private bool jumpHeld;
@@ -65,6 +69,8 @@ private bool isInMenu;
 public bool isAnyAttackUnlocked => abilityHolder != null &&
                                    (abilityHolder.IsAbilityUnlockedByName(shooterAbilityName) ||
                                     abilityHolder.IsAbilityUnlockedByName(swordAbilityName));
+
+public Vector2 MoveInput => move;
 
     private void OnEnable()
     {
@@ -313,7 +319,6 @@ public bool isAnyAttackUnlocked => abilityHolder != null &&
             }
 
             MovePlayer();
-            KeepPlayerInsideCameraBounds();
 
             if (jumpRequested)
             {
@@ -342,14 +347,50 @@ public bool isAnyAttackUnlocked => abilityHolder != null &&
         right.Normalize();
 
         Vector3 moveDirection = forward * move.y + right * move.x;
+        bool hasMoveDirection = moveDirection.sqrMagnitude > 0.0001f;
+        float facingDot = 1f;
 
-
-        if (moveDirection != Vector3.zero)
+        if (hasMoveDirection)
         {
-            Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
-            Quaternion smoothedRotation = Quaternion.Slerp(rb.rotation, targetRotation, rotationLerpSpeed * Time.fixedDeltaTime);
-            rb.MoveRotation(smoothedRotation);
-             animator.SetBool("isWalking", true);
+            Vector3 flatForward = transform.forward;
+            flatForward.y = 0f;
+            flatForward.Normalize();
+
+            Vector3 flatMoveDirection = moveDirection;
+            flatMoveDirection.y = 0f;
+            flatMoveDirection.Normalize();
+
+            facingDot = Vector3.Dot(flatForward, flatMoveDirection);
+            bool isStrongBackwardInput = facingDot <= backwardTurnDotThreshold;
+            if (isStrongBackwardInput)
+            {
+                backwardTurnLockTimer += Time.fixedDeltaTime;
+            }
+            else
+            {
+                backwardTurnLockTimer = 0f;
+            }
+
+            bool lockRotation = isStrongBackwardInput && backwardTurnLockTimer < backwardTurnLockDuration;
+            bool allowRotation = !lockRotation;
+
+            if (allowRotation)
+            {
+                float safeSideTurnRange = Mathf.Max(0.0001f, sideTurnInputRange);
+                float forwardIntentAbs = Mathf.Abs(move.y);
+                float sideTurnBlend = Mathf.Clamp01(forwardIntentAbs / safeSideTurnRange);
+                float turnSpeedMultiplier = Mathf.Lerp(sideTurnSpeedMultiplier, 1f, sideTurnBlend);
+
+                Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
+                Quaternion smoothedRotation = Quaternion.Slerp(rb.rotation, targetRotation, rotationLerpSpeed * turnSpeedMultiplier * Time.fixedDeltaTime);
+                rb.MoveRotation(smoothedRotation);
+            }
+            else
+            {
+                rb.angularVelocity = Vector3.zero;
+            }
+
+            animator.SetBool("isWalking", true);
         }
         else
         {
@@ -357,7 +398,11 @@ public bool isAnyAttackUnlocked => abilityHolder != null &&
             animator.SetBool("isWalking", false);
         }
 
-        rb.MovePosition(rb.position + moveDirection * moveSpeed * controlMultiplier * Time.fixedDeltaTime);
+        float directionalSpeedMultiplier = (hasMoveDirection && facingDot <= backwardTurnDotThreshold)
+            ? backwardMoveSpeedMultiplier
+            : 1f;
+
+        rb.MovePosition(rb.position + moveDirection * moveSpeed * directionalSpeedMultiplier * controlMultiplier * Time.fixedDeltaTime);
     }
 
     public void TryJump()
@@ -388,41 +433,6 @@ public bool isAnyAttackUnlocked => abilityHolder != null &&
 
         animator.SetBool(walkBoolName, isGrounded && hasMoveInput);
 }
-
-    private void KeepPlayerInsideCameraBounds()
-    {
-        if (!keepInsideCameraBounds)
-        {
-            return;
-        }
-
-        Camera cam = Camera.main;
-        if (cam == null)
-        {
-            return;
-        }
-
-        Vector3 viewportPos = cam.WorldToViewportPoint(rb.position);
-        if (viewportPos.z <= 0f)
-        {
-            return;
-        }
-
-        float min = cameraBoundsPadding;
-        float max = 1f - cameraBoundsPadding;
-
-        float clampedX = Mathf.Clamp(viewportPos.x, min, max);
-        float clampedY = Mathf.Clamp(viewportPos.y, min, max);
-
-        if (Mathf.Approximately(clampedX, viewportPos.x) && Mathf.Approximately(clampedY, viewportPos.y))
-        {
-            return;
-        }
-
-        Vector3 clampedWorld = cam.ViewportToWorldPoint(new Vector3(clampedX, clampedY, viewportPos.z));
-        clampedWorld.y = rb.position.y;
-        rb.MovePosition(clampedWorld);
-    }
 
     private void ResolveAbilityUnlockReferences()
     {
