@@ -73,4 +73,14 @@ public class SpawnManager : MonoBehaviour
 
         ApplySpawn(playerTransform, spawnPosition, spawnRotation);
     }
+
+    public void SetRespawnPoint(Transform newPoint)
+    {
+        if (newPoint == null)
+        {
+            return;
+        }
+
+        respawnPoint = newPoint;
+    }
 }
