@@ -47,6 +47,8 @@ public class UI_Manager : MonoBehaviour
 
         activeQuestsListUI = questLogPage.Q<ListView>("ActiveQuestsList");
         completedQuestsListUI = questLogPage.Q<ListView>("CompletedQuestsList");
+
+        SetCursorLocked(true);
     }
 
 
@@ -82,6 +84,7 @@ public class UI_Manager : MonoBehaviour
 
             questLogButton.Focus();
             currentButton = questLogButton;
+            SetCursorLocked(false);
             UIEvent.OnUIQuestRefresh?.Invoke();
             UIEvent.OnPauseMenuOpened?.Invoke();
         }
@@ -106,10 +109,17 @@ public class UI_Manager : MonoBehaviour
 
             activeQuestsListUI.ClearSelection();
 
+            SetCursorLocked(true);
             UIEvent.OnUIQuestRefresh?.Invoke();
             UIEvent.OnPauseMenuClosed?.Invoke();
 
         }
+    }
+
+    private static void SetCursorLocked(bool locked)
+    {
+        UnityEngine.Cursor.lockState = locked ? CursorLockMode.Locked : CursorLockMode.None;
+        UnityEngine.Cursor.visible = !locked;
     }
 
     private void DisplayPauseMenuPage()

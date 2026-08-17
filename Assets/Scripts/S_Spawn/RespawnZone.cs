@@ -1,0 +1,16 @@
+using UnityEngine;
+
+public class RespawnZone : MonoBehaviour
+{
+    [SerializeField] private Transform respawnPoint;
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (!other.CompareTag("Player"))
+        {
+            return;
+        }
+
+        SpawnManager.spawnManager.SetRespawnPoint(respawnPoint);
+    }
+}
