@@ -261,7 +261,7 @@ public Vector2 MoveInput => move;
 
     public void OnSprint(InputAction.CallbackContext context)
     {
-        if (context.started && playerJump.IsGrounded) isSprinting = true;
+        if (context.started) isSprinting = true;
         if (context.canceled) isSprinting = false;
 
         ApplyMoveSpeed();
