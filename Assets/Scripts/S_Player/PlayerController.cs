@@ -46,7 +46,7 @@ private AbilityHolder abilityHolder;
 // Movement runtime
 private float baseMoveSpeed;
 private Vector2 move;
-private bool isSprinting;
+public bool isSprinting;
 private bool jumpRequested;
 private float backwardTurnLockTimer;
 

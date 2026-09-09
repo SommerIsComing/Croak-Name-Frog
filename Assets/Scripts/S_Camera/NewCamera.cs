@@ -6,6 +6,7 @@ public class NewCamera : MonoBehaviour
 {
 	[Header("References")]
 	[SerializeField] private CinemachineOrbitalFollow orbitalFollow;
+	[SerializeField] private CinemachineInputAxisController inputAxisController;
 	[SerializeField] private PlayerController playerController;
 	[SerializeField] private InputActionReference cameraResetAction;
 
@@ -34,6 +35,12 @@ public class NewCamera : MonoBehaviour
 			cameraResetAction.action.performed += HandleCameraReset;
 			cameraResetAction.action.Enable();
 		}
+
+		GameEvent.OnDialogueInteractionStart += HandleLookLockStart;
+		GameEvent.OnDialogueInteractionEnd += HandleLookLockEnd;
+
+		UIEvent.OnPauseMenuOpened += HandleLookLockStart;
+		UIEvent.OnPauseMenuClosed += HandleLookLockEnd;
 	}
 
 	private void OnDisable()
@@ -43,6 +50,12 @@ public class NewCamera : MonoBehaviour
 			cameraResetAction.action.performed -= HandleCameraReset;
 			cameraResetAction.action.Disable();
 		}
+
+		GameEvent.OnDialogueInteractionStart -= HandleLookLockStart;
+		GameEvent.OnDialogueInteractionEnd -= HandleLookLockEnd;
+
+		UIEvent.OnPauseMenuOpened -= HandleLookLockStart;
+		UIEvent.OnPauseMenuClosed -= HandleLookLockEnd;
 	}
 
 	private void Awake()
@@ -92,9 +105,30 @@ public class NewCamera : MonoBehaviour
 			orbitalFollow = GetComponent<CinemachineOrbitalFollow>();
 		}
 
+		if (inputAxisController == null)
+		{
+			inputAxisController = GetComponent<CinemachineInputAxisController>();
+		}
+
 		if (playerController == null)
 		{
 			playerController = Object.FindFirstObjectByType<PlayerController>();
+		}
+	}
+
+	private void HandleLookLockStart()
+	{
+		if (inputAxisController != null)
+		{
+			inputAxisController.enabled = false;
+		}
+	}
+
+	private void HandleLookLockEnd()
+	{
+		if (inputAxisController != null)
+		{
+			inputAxisController.enabled = true;
 		}
 	}
 
