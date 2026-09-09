@@ -46,7 +46,7 @@ private AbilityHolder abilityHolder;
 // Movement runtime
 private float baseMoveSpeed;
 private Vector2 move;
-private bool isSprinting;
+public bool isSprinting;
 private bool jumpRequested;
 private float backwardTurnLockTimer;
 
@@ -261,7 +261,7 @@ public Vector2 MoveInput => move;
 
     public void OnSprint(InputAction.CallbackContext context)
     {
-        if (context.started) isSprinting = true;
+        if (context.started && playerJump.IsGrounded) isSprinting = true;
         if (context.canceled) isSprinting = false;
 
         ApplyMoveSpeed();

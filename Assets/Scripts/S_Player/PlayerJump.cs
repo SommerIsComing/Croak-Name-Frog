@@ -30,6 +30,7 @@ public class PlayerJump : MonoBehaviour
     public bool gravityEnabled = true;
 
     [SerializeField] Animator animator;
+    private PlayerController pc;
     
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
