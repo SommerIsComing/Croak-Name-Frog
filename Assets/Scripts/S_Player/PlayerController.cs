@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Events;
 using System.Collections;
 
 public class PlayerController : MonoBehaviour
@@ -37,6 +38,9 @@ public class PlayerController : MonoBehaviour
 
 [Header("Misc")]
 [SerializeField] private Compass compass;
+
+[Header("Events")]
+[SerializeField] private UnityEvent OnWalk;
 
 // Cached components
 private Rigidbody rb;
@@ -119,6 +123,7 @@ public Vector2 MoveInput => move;
         if (!isInDialogue && !isInMenu)
         {
             move = context.ReadValue<Vector2>();
+
         }
     }
 
@@ -192,7 +197,7 @@ public Vector2 MoveInput => move;
     {
         if (!isInDialogue && !isInMenu)
         {
-            if (!isAnyAttackUnlocked || animator == null || UI_Manager.uiManager.noteBookUIDisplaying)
+            if (!isAnyAttackUnlocked || animator == null || (UI_Manager.uiManager != null && UI_Manager.uiManager.noteBookUIDisplaying))
             {
                 return;
             }
@@ -258,6 +263,11 @@ public Vector2 MoveInput => move;
 
         abilityHolder.TriggerAbilityByName(shooterAbilityName);
     }
+
+    public void OnFootstepAnimationEvent()
+    {
+        OnWalk?.Invoke();
+    }   
 
     public void OnSprint(InputAction.CallbackContext context)
     {

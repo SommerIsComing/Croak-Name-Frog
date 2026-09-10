@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class EnemyHeath : MonoBehaviour
 {
@@ -7,6 +8,9 @@ public class EnemyHeath : MonoBehaviour
     [SerializeField] private float hitInvulnerabilityDuration = 0.15f;
     private float nextDamageAllowedTime;
     private Animator animator;
+
+    public UnityEvent OnHit;
+    public UnityEvent OnDeath;
 
     void Start()
     {
@@ -27,9 +31,14 @@ public class EnemyHeath : MonoBehaviour
 
         nextDamageAllowedTime = Time.time + hitInvulnerabilityDuration;
         currentHealth -= damage;
+
+        float pitch = Random.Range(0.5f, 1.5f);
+        OnHit?.Invoke();
+
         Debug.Log("Damaged - Current enemy health: " + currentHealth);
         if (currentHealth <= 0)
         {
+            OnDeath?.Invoke();
             Die();
         }
     }

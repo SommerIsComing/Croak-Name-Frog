@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd045f04b27ee0847b5ee131de037c89, type: 3}
+  m_Name: PlayerWalk
+  m_EditorClassIdentifier: Assembly-CSharp::SoundEffectSO
+  clips:
+  - {fileID: 8300000, guid: 2886fd6babd0bc14bbe0c0b42163680d, type: 3}
+  minVolume: 0.7
+  maxVolume: 1
+  randomizePitch: 1
+  minPitch: 1
+  maxPitch: 1.5
