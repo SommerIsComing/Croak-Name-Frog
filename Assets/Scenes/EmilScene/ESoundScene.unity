@@ -699,6 +699,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1789094842914149439, guid: 5a7efabb6bcbd404aa31adcd23135ae8, type: 3}
+      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1789094842914149439, guid: 5a7efabb6bcbd404aa31adcd23135ae8, type: 3}
       propertyPath: OnHit.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 2
       objectReference: {fileID: 0}
@@ -729,6 +733,10 @@ PrefabInstance:
     - target: {fileID: 1789094842914149439, guid: 5a7efabb6bcbd404aa31adcd23135ae8, type: 3}
       propertyPath: OnHit.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: TakeDamage
+      objectReference: {fileID: 0}
+    - target: {fileID: 1789094842914149439, guid: 5a7efabb6bcbd404aa31adcd23135ae8, type: 3}
+      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1789094842914149439, guid: 5a7efabb6bcbd404aa31adcd23135ae8, type: 3}
       propertyPath: OnHit.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
