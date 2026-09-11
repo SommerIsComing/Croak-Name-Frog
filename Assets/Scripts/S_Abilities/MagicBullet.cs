@@ -1,16 +1,15 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class MagicBullet : MonoBehaviour
 {
     [SerializeField] private float speed = 20f;
     [SerializeField] private float lifetime = 2f;
     [SerializeField] private int damage = 1;
+    [SerializeField] private ParticleSystem impactEffectPrefab;
 
-    [Header("Audio")]
-    [SerializeField] private AudioSource audioSource;
-    [SerializeField] private AudioClip shootSound;
-    [SerializeField] private AudioClip hitSound;
-    [SerializeField] private float shootVolume = 1f;
+    [Header("Events")]
+    [SerializeField] private UnityEvent OnImpact;
 
     private Rigidbody rb;
 
@@ -22,10 +21,7 @@ public class MagicBullet : MonoBehaviour
     public void Initialize(Vector3 direction, float speed, float lifetime)
     {
         rb.linearVelocity = direction.normalized * speed;
-        if (audioSource != null && shootSound != null)
-        {
-            audioSource.PlayOneShot(shootSound, shootVolume);
-        }
+
         Destroy(gameObject, lifetime);
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -39,13 +35,27 @@ public class MagicBullet : MonoBehaviour
     }
 
     
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        EnemyHeath enemyHealth = collision.gameObject.GetComponent<EnemyHeath>();
+        // Ignore ambient trigger zones (interaction range, compass, quest areas) and the shooter itself.
+        if (other.isTrigger || other.CompareTag("Player"))
+        {
+            return;
+        }
+
+        EnemyHeath enemyHealth = other.gameObject.GetComponent<EnemyHeath>();
         if (enemyHealth != null)
         {
             enemyHealth.TakeDamage(damage);
         }
+
+        OnImpact?.Invoke();
+
+        if (impactEffectPrefab != null)
+        {
+            Instantiate(impactEffectPrefab, transform.position, impactEffectPrefab.transform.rotation);
+        }
+
         Destroy(gameObject);
     }
 }

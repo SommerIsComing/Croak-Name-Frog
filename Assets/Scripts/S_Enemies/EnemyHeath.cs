@@ -8,6 +8,7 @@ public class EnemyHeath : MonoBehaviour
     [SerializeField] private float hitInvulnerabilityDuration = 0.15f;
     private float nextDamageAllowedTime;
     private Animator animator;
+    private EnemyAI enemyAI;
 
     public UnityEvent OnHit;
     public UnityEvent OnDeath;
@@ -15,6 +16,7 @@ public class EnemyHeath : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
+        enemyAI = GetComponent<EnemyAI>();
 
         currentHealth = maxHealth;
     }
@@ -31,6 +33,11 @@ public class EnemyHeath : MonoBehaviour
 
         nextDamageAllowedTime = Time.time + hitInvulnerabilityDuration;
         currentHealth -= damage;
+
+        if (enemyAI != null)
+        {
+            enemyAI.Stun(hitInvulnerabilityDuration);
+        }
 
         float pitch = Random.Range(0.5f, 1.5f);
         OnHit?.Invoke();

@@ -41,6 +41,7 @@ public class PlayerController : MonoBehaviour
 
 [Header("Events")]
 [SerializeField] private UnityEvent OnWalk;
+[SerializeField] private UnityEvent OnFire;
 
 // Cached components
 private Rigidbody rb;
@@ -262,6 +263,7 @@ public Vector2 MoveInput => move;
         }
 
         abilityHolder.TriggerAbilityByName(shooterAbilityName);
+        OnFire?.Invoke();
     }
 
     public void OnFootstepAnimationEvent()

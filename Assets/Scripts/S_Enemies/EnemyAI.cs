@@ -24,6 +24,8 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private Transform[] patrolPoints;
     private int currentPatrolIndex = 0;
 
+    private Coroutine stunRoutine;
+
     //states
     private enum aiStates
     {
@@ -184,5 +186,22 @@ public class EnemyAI : MonoBehaviour
 
         playerTransform = player.transform;
         playerHealth = player.GetComponent<PlayerHeath>();
+    }
+
+    public void Stun(float duration)
+    {
+        if (stunRoutine != null)
+        {
+            StopCoroutine(stunRoutine);
+        }
+        stunRoutine = StartCoroutine(StunRoutine(duration));
+    }
+
+    private System.Collections.IEnumerator StunRoutine(float duration)
+    {
+        agent.isStopped = true;
+        yield return new WaitForSeconds(duration);
+        agent.isStopped = false;
+        stunRoutine = null;
     }
 }
