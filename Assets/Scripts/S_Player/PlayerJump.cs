@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerJump : MonoBehaviour
 {
@@ -31,6 +32,9 @@ public class PlayerJump : MonoBehaviour
 
     [SerializeField] Animator animator;
     private PlayerController pc;
+
+    [Header("Events")]
+    [SerializeField] private UnityEvent OnJump;
     
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -87,6 +91,8 @@ public class PlayerJump : MonoBehaviour
         }
 
         readyToJump = false;
+
+        OnJump?.Invoke();
 
         // This prevents "jump just slows my fall" feeling
         Vector3 v = rb.linearVelocity;

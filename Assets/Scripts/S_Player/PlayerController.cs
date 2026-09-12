@@ -255,9 +255,10 @@ public Vector2 MoveInput => move;
     }
 
     // Animation Event hook: call this from attack clips when the projectile should fire.
+    // The attack clips are shared between weapons, so only fire if the Shooter is the currently equipped weapon.
     public void FireShooterFromAnimationEvent()
     {
-        if (abilityHolder == null)
+        if (abilityHolder == null || !abilityHolder.IsAbilityUnlockedByName(shooterAbilityName))
         {
             return;
         }
