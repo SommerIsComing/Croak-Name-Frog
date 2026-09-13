@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cd045f04b27ee0847b5ee131de037c89, type: 3}
-  m_Name: MagicHit
+  m_Name: PlayerLand
   m_EditorClassIdentifier: Assembly-CSharp::SoundEffectSO
   clips:
-  - {fileID: 8300000, guid: aefb352212460a4498061545fad8a3ad, type: 3}
-  minVolume: 0.8
-  maxVolume: 0.8
+  - {fileID: 8300000, guid: 03e96d69e6c6ade49a31f6b6c99c6a8e, type: 3}
+  minVolume: 1
+  maxVolume: 1
   randomizePitch: 1
   minPitch: 0.8
   maxPitch: 1.1
