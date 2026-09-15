@@ -26,11 +26,11 @@ public class EnemyHeath : MonoBehaviour
         if (Time.time < nextDamageAllowedTime) return;
         if (currentHealth <= 0) return;
 
-        if (animator != null)
+       /* if (animator != null)
         {
             animator.SetTrigger("Hit");
         }
-
+        */
         nextDamageAllowedTime = Time.time + hitInvulnerabilityDuration;
         currentHealth -= damage;
 
@@ -61,7 +61,7 @@ public class EnemyHeath : MonoBehaviour
         // Play death animation
         if (animator != null)
         {
-            animator.SetTrigger("Die");
+            //animator.SetTrigger("Die");
             yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
         }
 

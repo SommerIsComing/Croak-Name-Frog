@@ -579,6 +579,7 @@ GameObject:
   - component: {fileID: 7406675508075004841}
   - component: {fileID: 7721613673685606072}
   - component: {fileID: 1789094842914149439}
+  - component: {fileID: 3565102632442114257}
   m_Layer: 0
   m_Name: SpiderTRUE 1
   m_TagString: Enemy
@@ -732,8 +733,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   currentHealth: 0
-  maxHealth: 1
+  maxHealth: 5
   hitInvulnerabilityDuration: 0.15
+  OnHit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3565102632442114257}
+        m_TargetAssemblyTypeName: SoundEmitter, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: 38189a13cc8420c4380191485cea8a32, type: 2}
+          m_ObjectArgumentAssemblyTypeName: SoundEffectSO, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnDeath:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &3565102632442114257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4734956731591497512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fcb68d3be7c5254a8d91df62d07aa07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SoundEmitter
 --- !u!1 &5481622608272188233
 GameObject:
   m_ObjectHideFlags: 0

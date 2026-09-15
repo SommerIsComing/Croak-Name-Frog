@@ -6,6 +6,6 @@ public class PlayFootstep : MonoBehaviour
 {
     public void PlaySound()
     {
-        SoundManager.PlaySound(SoundType.FOOTSTEP);
+        // old SoundManager system removed
     }
 }
