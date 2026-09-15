@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class EnemyHeath : MonoBehaviour
 {
@@ -7,10 +8,15 @@ public class EnemyHeath : MonoBehaviour
     [SerializeField] private float hitInvulnerabilityDuration = 0.15f;
     private float nextDamageAllowedTime;
     private Animator animator;
+    private EnemyAI enemyAI;
+
+    public UnityEvent OnHit;
+    public UnityEvent OnDeath;
 
     void Start()
     {
         animator = GetComponent<Animator>();
+        enemyAI = GetComponent<EnemyAI>();
 
         currentHealth = maxHealth;
     }
@@ -20,16 +26,26 @@ public class EnemyHeath : MonoBehaviour
         if (Time.time < nextDamageAllowedTime) return;
         if (currentHealth <= 0) return;
 
-        if (animator != null)
+       /* if (animator != null)
         {
             animator.SetTrigger("Hit");
         }
-
+        */
         nextDamageAllowedTime = Time.time + hitInvulnerabilityDuration;
         currentHealth -= damage;
+
+        if (enemyAI != null)
+        {
+            enemyAI.Stun(hitInvulnerabilityDuration);
+        }
+
+        float pitch = Random.Range(0.5f, 1.5f);
+        OnHit?.Invoke();
+
         Debug.Log("Damaged - Current enemy health: " + currentHealth);
         if (currentHealth <= 0)
         {
+            OnDeath?.Invoke();
             Die();
         }
     }
@@ -45,7 +61,7 @@ public class EnemyHeath : MonoBehaviour
         // Play death animation
         if (animator != null)
         {
-            animator.SetTrigger("Die");
+            //animator.SetTrigger("Die");
             yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
         }
 

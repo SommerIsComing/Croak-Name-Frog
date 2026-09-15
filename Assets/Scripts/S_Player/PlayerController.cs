@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Events;
 using System.Collections;
 
 public class PlayerController : MonoBehaviour
@@ -37,6 +38,10 @@ public class PlayerController : MonoBehaviour
 
 [Header("Misc")]
 [SerializeField] private Compass compass;
+
+[Header("Events")]
+[SerializeField] private UnityEvent OnWalk;
+[SerializeField] private UnityEvent OnFire;
 
 // Cached components
 private Rigidbody rb;
@@ -119,6 +124,7 @@ public Vector2 MoveInput => move;
         if (!isInDialogue && !isInMenu)
         {
             move = context.ReadValue<Vector2>();
+
         }
     }
 
@@ -192,7 +198,7 @@ public Vector2 MoveInput => move;
     {
         if (!isInDialogue && !isInMenu)
         {
-            if (!isAnyAttackUnlocked || animator == null || UI_Manager.uiManager.noteBookUIDisplaying)
+            if (!isAnyAttackUnlocked || animator == null || (UI_Manager.uiManager != null && UI_Manager.uiManager.noteBookUIDisplaying))
             {
                 return;
             }
@@ -249,15 +255,22 @@ public Vector2 MoveInput => move;
     }
 
     // Animation Event hook: call this from attack clips when the projectile should fire.
+    // The attack clips are shared between weapons, so only fire if the Shooter is the currently equipped weapon.
     public void FireShooterFromAnimationEvent()
     {
-        if (abilityHolder == null)
+        if (abilityHolder == null || !abilityHolder.IsAbilityUnlockedByName(shooterAbilityName))
         {
             return;
         }
 
         abilityHolder.TriggerAbilityByName(shooterAbilityName);
+        OnFire?.Invoke();
     }
+
+    public void OnFootstepAnimationEvent()
+    {
+        OnWalk?.Invoke();
+    }   
 
     public void OnSprint(InputAction.CallbackContext context)
     {

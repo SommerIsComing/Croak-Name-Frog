@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerJump : MonoBehaviour
 {
@@ -31,6 +32,10 @@ public class PlayerJump : MonoBehaviour
 
     [SerializeField] Animator animator;
     private PlayerController pc;
+
+    [Header("Events")]
+    [SerializeField] private UnityEvent OnJump;
+    [SerializeField] private UnityEvent OnLand;
     
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -43,8 +48,14 @@ public class PlayerJump : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        bool wasGrounded = grounded;
         bool rawGrounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + groundCheckOffset, groundLayer);
         grounded = rawGrounded && rb.linearVelocity.y <= 0.05f;
+
+        if (grounded && !wasGrounded)
+        {
+            OnLand?.Invoke();
+        }
 
         if (grounded)
         {
@@ -143,5 +154,9 @@ public class PlayerJump : MonoBehaviour
         }
 
         }
-    
+
+        public void PlayJumpSFXAnimEvent()
+    {
+        OnJump?.Invoke();
+    }
 }
