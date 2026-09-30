@@ -939,6 +939,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7801506496062881819, guid: d35d40096a12aba40bc7b9c1aedad98a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1236501031}
+    - targetCorrespondingSourceObject: {fileID: 7801506496062881819, guid: d35d40096a12aba40bc7b9c1aedad98a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1236501032}
   m_SourcePrefab: {fileID: 100100000, guid: d35d40096a12aba40bc7b9c1aedad98a, type: 3}
 --- !u!1 &1236501030 stripped
 GameObject:
@@ -957,12 +960,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2f877cf4be697e4b822046696d02f30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NPC_Instance
-  npcData: {fileID: 0}
+  npcData: {fileID: 11400000, guid: 1be417320a6906a4aa988739fd1e2033, type: 2}
   questGiven: 0
-  npcID: 
-  questToGiveID: 
-  isInteractable: 0
+  npcID: scrote
+  questToGiveID: trash
+  isInteractable: 1
   hasTalkedToPlayer: 0
+--- !u!135 &1236501032
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1236501030}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1716611801 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8541205870763290238, guid: 41611c9ecb950be4f8bcf6ce80932dee, type: 3}
@@ -1145,6 +1169,63 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d3ba6622e51650b429577d784cfc44e7, type: 3}
+--- !u!1001 &1902995557709668460
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1955225516816785929, guid: 946cf20ec71964842bf543cd3f302159, type: 3}
+      propertyPath: m_Name
+      value: Trash Boss Monster
+      objectReference: {fileID: 0}
+    - target: {fileID: 5580865462054376275, guid: 946cf20ec71964842bf543cd3f302159, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.1877909
+      objectReference: {fileID: 0}
+    - target: {fileID: 5580865462054376275, guid: 946cf20ec71964842bf543cd3f302159, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 6.0481596
+      objectReference: {fileID: 0}
+    - target: {fileID: 5580865462054376275, guid: 946cf20ec71964842bf543cd3f302159, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 91.2248
+      objectReference: {fileID: 0}
+    - target: {fileID: 5580865462054376275, guid: 946cf20ec71964842bf543cd3f302159, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.5344285
+      objectReference: {fileID: 0}
+    - target: {fileID: 5580865462054376275, guid: 946cf20ec71964842bf543cd3f302159, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.53442854
+      objectReference: {fileID: 0}
+    - target: {fileID: 5580865462054376275, guid: 946cf20ec71964842bf543cd3f302159, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.46301866
+      objectReference: {fileID: 0}
+    - target: {fileID: 5580865462054376275, guid: 946cf20ec71964842bf543cd3f302159, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.46301854
+      objectReference: {fileID: 0}
+    - target: {fileID: 5580865462054376275, guid: 946cf20ec71964842bf543cd3f302159, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 5580865462054376275, guid: 946cf20ec71964842bf543cd3f302159, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5580865462054376275, guid: 946cf20ec71964842bf543cd3f302159, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -81.81
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 946cf20ec71964842bf543cd3f302159, type: 3}
 --- !u!1001 &6370703832646615251
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1215,3 +1296,4 @@ SceneRoots:
   - {fileID: 1937217984}
   - {fileID: 2107807804}
   - {fileID: 1236501029}
+  - {fileID: 1902995557709668460}
