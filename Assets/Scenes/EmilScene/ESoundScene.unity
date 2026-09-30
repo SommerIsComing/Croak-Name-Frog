@@ -935,8 +935,34 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7801506496062881819, guid: d35d40096a12aba40bc7b9c1aedad98a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1236501031}
   m_SourcePrefab: {fileID: 100100000, guid: d35d40096a12aba40bc7b9c1aedad98a, type: 3}
+--- !u!1 &1236501030 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7801506496062881819, guid: d35d40096a12aba40bc7b9c1aedad98a, type: 3}
+  m_PrefabInstance: {fileID: 1236501029}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1236501031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1236501030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2f877cf4be697e4b822046696d02f30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NPC_Instance
+  npcData: {fileID: 0}
+  questGiven: 0
+  npcID: 
+  questToGiveID: 
+  isInteractable: 0
+  hasTalkedToPlayer: 0
 --- !u!114 &1716611801 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8541205870763290238, guid: 41611c9ecb950be4f8bcf6ce80932dee, type: 3}
