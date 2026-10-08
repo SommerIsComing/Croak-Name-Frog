@@ -49,6 +49,12 @@ public class MagicBullet : MonoBehaviour
             enemyHealth.TakeDamage(damage);
         }
 
+        MonsterHealth monsterHealth = other.gameObject.GetComponentInParent<MonsterHealth>();
+        if (monsterHealth != null)
+        {
+            monsterHealth.TakeDamage(damage);
+        }
+
         OnImpact?.Invoke();
 
         if (impactEffectPrefab != null)

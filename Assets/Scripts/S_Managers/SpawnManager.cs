@@ -31,6 +31,7 @@ public class SpawnManager : MonoBehaviour
             return;
         }
 
+        Debug.Log("SpawnManager: placing player at '" + sceneEntryPoint.name + "' " + sceneEntryPoint.position, sceneEntryPoint);
         ApplySpawn(player.transform, sceneEntryPoint.position, sceneEntryPoint.rotation);
         StartCoroutine(ApplySpawnAfterPhysics(player.transform, sceneEntryPoint.position, sceneEntryPoint.rotation));
     }

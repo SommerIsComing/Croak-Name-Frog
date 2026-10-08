@@ -12,6 +12,10 @@ public class PlayerHeath : MonoBehaviour
     [SerializeField] private float knockbackUpward = 2f;
     [SerializeField] private float flashInterval = 0.02f;
 
+    [SerializeField] private float knockbackControlLockDuration = 0.3f;
+
+    private float knockbackLockUntil;
+    public bool IsKnockedBack => Time.time < knockbackLockUntil;
     private bool isInvulnerable;
     private Rigidbody rb;
     private Renderer[] renderers;
@@ -48,7 +52,7 @@ public class PlayerHeath : MonoBehaviour
         Debug.Log("Healed - Current player health: " + currentHealth);
     }
 
-    public void TakeDamage(int damage, Vector3 attackerPosition)
+    public void TakeDamage(int damage, Vector3 attackerPosition, float knockbackForceOverride = -1f, float knockbackUpwardOverride = -1f)
     {
         if (currentHealth <= 0 || isRespawning || isInvulnerable) return; // forhindrer yderligere skade, hvis spilleren allerede er død
         currentHealth -= damage;
@@ -62,7 +66,9 @@ public class PlayerHeath : MonoBehaviour
         Vector3 away = (transform.position - attackerPosition).normalized;
         Vector3 knockbackDir = new Vector3(away.x, 0f, away.z).normalized;
 
-        ApplyKnockback(knockbackDir);
+        ApplyKnockback(knockbackDir,
+            knockbackForceOverride >= 0f ? knockbackForceOverride : knockbackForce,
+            knockbackUpwardOverride >= 0f ? knockbackUpwardOverride : knockbackUpward);
         StartCoroutine(InvulnerabilityRoutine());
     }
 
@@ -94,12 +100,13 @@ public class PlayerHeath : MonoBehaviour
         isRespawning = false;
     }
 
-    private void ApplyKnockback(Vector3 horizontalDir)
+    private void ApplyKnockback(Vector3 horizontalDir, float force_, float upward)
     {
         if (rb == null) return;
 
+        knockbackLockUntil = Time.time + knockbackControlLockDuration;
         rb.linearVelocity = new Vector3(0f, rb.linearVelocity.y, 0f);
-        Vector3 force = horizontalDir * knockbackForce + Vector3.up * knockbackUpward;
+        Vector3 force = horizontalDir * force_ + Vector3.up * upward;
         rb.AddForce(force, ForceMode.Impulse);
     }
 

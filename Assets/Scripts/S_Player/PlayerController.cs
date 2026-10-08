@@ -45,6 +45,7 @@ public class PlayerController : MonoBehaviour
 
 // Cached components
 private Rigidbody rb;
+private PlayerHeath playerHealth;
 private PlayerJump playerJump;
 private AbilityHolder abilityHolder;
 
@@ -284,6 +285,7 @@ public Vector2 MoveInput => move;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        playerHealth = GetComponent<PlayerHeath>();
         playerJump = GetComponent<PlayerJump>();
         abilityHolder = GetComponent<AbilityHolder>();
 
@@ -331,7 +333,11 @@ public Vector2 MoveInput => move;
                 return;
             }
 
-            MovePlayer();
+            // MovePosition overrides physics, so skip it while knocked back
+            if (playerHealth == null || !playerHealth.IsKnockedBack)
+            {
+                MovePlayer();
+            }
 
             if (jumpRequested)
             {

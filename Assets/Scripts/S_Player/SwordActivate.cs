@@ -57,9 +57,17 @@ public class SwordActivate : MonoBehaviour
     if (!other.CompareTag(enemyTag)) return;
 
     EnemyHeath enemyHealth = other.GetComponent<EnemyHeath>();
-    if (enemyHealth == null) return;
+    if (enemyHealth != null)
+    {
+        enemyHealth.TakeDamage(damage);
+        return;
+    }
 
-    enemyHealth.TakeDamage(damage);
+    MonsterHealth monsterHealth = other.GetComponentInParent<MonsterHealth>();
+    if (monsterHealth != null)
+    {
+        monsterHealth.TakeDamage(damage);
+    }
     }
 }
 
