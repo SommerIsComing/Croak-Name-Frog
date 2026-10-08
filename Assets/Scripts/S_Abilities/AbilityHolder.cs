@@ -109,6 +109,19 @@ public class AbilityHolder : MonoBehaviour
         return false;
     }
 
+    public bool IsAbilityActiveByName(string abilityName)
+    {
+        for (int i = 0; i < abilitySlots.Count; i++)
+        {
+            if (abilitySlots[i].ability != null && abilitySlots[i].ability.name == abilityName)
+            {
+                return abilitySlots[i].state == AbilityState.active;
+            }
+        }
+
+        return false;
+    }
+
     // Update is called once per frame
     void Update()
     {

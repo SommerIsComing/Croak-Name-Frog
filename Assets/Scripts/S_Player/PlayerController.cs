@@ -255,6 +255,17 @@ public Vector2 MoveInput => move;
         }
     }
 
+    public void OnDodge(InputAction.CallbackContext context)
+    {
+        if (!isInDialogue && !isInMenu)
+        {
+            if (context.performed && abilityHolder != null)
+            {
+                abilityHolder.TriggerAbilityByName("Dodge");
+            }
+        }
+    }
+
     // Animation Event hook: call this from attack clips when the projectile should fire.
     // The attack clips are shared between weapons, so only fire if the Shooter is the currently equipped weapon.
     public void FireShooterFromAnimationEvent()
@@ -333,8 +344,9 @@ public Vector2 MoveInput => move;
                 return;
             }
 
-            // MovePosition overrides physics, so skip it while knocked back
-            if (playerHealth == null || !playerHealth.IsKnockedBack)
+            // MovePosition overrides physics, so skip it while knocked back or dodging
+            bool isDodging = abilityHolder != null && abilityHolder.IsAbilityActiveByName("Dodge");
+            if ((playerHealth == null || !playerHealth.IsKnockedBack) && !isDodging)
             {
                 MovePlayer();
             }
